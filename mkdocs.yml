@@ -1,7 +1,7 @@
 site_name: 领航国际教育 - BA专业自学系列课程
 site_description: 领航国际教育 - BA专业自学系列课程
-site_url: https://zhangfan9607243.github.io/Navigation_BA/
-site_dir: /Users/zhangfan/Library/Mobile Documents/com~apple~CloudDocs/Fan的文件/我的同步/GitHub/Navigation_BA
+site_url: https://navigationba.github.io/NavigationBA_Basics/
+site_dir: site
 edit_uri: edit/main/docs/
 
 theme:

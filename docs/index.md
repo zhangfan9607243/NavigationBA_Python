@@ -13,8 +13,8 @@
 
 本系列课程的资料包括：
 
-- 讲义：[本网站](https://zhangfan9607243.github.io/Navigation_BA/)
-- 代码：[GitHub](https://github.com/zhangfan9607243/Navigation_BA_Codes)
+- 讲义：[本网站](https://navigationba.github.io/NavigationBA_Basics/)
+- 代码：[GitHub](https://github.com/NavigationBA/NavigationBA_Basics_Code)
 - 视频讲解：请联系领航客服获得：
 
 ## 课程大纲
