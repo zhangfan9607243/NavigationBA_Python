@@ -23,7 +23,6 @@ def 函数名():
 
 函数在定义之后，可以通过函数名加括号来调用执行：`函数名()`，注意，函数必须先定义，后调用，并且可以多次调用。
 
-例如，我们定义一个简单的函数来打印一条欢迎信息：
 
 ```python
 # 定义函数
@@ -37,10 +36,9 @@ show_welcome()
 show_welcome()
 ```
 
-```
-欢迎使用 Python 编程！
-欢迎使用 Python 编程！
-```
+    欢迎使用 Python 编程！
+    欢迎使用 Python 编程！
+
 
 ## 2. 函数的参数
 
@@ -57,19 +55,20 @@ def 函数名(参数1, 参数2, ...):
 
 例如，我们定义一个打招呼的函数，接受一个名字作为参数：
 
+
 ```python
 # 定义函数，带有一个参数 name
 def greet(name):
     print(f"你好，{name}！")
+
 # 调用函数，传入参数
 greet(name="小明")
 greet(name="小红")
 ```
 
-```text
-你好，小明！
-你好，小红！
-```
+    你好，小明！
+    你好，小红！
+
 
 在这段代码中，在定义函数是，我们加入了一个参数 `name`
 
@@ -79,17 +78,18 @@ greet(name="小红")
 
 在函数调用时，可以不加入参数名，直接传入参数值，Python 会按照参数的顺序依次赋值给参数：
 
+
 ```python
 greet("小明")
 greet("小红")
 ```
 
-```text
-你好，小明！
-你好，小红！
-```
+    你好，小明！
+    你好，小红！
+
 
 我们再来看一个多参数的例子：
+
 
 ```python
 # 定义函数，带有两个参数 a 和 b
@@ -102,10 +102,9 @@ add_numbers(a=3, b=5)
 add_numbers(a=10, b=20)
 ```
 
-```text
-3 与 5 的和是 8。
-10 与 20 的和是 30。
-```
+    3 与 5 的和是 8。
+    10 与 20 的和是 30。
+
 
 在这个例子中，函数 `add_numbers` 有两个参数 `a` 和 `b`
 
@@ -114,39 +113,46 @@ add_numbers(a=10, b=20)
 
 在这个例子中，如果我们不使用参数名，直接传入参数值，效果是一样的，注意 Python 会按顺序匹配参数：
 
+
 ```python
 add_numbers(3, 5)
 add_numbers(10, 20)
 ```
 
-```text
-3 与 5 的和是 8。
-10 与 20 的和是 30。
-```
+    3 与 5 的和是 8。
+    10 与 20 的和是 30。
+
 
 在多个参数的情况下，有以下几点需要注意的
 
 - 如果使用参数名，那么我们可以在传入参数的时候，打乱参数的顺序，但是不使用参数名的话就必须按照定义时的顺序传入参数
 - 如果混用参数名和不使用参数名的方式传入参数，那么不使用参数名的参数必须放在前面，使用参数名的参数必须放在后面
 
+
 ```python
 add_numbers(b=5, a=3)  # 使用参数名，可以打乱顺序
 add_numbers(10, 20)    # 不使用参数名，必须按顺序
-
-add_numbers(3, b=5)     # 混用，必须先传入不使用参数名的参数
-add_numbers(b=5, 3)     # 错误，必须先传入不使用参数名的参数
 ```
 
-```text
-3 与 5 的和是 8。
-10 与 20 的和是 30。
-3 与 5 的和是 8。
-SyntaxError: positional argument follows keyword argument
+    3 与 5 的和是 8。
+    10 与 20 的和是 30。
+
+
+
+```python
+# 混用，必须先传入不使用参数名的参数
+add_numbers(3, b=5)
+# 混用的错误示范，必须先传入不使用参数名的参数，以下代码会报 SyntaxError
+# add_numbers(b=5, 3)     
 ```
+
+    3 与 5 的和是 8。
+
 
 ### (2) 参数与变量的区别
 
 我们先来看一下以下代码：
+
 
 ```python
 # 定义函数
@@ -158,9 +164,8 @@ name = "小明"
 show_welcome_info(name)
 ```
 
-```text
-您好，小明，欢迎来到 Python 课程！
-```
+    您好，小明，欢迎来到 Python 课程！
+
 
 在这段代码中，我们观察到一个现象：
 
@@ -186,6 +191,7 @@ def 函数名(参数1, 参数2, ...):
 
 例如，我们定义一个计算两个数乘积的函数，并返回结果：
 
+
 ```python
 # 定义函数，带有两个参数 a 和 b，返回它们的乘积
 def multiply_numbers(a, b):
@@ -197,9 +203,8 @@ result = multiply_numbers(4, 5)
 print(f"4 与 5 的乘积是 {result}。")
 ```
 
-```text
-4 与 5 的乘积是 20。
-```
+    4 与 5 的乘积是 20。
+
 
 在这个例子中，函数 `multiply_numbers` 将计算好的一个结果通过 `return` 语句返回
 
@@ -213,6 +218,7 @@ print(f"4 与 5 的乘积是 {result}。")
 - 如果 `return` 下方还有代码，这些代码是不会被执行的，可以看到编辑器会把这些代码变成灰色，提醒程序员这些代码不会被执行
 
 我们来看以下例子：
+
 
 ```python
 # 定义三个函数，分别展示不同的返回值情况
@@ -239,14 +245,13 @@ result3 = test_function_v3()
 print(f"test_function_v3 的返回值是 {result3}")
 ```
 
-```text
-Hello World!
-test_function_v1 的返回值是 None
-Hello World!
-test_function_v2 的返回值是 None
-Hello World!
-test_function_v3 的返回值是 8888
-```
+    Hello World!
+    test_function_v1 的返回值是 None
+    Hello World!
+    test_function_v2 的返回值是 None
+    Hello World!
+    test_function_v3 的返回值是 8888
+
 
 在这段代码中：
 
@@ -262,6 +267,7 @@ test_function_v3 的返回值是 8888
 - `print()` 是用来在控制台输出信息的，它不会将结果返回给调用者，只是单纯地显示信息
 
 例如，我们来看一个例子：
+
 
 ```python
 def add_v1(a, b):
@@ -287,17 +293,17 @@ result3 = add_v3(2, 3)
 print(f"add_v3 的结果是 {result3}")
 ```
 
-```text
-5
-add_v1 的结果是 None
-add_v2 的结果是 5
-5
-add_v3 的结果是 5
-```
+    5
+    add_v1 的结果是 None
+    add_v2 的结果是 5
+    5
+    add_v3 的结果是 5
+
 
 这段代码的结果有些复杂，我们来分析一下：
 
 - 首先，我们在定义三个函数 `add_v1`、`add_v2` 和 `add_v3` 的时候，不会有任何的输出，因为函数代码只有在调用的时候执行，在定义时不会执行
+
 - 当我们运行 `result1 = add_v1(2, 3)` 时：
 
     - 函数 `add_v1` 会执行 `print(a + b)`，所以会在控制台输出 `5`
@@ -322,7 +328,54 @@ add_v3 的结果是 5
 - `print()`：Python 解释器只要看到了 `print()` 语句，就会在控制台输出信息
 - `return`：只有函数执行完毕后，使用 `return` 返回结果，调用者才能接收到这个结果
 
-### (3) 函数返回多个值
+
+### (3) 函数返回值作为其他函数的参数
+
+函数的参数其实可以是任何的表达式类型，可以直接传入数据，可以是变量，也可以是其他函数的返回值：
+
+
+```python
+# 定义函数
+def add_numbers(a, b):
+    return a + b
+```
+
+
+```python
+# 直接传入数据
+sum1 = add_numbers(10, 20)
+print(sum1)
+```
+
+    30
+
+
+
+```python
+# 使用变量
+x = 30
+y = 40
+sum2 = add_numbers(x, y)
+print(sum2)
+```
+
+    70
+
+
+
+```python
+# 使用其他函数的返回值
+def multiply_numbers(x, y):
+    return x * y
+
+sum3 = add_numbers(multiply_numbers(5, 6), 10)
+print(sum3)
+```
+
+    40
+
+
+### (4) 函数返回多个值
 
 在 Python 中，函数可以返回多个值，这些值会被打包成一个元组返回。语法格式如下：
 
@@ -333,6 +386,7 @@ def 函数名(参数1, 参数2, ...):
 ```
 
 例如，我们定义一个函数，计算两个数的和与差，并返回这两个结果：
+
 
 ```python
 # 定义函数，带有两个参数 a 和 b，返回它们的和与差
@@ -346,9 +400,8 @@ sum_result, diff_result = calculate_v1(10, 5)
 print(f"10 与 5 的和是 {sum_result}，差是 {diff_result}。")
 ```
 
-```text
-10 与 5 的和是 15，差是 5。
-```
+    10 与 5 的和是 15，差是 5。
+
 
 在这个例子中：
 
@@ -356,6 +409,7 @@ print(f"10 与 5 的和是 {sum_result}，差是 {diff_result}。")
 - 函数在调用的时候，两个返回值分别赋值给 `sum_result` 和 `diff_result` 变量，这个过程叫做“拆包”
 
 我们可以通过以下方式来验证返回值的类型：
+
 
 ```python
 # 定义函数，带有两个参数 a 和 b，返回它们的和与差
@@ -373,12 +427,11 @@ print("函数返回的第一个值是：", results[0])
 print("函数返回的第二个值是：", results[1])
 ```
 
-```text
-(10, 5)
-<class 'tuple'>
-函数返回的第一个值是： 15
-函数返回的第二个值是： 5
-```
+    (15, 5)
+    <class 'tuple'>
+    函数返回的第一个值是： 15
+    函数返回的第二个值是： 5
+
 
 ## 4. 自定义函数综合练习
 
@@ -391,6 +444,8 @@ print("函数返回的第二个值是：", results[1])
     - 调用函数并打印结果
 
 - 参考代码：
+
+
 
 ```python
 # 定义函数
@@ -405,9 +460,8 @@ bmi_value = calculate_bmi(weight, height)
 print(f"一个体重为 {weight} 公斤，身高为 {height} 米的人，BMI 指数是: {round(bmi_value, 2)}")
 ```
 
-```text
-一个体重为 70 公斤，身高为 1.75 米的人，BMI 指数是: 22.86
-```
+    一个体重为 70 公斤，身高为 1.75 米的人，BMI 指数是: 22.86
+
 
 ### (2) 打印小星星
 
@@ -418,6 +472,8 @@ print(f"一个体重为 {weight} 公斤，身高为 {height} 米的人，BMI 指
     - 如果 `n` 大于30，打印 "太多了，打印不完！" 并结束函数
 
 - 参考代码：
+
+
 
 ```python
 # 定义函数
@@ -430,17 +486,23 @@ def show_stars(n):
     
 # 调用函数
 show_stars(5)
+```
+
+    *
+    **
+    ***
+    ****
+    *****
+
+
+
+```python
+# 调用函数
 show_stars(100)
 ```
 
-```text
-*
-**
-***
-****
-*****
-太多了，打印不完！
-```
+    太多了，打印不完！
+
 
 ### (3) 学生信息管理
 
@@ -448,26 +510,27 @@ show_stars(100)
 
     - 我们之前联系过一个学生信息管理的题目，假设我们有以下几个学生信息的列表：
 
-```python
-names = ["Alice Smith", "Bob Johnson", "Charlie Lee"]
-ages = [20, 20, 21]
-genders = ["Female", "Male", "Male"]
-citys = ["New York", "Los Angeles", "Chicago"]
-```
+    ```python
+    names = ["Alice Smith", "Bob Johnson", "Charlie Lee"]
+    ages = [20, 20, 21]
+    genders = ["Female", "Male", "Male"]
+    citys = ["New York", "Los Angeles", "Chicago"]
+    ```
 
     - 我们想将所有学生信息整理到一个列表套字典的数据格式当中，形式如下：
 
-```python
-[
-    {"First Name": "Alice", "Last Name": "Smith", "age": 20, "gender": "Female", "city": "New York"},
-    {"First Name": "Bob", "Last Name": "Johnson", "age": 20, "gender": "Male", "city": "Los Angeles"},
-    {"First Name": "Charlie", "Last Name": "Lee", "age": 21, "gender": "Male", "city": "Chicago"}
-]
-```
+    ```python
+    [
+        {"First Name": "Alice", "Last Name": "Smith", "age": 20, "gender": "Female", "city": "New York"},
+        {"First Name": "Bob", "Last Name": "Johnson", "age": 20, "gender": "Male", "city": "Los Angeles"},
+        {"First Name": "Charlie", "Last Name": "Lee", "age": 21, "gender": "Male", "city": "Chicago"}
+    ]
+    ```
 
     - 这次我们定义一个函数 `create_student_records(names, ages, genders, citys)`，返回一个列表套字典的数据格式，其实就是将我们之前的代码封装到函数里就行：
 
 - 参考代码：
+
 
 ```python
 # 定义函数
@@ -485,8 +548,6 @@ def create_student_records(names, ages, genders, citys):
         age = ages[i]
         gender = genders[i]
         city = citys[i]
-
-        student_id = f"Student {i+1}"
 
         student_sub_dict = {
             "First Name": first_name,
@@ -512,11 +573,5 @@ student_records = create_student_records(names, ages, genders, citys)
 print(student_records)
 ```
 
-```text
-[
-    {"First Name": "Alice", "Last Name": "Smith", "age": 20, "gender": "Female", "city": "New York"},
-    {"First Name": "Bob", "Last Name": "Johnson", "age": 20, "gender": "Male", "city": "Los Angeles"},
-    {"First Name": "Charlie", "Last Name": "Lee", "age": 21, "gender": "Male", "city": "Chicago"}
-]
-```
- 
+    [{'First Name': 'Alice', 'Last Name': 'Smith', 'age': 20, 'gender': 'Female', 'city': 'New York'}, {'First Name': 'Bob', 'Last Name': 'Johnson', 'age': 20, 'gender': 'Male', 'city': 'Los Angeles'}, {'First Name': 'Charlie', 'Last Name': 'Lee', 'age': 21, 'gender': 'Male', 'city': 'Chicago'}]
+

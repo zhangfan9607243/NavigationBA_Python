@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# Deploy mkdocs site and codes to GitHub
 set -e
 
 mkdocs build

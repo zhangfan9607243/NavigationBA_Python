@@ -9,6 +9,7 @@
 - Python 中使用等号 `=` 来给变量赋值
 - 等号左边是变量名（容器的名字），等号右边是值（要存放的数据）：
 
+
 ```python
 name = "小明"
 age = 18
@@ -19,10 +20,9 @@ age = 18
 - 我们可以使用 `print()` 函数查看变量的值
 - 我们也可以使用 `type()` 函数查看变量的类型，注意在 Python 中，直接使用 `type()` 函数并不会在控制台输出内容，因此 `type()` 函数必须嵌套在 `print()` 函数中实现输出
 
-```python
-name = "小明"
-age = 18
 
+
+```python
 print(name)
 print(age)
 
@@ -30,12 +30,11 @@ print(type(name))
 print(type(age))
 ```
 
-```text
-小明
-18
-<class 'str'>
-<class 'int'>
-```
+    小明
+    18
+    <class 'str'>
+    <class 'int'>
+
 
 在很多编程语言中（例如 Java、C++），存在“**常量**”的概念 - 定义之后的值不能被修改
 
@@ -49,6 +48,8 @@ print(type(age))
 
 - 改变一个变量的值，只需把需要改的变量，重新赋予一个新的值即可
 
+
+
 ```python
 age = 18
 print(age)
@@ -57,12 +58,12 @@ age = 20
 print(age)
 ```
 
-```text
-18
-20
-```
+    18
+    20
+
 
 - 还有一种修改变量数值的方式，那就是**增量赋值**，增量赋值会在变量原值基础上进行新的运算，新值会覆盖旧值：
+
 
 ```python
 a = 5
@@ -72,10 +73,9 @@ a = a + 6
 print(a)
 ```
 
-```text
-5
-11
-```
+    5
+    11
+
 
 - 更多关于增量赋值的内容我们在下一章再展开来讲
 
@@ -86,18 +86,31 @@ print(a)
 - 在 Python 中，可以使用内置关键字 `del` 删除变量
 - 变量一旦删除，计算机就不再认识这个变量了，所以调用已经删除的变量就会报错：
 
+
+
 ```python
 age = 18
-print(age)
 
 del age 
-print(age) 
+# print(age)  # 这行代码会报错，因为 age 已经被删除
 ```
 
-```text
-18
-NameError: name 'age' is not defined
-```
+    18
+
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    Cell In[7], line 5
+          2 print(age)
+          4 del age 
+    ----> 5 print(age)
+
+
+    NameError: name 'age' is not defined
+
 
 ## 4. 变量命名原则
 
@@ -122,15 +135,15 @@ NameError: name 'age' is not defined
 3. 不能使用 **关键字** 作为变量名：Python 3.10 版本后一共有35个关键字：
 
 
-|  |         |  **关键字**     |       |        |
+|  |         |        |       |        |
 |----------|---------|-------|-------|--------|
-| False    | None    | True  | and   | as     |
-| assert   | async   | await | break | class  |
-| continue | def     | del   | elif  | else   |
-| except   | finally | for   | from  | global |
-| if       | import  | in    | is    | lambda |
-| nonlocal | not     | or    | pass  | raise  |
-| return   | try     | while | with  | yield  |
+| `False`  | `None`  | `True`| `and` | `as`   |
+| `assert` | `async` | `await`| `break`| `class`|
+| `continue`| `def`  | `del` | `elif`| `else` |
+| `except` | `finally`| `for` | `from`| `global`|
+| `if`     | `import`| `in`  | `is`  | `lambda`|
+| `nonlocal`| `not`  | `or`  | `pass`| `raise`|
+| `return` | `try`  | `while`| `with`| `yield`|
 
 
 ### (2) 见名知义的准则 - 推荐遵守
@@ -154,3 +167,4 @@ NameError: name 'age' is not defined
     - **所有字母小写 + 使用下划线连接单词**：常用于**变量名**与**函数名**，比方说 `name`、 `phone_number`、`calculate_scores`
     - **首字母大写 + 不加下划线连接单词**：常用于**类名**，比方书 `Student`、`BankAccount`
     - **所有字母大写 + 使用下划线连接单词**：常用与**常量名**，比方说 `PI = 3.1415926`
+

@@ -6,6 +6,7 @@
 
 在 Python 中，我们可以在函数内部定义另一个函数，我们来看一个简单的例子：
 
+
 ```python
 def calculate(a, b):
 
@@ -21,25 +22,26 @@ def calculate(a, b):
     diff_result = subtract(a, b)
     
     return sum_result, diff_result
+```
 
+
+```python
 a = 10
 b = 5
 result = calculate(a, b)
 print(f"{a}与{b}的和与差分别是:", result)
 ```
 
-```text
-10与5的和与差分别是: (15, 5)
-```
+    10与5的和与差分别是: (15, 5)
+
 
 在这个例子中，`calculate` 函数内部定义了两个函数 `add` 和 `subtract`，和局部变量一样，这两个函数只能在 `calculate` 函数内部使用，外部无法访问：
 
-```python
-print(add(3, 4))  # 这会报错，因为 add 函数是局部函数
-```
 
-```text
-NameError: name 'add' is not defined
+```python
+# 以下代码会报错，因为 add 和 subtract 函数是局部函数
+# print(add(3, 4))
+
 ```
 
 注意，在函数内部定义函数，其实是不推荐的：
@@ -64,6 +66,7 @@ NameError: name 'add' is not defined
 
 我们先来看一个内层函数访问外层函数变量的例子：
 
+
 ```python
 def outer_function_v1():
 
@@ -81,13 +84,13 @@ def outer_function_v1():
 outer_function_v1()
 ```
 
-```text
-外层函数变量原始值: 10
-内层函数访问并修改的外层变量: 20
-外层函数再次访问外层变量: 20
-```
+    外层函数变量原始值: 10
+    内层函数访问并修改的外层变量: 20
+    外层函数再次访问外层变量: 20
+
 
 我们再来看一个内层函数访问全局变量的例子：
+
 
 ```python
 global_var = 100
@@ -107,14 +110,15 @@ outer_function_v2()
 print("函数外部访问全局变量:", global_var)
 ```
 
-```text
-全局变量初始值: 100
-内层函数访问并修改后的全局变量: 200
-外层函数访问全局变量: 200
-函数外部访问全局变量: 200
-```
+    全局变量初始值: 100
+    内层函数访问并修改后的全局变量: 200
+    外层函数访问全局变量: 200
+    函数外部访问全局变量: 200
+
 
 我们再来看一个全局变量先由外层函数修改，然后由内层函数修改的例子：
+
+
 
 ```python
 global_var = 100
@@ -137,13 +141,12 @@ outer_function_v3()
 print("函数外部访问全局变量:", global_var)
 ```
 
-```text
-全局变量初始值: 100
-外层函数修改后的全局变量: 200
-内层函数修改后的全局变量: 300
-外层函数再次访问全局变量: 300
-函数外部访问全局变量: 300
-```
+    全局变量初始值: 100
+    外层函数修改后的全局变量: 200
+    内层函数修改后的全局变量: 300
+    外层函数再次访问全局变量: 300
+    函数外部访问全局变量: 300
+
 
 注意，在全局变量先传进外层函数，再传进内层函数的情境下，两层函数使用的都是 `global` 关键字
 
@@ -152,37 +155,34 @@ print("函数外部访问全局变量:", global_var)
 
 在上面那个例子中，如果内层函数错误地使用了 `nonlocal` 关键字，Python 就会报 `no binding` 错误：
 
+
 ```python
-global_var = 100
-print("全局变量初始值:", global_var)
+# 以下代码会报错，因为 nonlocal 关键字不能用于全局变量
+# global_var = 100
+# print("全局变量初始值:", global_var)
 
-def outer_function_v3():
+# def outer_function_v3():
 
-    global global_var  # 声明 global_var 是全局变量
-    global_var = 200
-    print("外层函数修改后的全局变量:", global_var)
+#     global global_var  # 声明 global_var 是全局变量
+#     global_var = 200
+#     print("外层函数修改后的全局变量:", global_var)
 
-    def inner_function_v3():
-        nonlocal global_var  # 声明 global_var 是外层函数的变量
-        global_var = 300
-        print("内层函数修改后的全局变量:", global_var)
+#     def inner_function_v3():
+#         nonlocal global_var  # 声明 global_var 是外层函数的变量
+#         global_var = 300
+#         print("内层函数修改后的全局变量:", global_var)
 
-    inner_function_v3()
-    print("外层函数再次访问全局变量:", global_var)
+#     inner_function_v3()
+#     print("外层函数再次访问全局变量:", global_var)
 
-outer_function_v3()
-print("函数外部访问全局变量:", global_var)
-```
-
-```text
-SyntaxError: no binding for nonlocal 'global_var' found
+# outer_function_v3()
+# print("函数外部访问全局变量:", global_var)
 ```
 
 讲到这里，估计有些同学已经头大了：
 
 - 如果你听懂了，那很棒，那说明你理解能力很强
-- 如果你没听懂，也很棒，因为你已经意识到这个概念比较复杂，以后就**少用函数嵌套**😏
-
+- 如果你没听懂，也很棒，因为你已经意识到这个概念比较复杂，以后就**少用函数嵌套**😏，这其实是一个很不推荐的编程习惯
 
 ## 2. 可变参数类型与不可变参数类型
 
@@ -198,6 +198,7 @@ SyntaxError: no binding for nonlocal 'global_var' found
 
 当我们将不可变类型作为参数传递给函数时，函数内部对参数的修改不会影响到外部的变量
 
+
 ```python
 def modify_immutable(x):
     x = x + 10
@@ -208,12 +209,12 @@ modify_immutable(x)
 print("函数外部的值:", x)
 ```
 
-```text
-函数内部修改后的值: 15
-函数外部的值: 5
-```
+    函数内部修改后的值: 15
+    函数外部的值: 5
+
 
 当我们将可变类型作为参数传递给函数时，函数内部对参数的修改会影响到外部的变量
+
 
 ```python
 def modify_mutable(lst):
@@ -225,27 +226,25 @@ modify_mutable(my_list)
 print("函数外部的列表:", my_list)
 ```
 
-```text
-函数内部修改后的列表: [1, 2, 3, 4]
-函数外部的列表: [1, 2, 3, 4]
-```
+    函数内部修改后的列表: [1, 2, 3, 4]
+    函数外部的列表: [1, 2, 3, 4]
+
 
 ## 3. 多值参数
 
 我们之前接触过几个 Python 内置函数，比如说 `print()`、`max()`、`min()` 等等，这些参数都有一个特点，我们以 `max()` 函数为例：
 
-```python
 
+```python
 print(max(3, 5))
 print(max(3, 5, 2, 8, 1))
 print(max(3, 5, 2, 8, 1, 10, 4))
 ```
 
-```text
-5
-8
-10
-```
+    5
+    8
+    10
+
 
 我们会发现 `max()` 函数可以接受任意数量的参数，这种参数我们称之为**多值参数**。
 
@@ -267,6 +266,7 @@ def 函数名(*参数名):
 
 例如，我们定义一个函数来计算任意数量数字的和：
 
+
 ```python
 def sum_numbers(*numbers):
     total = 0
@@ -279,17 +279,15 @@ print(sum_numbers(10, 20, 30, 40, 50))
 print(sum_numbers(5, 15))
 ```
 
-```text
-6
-150
-20
-```
+    6
+    150
+    20
+
 
 在这个代码中，`*numbers` 就是一个多值元组参数
 
 - 在函数内部，`numbers` 就是一个元组，包含了所有传入的参数值
 - 我们可以使用 `for` 循环来遍历这个元组，计算它们的和
-
 
 ### (2) 多值字典参数
 
@@ -308,6 +306,7 @@ def 函数名(**参数名):
 
 例如，我们定义一个函数来展示个人信息：
 
+
 ```python
 def print_person_info(**kwargs):
     for key, value in kwargs.items():
@@ -317,14 +316,13 @@ print_person_info(name="张三", age=30, gender="男")
 print_person_info(name="李四", married=False, city="北京")
 ```
 
-```text
-name: 张三
-age: 30
-gender: 男
-name: 李四
-married: False
-city: 北京
-```
+    name: 张三
+    age: 30
+    gender: 男
+    name: 李四
+    married: False
+    city: 北京
+
 
 在这个代码中，`**kwargs` 就是一个多值字典参数
 
@@ -342,6 +340,7 @@ def 函数名(普通参数, *多值元组参数, **多值字典参数):
 
 例如，我们定义一个函数来展示学生信息：
 
+
 ```python
 def print_student_info_v1(name, age, *scores, **info):
     
@@ -356,13 +355,12 @@ def print_student_info_v1(name, age, *scores, **info):
 print_student_info_v1("小明", 18, 90, 85, 88, city="北京", major="管理学")
 ```
 
-```text
-姓名: 小明
-年龄: 18
-总成绩: 263
-城市: 北京
-专业: 管理学
-```
+    姓名: 小明
+    年龄: 18
+    总成绩: 263
+    city: 北京
+    major: 管理学
+
 
 这里我们可以看到，函数在调用的时候，Python 会按顺序对应参数
 
@@ -372,6 +370,8 @@ print_student_info_v1("小明", 18, 90, 85, 88, city="北京", major="管理学"
 - 最后所有带参数名的参数 `city="北京", major="管理学"`，就会被打包成一个字典，传递给 `**info`
 
 因此，我们在普通参数与多值参数混用时，不推荐给普通参数设置默认值，因为这会导致一些混乱的情况，我们来看以下例子：
+
+
 
 ```python
 def print_student_info_v2(name, age=18, *scores, **info):
@@ -387,18 +387,104 @@ def print_student_info_v2(name, age=18, *scores, **info):
 print_student_info_v2("小明", 90, 85, 88, city="北京", major="管理学")
 ```
 
-```text
-姓名: 小明
-年龄: 90
-总成绩: 173
-城市: 北京
-专业: 管理学
-```
+    姓名: 小明
+    年龄: 90
+    总成绩: 173
+    city: 北京
+    major: 管理学
+
 
 在这个例子中，我们的本意是想让 `age` 使用默认值 `18`
 
 - 但是函数在调用的时候，Python 分不清楚 `90` 是传递给 `age` 还是传递给 `*scores`，于是默认选择将 `90` 传递给 `age`
-
 - 这样就导致 `age` 的值变成了 `90`，而不是我们想要的默认值 `18`，与我们的预期不符
-
 - 因此，为了避免这种混乱的情况，我们推荐在使用多值参数时，最好不要给普通参数设置默认值
+
+### (4) 多值参数的替代方案
+
+其实，大家已经发现，如果使用了多值参数，函数的定义会变得比较复杂，现实中我们很少会用到这么复杂的函数定义方式，更常见的做法是：
+
+- 多值元组参数，就直接使用元组（`tuple`）作为参数类型
+- 多值字典参数，就直接使用字典（`dict`）作为参数类型
+
+我们来看以上例子的替代方案：
+
+- 首先是多值元组参数的替代方案：
+
+
+```python
+# 使用多值元组参数
+def sum_numbers_v1(*numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+print(sum_numbers_v1(1, 2, 3))
+print(sum_numbers_v1(10, 20, 30, 40, 50))
+print(sum_numbers_v1(5, 15))
+```
+
+    6
+    150
+    20
+
+
+
+```python
+# 直接使用元组作为参数类型
+def sum_numbers_v2(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+print(sum_numbers_v2((1, 2, 3)))
+print(sum_numbers_v2((10, 20, 30, 40, 50)))
+print(sum_numbers_v2((5, 15)))
+```
+
+    6
+    150
+    20
+
+
+- 接着，我们来看多值字典参数的替代方案：
+
+
+```python
+# 使用多值字典参数
+def print_person_info_v1(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+print_person_info_v1(name="张三", age=30, gender="男")
+print_person_info_v1(name="李四", married=False, city="北京")
+```
+
+    name: 张三
+    age: 30
+    gender: 男
+    name: 李四
+    married: False
+    city: 北京
+
+
+
+```python
+# 直接使用字典作为参数类型
+def print_person_info_v2(info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+
+print_person_info_v2({"name": "张三", "age": 30, "gender": "男"})
+print_person_info_v2({"name": "李四", "married": False, "city": "北京"})
+```
+
+    name: 张三
+    age: 30
+    gender: 男
+    name: 李四
+    married: False
+    city: 北京
+

@@ -1,5 +1,6 @@
 # Topic 10.3 - 异常处理拓展（补充）
 
+
 ## 1. `assert` 语句
 
 在 Python 中，还有一种更直接的抛出异常的方式，那就是使用 `assert` 语句，它的基本语法如下：
@@ -21,6 +22,13 @@ assert isinstance(x, int), "您的输入的赋值的不是整数！"
 
 ```text
 123.456
+---------------------------------------------------------------------------
+AssertionError                            Traceback (most recent call last)
+Cell In[1], line 4
+      2 x = 123.456
+      3 print(x)
+----> 4 assert isinstance(x, int), "您的输入的赋值的不是整数！"
+
 AssertionError: 您的输入的赋值的不是整数！
 ```
 
@@ -33,6 +41,7 @@ Python 中的异常类型之间存在继承关系，比方说：
 
 我们来看以下代码：
 
+
 ```python
 try:
     x = 10 / 0
@@ -40,9 +49,8 @@ except ArithmeticError as e:
     print(f"捕获到异常：{e}")
 ```
 
-```text
-捕获到异常：division by zero
-```
+    捕获到异常：division by zero
+
 
 完整的异常继承关系（Python 3.10+）如下，许多异常其实不常见，稍作了解即可：
 

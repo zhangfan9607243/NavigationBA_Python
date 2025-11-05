@@ -44,23 +44,21 @@ with open("文件路径", "r") as file:
 
 我们可以使用以下代码来读取这个文件的内容：
 
+
 ```python
-with open("Topic11/Topic11_02/静夜思.txt", "r") as file:
+with open("静夜思1.txt", "r") as file:
     content = file.read()
 
 print(content)
 ```
 
-运行结果如下：
+    静夜思
+    唐·李白
+    床前明月光，
+    疑是地上霜。
+    举头望明月，
+    低头思故乡。
 
-```text
-静夜思
-唐·李白
-床前明月光，
-疑是地上霜。
-举头望明月，
-低头思故乡。
-```
 
 通过上段代码可以看到：
 
@@ -76,10 +74,10 @@ with open("文件路径", "w") as file:
     file.write("内容")
 ```
 
-我们可以使用以下代码来将内容写入到一个新的文件 `静夜思1.txt` 中：
+我们可以使用以下代码来将内容写入到一个新的文件 `静夜思2.txt` 中：
+
 
 ```python
-
 content = """
 静夜思
 唐·李白
@@ -89,11 +87,11 @@ content = """
 低头思故乡。
 """.strip()
 
-with open("Topic11/Topic11_02/静夜思1.txt", "w") as file:
+with open("静夜思2.txt", "w") as file:
     file.write(content)
 ```
 
-运行这段代码后，会在当前目录下生成一个名为 `静夜思1.txt` 的文本文件，内容如下：
+运行这段代码后，会在当前目录下生成一个名为 `静夜思2.txt` 的文本文件，内容如下：
 
 ```text
 静夜思

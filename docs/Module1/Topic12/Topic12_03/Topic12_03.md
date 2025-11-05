@@ -7,22 +7,27 @@
 - `copy` 模块：用于对象的浅拷贝和深拷贝
 - `json` 模块：用于处理 JSON 数据
 - `csv` 模块：用于处理 CSV 文件
+- `os` 模块：用于与操作系统进行交互
+- `sys` 模块：用于访问与 Python 解释器相关的变量和函数
 
 除此之外，Python 还提供了许多其他有用的内置模块和包，我们本章来介绍一些常用的。
 
 这章介绍到的模块和包只作简单了解即可，当我们以后有具体需求时，再查阅相关文档进行深入学习。
 
-
 ## 1. `time` 模块
 
 `time` 模块提供了与时间相关的各种函数，可以用于获取当前时间、暂停程序执行等：
+
 
 ### (1) 获取时间戳
 
 `time` 模块中常见的功能就是获取时间**时间戳**，使用的函数是 `time()`：
 
 - 时间戳是一个浮点数，表示**自1970年1月1日以来过了多少秒**，整数部分表示秒，小数部分表示微秒
-- 大家有的时候在电脑上或手机上，看到有些文件的创建时间会奇怪地显示为 `1970年1月1日`，那是因为这些文件的时间戳被错误地设置为了 `0`
+- 为什么是1970年1月1日呢？这是因为计算机使用的时间系统是基于 Unix 时间的，Unix 系统是1969-1970年间发明的，因此它的系统时间起点被定为1970年1月1日
+- 大家有的时候在电脑上或手机上，看到有些文件的创建时间会奇怪地显示为1970年1月1日，那是因为这些文件的时间戳被错误地设置为了0
+
+
 
 ```python
 import time
@@ -30,12 +35,12 @@ print(time.time())
 print(type(time.time()))
 ```
 
-```text
-1760674553.948184
-<class 'float'>
-```
+    1762323517.1253839
+    <class 'float'>
+
 
 时间戳最常用的场景是计算程序运行时间：
+
 
 ```python
 import time
@@ -54,9 +59,8 @@ end_time = time.time()
 print(f"程序运行时间：{end_time - start_time} 秒")
 ```
 
-```text
-程序运行时间：0.06046271324157715 秒
-```
+    程序运行时间：0.07196187973022461 秒
+
 
 ### (2) 获取时间
 
@@ -65,6 +69,7 @@ print(f"程序运行时间：{end_time - start_time} 秒")
 - `localtime()`：返回当前时间的本地时间表示，返回一个时间元组
 - `gmtime()`：返回当前时间的格林威治时间表示，返回一个时间元组
 - `strftime(格式, 时间元组)`：将时间格式转化为字符串
+
 
 ```python
 import time
@@ -80,18 +85,18 @@ print(type(gmt_time))
 print(time.strftime("%Y-%m-%d %H:%M:%S", gmt_time))
 ```
 
-```text
-time.struct_time(tm_year=2025, tm_mon=10, tm_mday=17, tm_hour=15, tm_min=16, tm_sec=41, tm_wday=4, tm_yday=290, tm_isdst=1)
-<class 'time.struct_time'>
-2025-10-17 15:16:41
-time.struct_time(tm_year=2025, tm_mon=10, tm_mday=17, tm_hour=4, tm_min=16, tm_sec=41, tm_wday=4, tm_yday=290, tm_isdst=0)
-<class 'time.struct_time'>
-2025-10-17 04:16:41
-```
+    time.struct_time(tm_year=2025, tm_mon=11, tm_mday=5, tm_hour=17, tm_min=18, tm_sec=37, tm_wday=2, tm_yday=309, tm_isdst=1)
+    <class 'time.struct_time'>
+    2025-11-05 17:18:37
+    time.struct_time(tm_year=2025, tm_mon=11, tm_mday=5, tm_hour=6, tm_min=18, tm_sec=37, tm_wday=2, tm_yday=309, tm_isdst=0)
+    <class 'time.struct_time'>
+    2025-11-05 06:18:37
+
 
 ### (3) 暂停程序执行
 
 `time` 模块还提供了一个非常实用的功能：`sleep(秒数)`：可以让我们在程序中暂停执行一段时间：
+
 
 ```python
 import time
@@ -101,13 +106,12 @@ for i in range(5):
     time.sleep(1)  # 暂停1秒
 ```
 
-```text
-第 1 次打印
-第 2 次打印
-第 3 次打印
-第 4 次打印
-第 5 次打印
-```
+    第 1 次打印
+    第 2 次打印
+    第 3 次打印
+    第 4 次打印
+    第 5 次打印
+
 
 大家在日常使用电脑或手机程序时，很多场景都会用到这个功能，比如：
 
@@ -119,25 +123,24 @@ for i in range(5):
 - 在一些需要等待的程序中，我们会每隔一段时间检查一次某个条件是否满足
 - 下面的代码演示了每隔30秒检查一次某个条件是否满足，如果满足则执行后续操作并退出循环，否则继续等待
 
-```python
-import time
+    ```python
+    import time
 
-count = 0
+    count = 0
 
-while True:
-    检查某个条件是否满足
-    if 条件满足:
-        print("条件满足，执行后续操作")
-        break
-    else:
-        print("条件不满足，继续等待")
-        count += 1
-        if count >= 24:  # 最多等待24次
-            print("等待时间过长，退出程序")
+    while True:
+        检查某个条件是否满足
+        if 条件满足:
+            print("条件满足，执行后续操作")
             break
-    time.sleep(300)
-```
-
+        else:
+            print("条件不满足，继续等待")
+            count += 1
+            if count >= 24:  # 最多等待24次（120分钟）
+                print("等待时间过长，退出程序")
+                break
+        time.sleep(300) # 每隔300秒（5分钟）检查一次
+    ```
 
 ## 2. `datetime` 模块
 
@@ -153,11 +156,14 @@ while True:
 - `datetime` 类（**时间点**）：表示日期和时间的组合，包含年、月、日、时、分、秒等信息（这个类的名字和模块名字是一样的，需要注意区分）
 - `timedelta` 类（**时间段**）：表示两个日期时间之间的差值，可以用于日期时间的加减运算
 
+
 ### (1) 修改创建日期时间对象
 
 `datetime` 模块中表示时间的数据格式就是 `datetime` 对象，常见的创建方式有：
 
 - `datetime.now()`：获取当前的日期时间，对象为日期时间对象
+
+
 
 ```python
 from datetime import datetime
@@ -167,12 +173,12 @@ print(current_datetime)
 print(type(current_datetime))
 ```
 
-```text
-2025-10-17 15:52:08.278775
-<class 'datetime.datetime'>
-```
+    2025-11-05 17:18:42.273902
+    <class 'datetime.datetime'>
+
 
 - `datetime(年, 月, 日, 时, 分, 秒)`：通过指定年月日时分秒来创建日期时间对象
+
 
 ```python
 from datetime import datetime
@@ -186,18 +192,19 @@ print(dt2)
 print(type(dt2))
 ```
 
-```text
-2025-12-25 10:30:00
-<class 'datetime.datetime'>
-2023-01-01 00:00:00
-<class 'datetime.datetime'>
-```
+    2025-12-25 10:30:00
+    <class 'datetime.datetime'>
+    2023-01-01 00:00:00
+    <class 'datetime.datetime'>
+
 
 ### (2) 日期时间的格式化解析
 
 `datetime` 模块中表示时间的对象是 `datetime` 对象，但有时在特定需求下，我们也需要字符串格式的日期时间，这二者可以相互转换：
 
 - `datetime.strftime(格式)`：将日期时间对象转换为字符串格式
+
+
 
 ```python
 from datetime import datetime
@@ -219,16 +226,16 @@ print(formatted_datetime3)
 print(type(formatted_datetime3))
 ```
 
-```text
-2025-10-17 15:52:08
-<class 'str'>
-17/10/2025 03:52 PM
-<class 'str'>
-Friday, October 17, 2025
-<class 'str'>
-```
+    2025-11-05 17:18:42
+    <class 'str'>
+    05/11/2025 05:18 PM
+    <class 'str'>
+    Wednesday, November 05, 2025
+    <class 'str'>
+
 
 - `datetime.strptime(字符串, 格式)`：将字符串格式的日期时间转换为日期时间对象
+
 
 ```python
 datetime_str = "2025-10-17 15:52:08"
@@ -238,10 +245,9 @@ print(datetime_obj)
 print(type(datetime_obj))
 ```
 
-```text
-2025-10-17 15:52:08
-<class 'datetime.datetime'>
-```
+    2025-10-17 15:52:08
+    <class 'datetime.datetime'>
+
 
 这当中，时间的格式化符号（以 `%` 开头）用于指定日期时间的格式，常见的有：
 
@@ -289,8 +295,6 @@ print(type(datetime_obj))
 | ---- | -------------- | -------------------------- |
 | `%z` | UTC 偏移量（±HHMM） | `+0800`                    |
 | `%Z` | 时区名称           | `CST`（China Standard Time） |
-| 符号   | 含义          | 示例                         |
-| ---- | ----------- | -------------------------- |
 | `%c` | 本地日期与时间表示   | `Sun Oct 19 14:30:45 2025` |
 | `%x` | 本地日期表示      | `10/19/25`                 |
 | `%X` | 本地时间表示      | `14:30:45`                 |
@@ -300,6 +304,8 @@ print(type(datetime_obj))
 ### (3) 日期时间的对比运算
 
 `datetime` 模块还提供了最基本的时间对比功能，可以直接使用**比较运算符**对日期时间对象进行比较：
+
+
 
 ```python
 from datetime import datetime
@@ -315,9 +321,8 @@ else:
     print("dt1和dt2相等")
 ```
 
-```text
-dt1早于dt2
-```
+    dt1早于dt2
+
 
 ### (4) 日期时间的加减运算
 
@@ -336,6 +341,7 @@ dt1早于dt2
 - `milliseconds`：毫秒数
 - `minutes`：分钟数
 - `hours`：小时数
+
 
 ```python
 from datetime import datetime, timedelta
@@ -356,17 +362,17 @@ dt3 = dt + timedelta(days=2, minutes=10)
 print("加2天10分钟后的日期时间：", dt3)
 ```
 
-```text
-原始日期时间： 2025-10-17 15:00:00
-加5天后的日期时间： 2025-10-22 15:00:00
-减3小时后的日期时间： 2025-10-17 12:00:00
-加2天10分钟后的日期时间： 2025-10-19 15:10:00
-```
+    原始日期时间： 2025-10-17 15:00:00
+    加5天后的日期时间： 2025-10-22 15:00:00
+    减3小时后的日期时间： 2025-10-17 12:00:00
+    加2天10分钟后的日期时间： 2025-10-19 15:10:00
+
 
 当然，`timedelta` 对象之间也可以进行加减运算，得到一个新的 `timedelta` 对象，基本逻辑也很简单，例如：
 
 - `1 天 5 小时 + 2 天 3 小时 = 3 天 8 小时`
 - `3 分 10 秒 - 1 分 20 秒 = 1 分 50 秒`
+
 
 ```python
 from datetime import timedelta
@@ -383,12 +389,13 @@ td4 = td1 - td2
 print("减法运算结果：", td4)
 ```
 
-```text
-加法运算结果： 7 days, 4:00:00
-减法运算结果： 3 days, 2:00:00
-```
+    加法运算结果： 7 days, 4:00:00
+    减法运算结果： 3 days, 2:00:00
+
 
 此外，`timedelta` 对象之间也可以进行比较运算，基本逻辑就是时间长的大于时间短的：
+
+
 
 ```python
 from datetime import timedelta
@@ -405,6 +412,5 @@ else:
     print("td1和td2相等")
 ```
 
-```text
-td1大于td2
-```
+    td1大于td2
+

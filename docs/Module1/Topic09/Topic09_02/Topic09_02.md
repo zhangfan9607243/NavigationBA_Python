@@ -15,6 +15,7 @@ def 函数名(参数1=默认值1, 参数2=默认值2, ...):
 
 例如，我们定义一个函数来展示欢迎信息，没有传入姓名，就打印“某某”：
 
+
 ```python
 def show_welcome_message(name="某某"):
     print(f"欢迎，{name}！")
@@ -25,27 +26,29 @@ show_welcome_message("张三")
 show_welcome_message()
 ```
 
-```text
-欢迎，张三！
-欢迎，某某！
-```
+    欢迎，张三！
+    欢迎，某某！
+
 
 ### (2) 带默认值的参数与不带默认值的参数
 
 在定义函数时，所有带默认值的参数，必须放在所有不带默认值的参数后面，否则会导致语法错误。
+
+
 
 ```python
 # 正确的定义方式
 def test_func_v1(a, b, c=1, d=2): 
     return a + b + c + d
 
-# 错误的定义方式
-def test_func_v2(a, b=1, c): 
-    return a + b + c
+
 ```
 
-```text
-SyntaxError: non-default argument follows default argument
+
+```python
+# 错误的定义方式，以下代码会报 SyntaxError
+# def test_func_v2(a, b=1, c): 
+#     return a + b + c
 ```
 
 如果一个函数中，既有带默认值的参数，又有不带默认值的参数，那么在调用函数时一定要搞清楚参数的顺序：
@@ -53,7 +56,9 @@ SyntaxError: non-default argument follows default argument
 - 一个推荐的做法是，**调用时都传入参数名**，这样就不会因为参数顺序搞错而出错
 - 我们来看以下例子：
 
+
 ```python
+# 定义函数
 def test_func_v3(a, b, c=1, d=2):
     return a + b + c + d
 
@@ -61,11 +66,17 @@ def test_func_v3(a, b, c=1, d=2):
 result1 = test_func_v3(3, 4)       # a=3, b=4, c 使用默认值, d 使用默认值
 result2 = test_func_v3(3, 4, 5)    # a=3, b=4, c=5, d 使用默认值
 result3 = test_func_v3(3, 4, 5, 6) # a=3, b=4, c=5, d=6
+```
 
-# 传入参数，使用参数名
+
+```python
+# 传入参数，使用参数名，可以不按顺序传入
 result4 = test_func_v3(b=4, a=3)
 result5 = test_func_v3(d=6, a=3, b=4)
+```
 
+
+```python
 # 如果带参数名和不带参数名混用，规则就会比较混乱，以下代码都不会报错，只是可读性很差：
 result6 = test_func_v3(3, b=4, d=6)
 result7 = test_func_v3(3, 4, d=6)
@@ -80,21 +91,29 @@ result10 = test_func_v3(c=5, d=6, b=4, a=3)
 
 在 Python 中，如果我们在函数内部定义一个变量，这个变量就是局部变量，只能在函数内部使用，除非使用 `return` 语句将其返回，否则在函数外部无法访问这个变量。
 
+
+
 ```python
 def my_function_v1():
     local_var = 10  # 这是一个局部变量
     print("函数内部的局部变量:", local_var)
 
-print("函数外部访问局部变量:")
-print(local_var)  # 这会报错，因为 local_var 是局部变量
+# 调用函数，由函数内部访问局部变量
+my_function_v1()
 ```
 
-```text
-函数外部访问局部变量:
-NameError: name 'local_var' is not defined
+    函数内部的局部变量: 10
+
+
+
+```python
+# 这会报 NameError，因为 local_var 是局部变量
+# print("函数外部访问局部变量:")
+# print(local_var)  
 ```
 
 如果我们在函数外部定义一个变量，这个变量就是全局变量，可以在整个程序中使用。
+
 
 ```python
 global_var = 20  # 这是一个全局变量
@@ -106,14 +125,17 @@ my_function_v2()
 print("函数外部访问全局变量:", global_var)
 ```
 
-```text
-函数内部访问全局变量: 20
-函数外部访问全局变量: 20
-```
+    函数内部访问全局变量: 20
+    函数外部访问全局变量: 20
+
 
 ### (2) 使用 `global` 关键字
 
-事实上，在函数内部访问全局变量时，我们推荐使用 `global` 关键字来声明变量是全局变量，这样可以避免一些潜在的问题。
+事实上，在函数内部访问全局变量时，我们推荐使用 `global` 关键字来声明变量是全局变量，这样可以避免一些潜在的问题
+
+- 有些人的编程习惯是，当在函数内部需要修改全局变量时，或者内部变量与外部变量同名时，才使用 `global` 关键字声明该变量是全局变量
+- 但是我们推荐的做法是，只要是在函数内部访问全局变量，不论应用情景，都使用 `global` 关键字声明该变量是全局变量
+
 
 ```python
 global_var = 20  # 这是一个全局变量
@@ -126,12 +148,12 @@ my_function_v3()
 print("函数外部访问全局变量:", global_var)
 ```
 
-```text
-函数内部访问全局变量: 20
-函数外部访问全局变量: 20
-```
+    函数内部访问全局变量: 20
+    函数外部访问全局变量: 20
+
 
 使用 `global` 关键字后，函数内部就可以直接访问和修改全局变量。
+
 
 ```python
 global_var = 20
@@ -144,12 +166,12 @@ my_function_v4()
 print("函数外部访问修改后的全局变量:", global_var)
 ```
 
-```text
-函数内部修改后的全局变量: 30
-函数外部访问修改后的全局变量: 30
-```
+    函数内部修改后的全局变量: 30
+    函数外部访问修改后的全局变量: 30
+
 
 我们尝试以下不使用 `global` 关键字，就去修改全局变量的例子：
+
 
 ```python
 global_var = 20
@@ -161,10 +183,9 @@ my_function_v5()
 print("函数外部访问全局变量:", global_var)
 ```
 
-```text
-函数内部的局部变量: 30
-函数外部访问全局变量: 20
-```
+    函数内部的局部变量: 30
+    函数外部访问全局变量: 20
+
 
 在这个例子中，函数外部和函数内部的 `global_var` 其实是两个不同的变量
 
@@ -173,12 +194,13 @@ print("函数外部访问全局变量:", global_var)
 
 ### (3) 使用函数修改外部变量的方法对比
 
-其实在实际开发过程中，我们推荐的做法是：
+其实在实际开发过程中，如果要修改函数外部的全局变量，我们推荐的做法是：
 
 - 尽量少用 `global` 关键字来修改全局变量，这样会增加代码的复杂度和维护难度
 - 如果需要在函数内部修改外部变量，推荐使用函数的参数和返回值来实现
 
 我们来看以下例子，以下代码使用 `global` 关键字来修改全局变量，我们**不推荐使用这种方式**：
+
 
 ```python
 x = 10
@@ -191,11 +213,11 @@ my_new_func_v1()
 print(x) 
 ```
 
-```text
-15
-```
+    15
+
 
 我们再来看以下代码，以下代码使用函数参数和返回值来修改外部变量，函数返回的新值覆盖了外部变量的旧值，我们**推荐使用这种方式**：
+
 
 ```python
 x = 10
@@ -208,9 +230,8 @@ x = my_new_func_v2(x)
 print(x)
 ```
 
-```text
-15
-```
+    15
+
 
 ## 3. 函数的注释
 
@@ -221,6 +242,7 @@ print(x)
 - 一个约定俗成的函数注释方式是放在函数定义的下一行，使用三重引号 `"""` 或者 `'''` 来包裹注释内容，并包括函数的**功能**描述、**参数**说明、以及**返回值**说明
 - 但是函数的注释格式或具体程度等，并没有约定俗成的标准，可以根据实际情况和个人习惯来决定
 - 例如：
+
 
 ```python
 def add(a, b):
@@ -243,6 +265,8 @@ def add(a, b):
 
 - 我们来看一个简单的例子：
 
+
+
 ```python
 # 定义函数
 def multiply(a, b):
@@ -255,10 +279,9 @@ print(multiply(3, 5))
 print(multiply("*", 10))
 ```
 
-```text
-15
-**********
-```
+    15
+    **********
+
 
 - 在这个函数中：
 
@@ -277,6 +300,8 @@ def 函数名(参数1: 类型1, 参数2: 类型2 = 默认值2, 参数3: (类型3
 
 例如，我们给上面的 `multiply` 函数添加类型注解：
 
+
+
 ```python
 # 定义乘积函数，添加类型注解
 def multiply(a: (int | float), b: (int | float)) -> (int | float):
@@ -293,12 +318,12 @@ def repeat_string(s: str, n: int) -> str:
 print(repeat_string("*", 10))
 ```
 
-```text
-15
-**********
-```
+    15
+    **********
+
 
 需要注意的是，Python 的类型注解只是一个提示，并**不会强制执行类型检查**，所以传入错误类型的参数仍然会被接受并执行：
+
 
 ```python
 # 定义乘积函数，添加类型注解
@@ -309,11 +334,10 @@ def multiply(a: (int | float), b: (int | float)) -> (int | float):
 print(multiply("*", 5))
 ```
 
-```text
-*****
-```
+    *****
 
-### 4. 函数的综合练习 - 凯撒密码
+
+## 4. 函数的综合练习 - 凯撒密码
 
 凯撒密码是一种简单的加密算法，通过将字母表中的字母向后移动固定的位数来实现加密。
 
@@ -345,15 +369,16 @@ print(multiply("*", 5))
     - 主要的问题是，我们如何做到索引循环呢，我们想做到的效果是：0->3, 1->4, 2->5, ..., 22->25, 23->0, 24->1, 25->2
     - 这里我们可以利用取余数的方式：(索引 + 3) % 26 来实现索引的循环，我们来看看取余数的效果：
 
-|取余计算|||||||||||||||||||||||||||
-|-------|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
-|原始索引|0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|
-|取余计算|(0+3)%26|(1+3)%26|(2+3)%26|(3+3)%26|(4+3)%26|(5+3)%26|(6+3)%26|(7+3)%26|(8+3)%26|(9+3)%26|(10+3)%26|(11+3)%26|(12+3)%26|(13+3)%26|(14+3)%26|(15+3)%26|(16+3)%26|(17+3)%26|(18+3)%26|(19+3)%26|(20+3)%26|(21+3)%26|(22+3)%26|(23+3)%26|(24+3)%26|(25+3)%26|
-|结果索引|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|0|1|2|
+|取余计算||||||||||||
+|-------|-|-|-|-|-|-|-|-|-|-|-|
+|原始索引|0|1|2|3|4|5|...|21|22|23|24|25|
+|取余计算|(0+3)%26|(1+3)%26|(2+3)%26|(3+3)%26|(4+3)%26|(5+3)%26|...|(21+3)%26|(22+3)%26|(23+3)%26|(24+3)%26|(25+3)%26|
+|结果索引|3|4|5|6|7|8|...|24|25|0|1|2|
 
 - 还有一个问题就是，我们如何处理解密呢？其实比较简单，只要将 `shift` 变成负数即可
 
 我们来看一个完整的实现代码：
+
 
 ```python
 # 凯撒密码实现 - 版本1
@@ -388,13 +413,23 @@ def caesar_cipher_v1(message: str, shift: int = 3) -> str:
             encrypted_message += char
             
     return encrypted_message
+```
 
+
+```python
 # 测试加密
 decrypted_message1 = "Hello World!"
 encrypted_message1 = caesar_cipher_v1(decrypted_message1, shift=3)
 print("加密前:", decrypted_message1)
 print("加密后:", encrypted_message1)
+```
 
+    加密前: Hello World!
+    加密后: Khoor Zruog!
+
+
+
+```python
 # 测试解密
 encrypted_message2 = "Ohduqlqj Sbwkrq lv ixqqb!"
 decrypted_message2 = caesar_cipher_v1(encrypted_message2, shift=-3)
@@ -402,12 +437,9 @@ print("解密前:", encrypted_message2)
 print("解密后:", decrypted_message2)
 ```
 
-```text
-加密前: Hello World!
-加密后: Khoor Zruog!
-解密前: Ohduqlqj Sbwkrq lv ixqqb!
-解密后: Learning Python is funny!
-```
+    解密前: Ohduqlqj Sbwkrq lv ixqqb!
+    解密后: Learning Python is funny!
+
 
 接着我们对代码进行一些优化：
 
@@ -423,7 +455,8 @@ print("解密后:", decrypted_message2)
 
 - 也就是说，Python 其实已经帮我们把大写字母和小写字母排好序了，我们不需要再单独创建列表去查找索引位置了
 - 代码可以改成这样：
-  
+
+
 ```python
 def caesar_cipher_v2(message: str, shift: int = 3) -> str:
     
@@ -452,13 +485,23 @@ def caesar_cipher_v2(message: str, shift: int = 3) -> str:
             encrypted_message += char
             
     return encrypted_message
+```
 
+
+```python
 # 测试加密
 decrypted_message1 = "Hello World!"
 encrypted_message1 = caesar_cipher_v2(decrypted_message1, shift=3)
 print("加密前:", decrypted_message1)
 print("加密后:", encrypted_message1)
+```
 
+    加密前: Hello World!
+    加密后: Khoor Zruog!
+
+
+
+```python
 # 测试解密
 encrypted_message2 = "Ohduqlqj Sbwkrq lv ixqqb!"
 decrypted_message2 = caesar_cipher_v2(encrypted_message2, shift=-3)
@@ -466,9 +509,6 @@ print("解密前:", encrypted_message2)
 print("解密后:", decrypted_message2)
 ```
 
-```text
-加密前: Hello World!
-加密后: Khoor Zruog!
-解密前: Ohduqlqj Sbwkrq lv ixqqb!
-解密后: Learning Python is funny!
-```
+    解密前: Ohduqlqj Sbwkrq lv ixqqb!
+    解密后: Learning Python is funny!
+

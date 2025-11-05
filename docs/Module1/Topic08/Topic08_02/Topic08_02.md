@@ -12,6 +12,7 @@
 
 - 以下代码中，当遇到名字 '李四' 时，循环会被 `break` 语句中断，因此不会执行 `else` 语句块
 
+
 ```python
 names = ['张三', '李四', '王五']
 for name in names:
@@ -22,11 +23,11 @@ else:
     print("循环正常结束")
 ```
 
-```text
-张三 
-```
+    张三
+
 
 - 如果将判断条件改为 `if name == '赵六':`，则不会触发 `break`，循环会正常结束，`else` 语句块会被执行
+
 
 ```python
 names = ['张三', '李四', '王五']
@@ -38,16 +39,16 @@ else:
     print("循环正常结束")
 ```
 
-```text
-张三
-李四
-王五
-循环正常结束
-```
+    张三
+    李四
+    王五
+    循环正常结束
+
 
 我们再来看一个例子，演示 `continue` 的用法：
 
 - 以下代码中，当遇到名字 '李四' 时，`continue` 语句会跳过当前循环，继续下一次循环
+
 
 ```python
 names = ['张三', '李四', '王五']
@@ -57,12 +58,12 @@ for name in names:
     print(name)
 ```
 
-```text
-张三
-王五
-```
+    张三
+    王五
+
 
 - 当然，`continue` 也可以与 `else` 结合使用，如果循环中触发了 `continue`，则 `else` 语句块仍然会被执行，因为循环并没有被 `break` 中断
+
 
 ```python
 names = ['张三', '李四', '王五']
@@ -74,11 +75,10 @@ else:
     print("循环正常结束")
 ```
 
-```text
-张三
-王五
-循环正常结束
-```
+    张三
+    王五
+    循环正常结束
+
 
 ## 2. `for` 循环嵌套
 
@@ -86,6 +86,7 @@ else:
 
 - 我们可以在 `for` 循环内部再嵌套一个 `for` 循环
 - 内圈循环全部结束后，才会进行下一圈的外圈循环
+
 
 ```python
 for i in range(3):  
@@ -95,20 +96,19 @@ for i in range(3):
     print(f"外圈第{i+1}圈结束")
 ```
 
-```text
-外圈第1圈开始
-  内圈第1圈
-  内圈第2圈
-外圈第1圈结束
-外圈第2圈开始
-  内圈第1圈
-  内圈第2圈
-外圈第2圈结束
-外圈第3圈开始
-  内圈第1圈
-  内圈第2圈
-外圈第3圈结束
-```
+    外圈第1圈开始
+      内圈第1圈
+      内圈第2圈
+    外圈第1圈结束
+    外圈第2圈开始
+      内圈第1圈
+      内圈第2圈
+    外圈第2圈结束
+    外圈第3圈开始
+      内圈第1圈
+      内圈第2圈
+    外圈第3圈结束
+
 
 在这个例子中：外圈循环使用变量 `i` 跑3圈，内圈循环使用变量 `j` 跑2圈：
 
@@ -123,6 +123,7 @@ for i in range(3):
     - 内圈循环结束，输出 "外圈第1圈结束"
 
 - 第2圈外圈循环（`i=1`）：
+
     - 输出 "外圈第2圈开始"
     - 进入内圈循环：
 
@@ -132,6 +133,7 @@ for i in range(3):
     - 内圈循环结束，输出 "外圈第2圈结束"
 
 - 第3圈外圈循环（`i=2`）：
+
     - 输出 "外圈第3圈开始"
     - 进入内圈循环：
 
@@ -151,6 +153,7 @@ for i in range(3):
 
 - 以下代码是我们将 `while` 循环实现的逻辑改为 `for` 循环：
 
+
 ```python
 for row in range(1, 10):
     for col in range(1,10):
@@ -159,17 +162,16 @@ for row in range(1, 10):
     print()
 ```
 
-```text
-1 * 1 = 1
-1 * 2 = 2       2 * 2 = 4
-1 * 3 = 3       2 * 3 = 6       3 * 3 = 9
-1 * 4 = 4       2 * 4 = 8       3 * 4 = 12      4 * 4 = 16
-1 * 5 = 5       2 * 5 = 10      3 * 5 = 15      4 * 5 = 20      5 * 5 = 25
-1 * 6 = 6       2 * 6 = 12      3 * 6 = 18      4 * 6 = 24      5 * 6 = 30      6 * 6 = 36
-1 * 7 = 7       2 * 7 = 14      3 * 7 = 21      4 * 7 = 28      5 * 7 = 35      6 * 7 = 42      7 * 7 = 49
-1 * 8 = 8       2 * 8 = 16      3 * 8 = 24      4 * 8 = 32      5 * 8 = 40      6 * 8 = 48      7 * 8 = 56      8 * 8 = 64
-1 * 9 = 9       2 * 9 = 18      3 * 9 = 27      4 * 9 = 36      5 * 9 = 45      6 * 9 = 54      7 * 9 = 63      8 * 9 = 72      9 * 9 = 81
-```
+    1 * 1 = 1	
+    1 * 2 = 2	2 * 2 = 4	
+    1 * 3 = 3	2 * 3 = 6	3 * 3 = 9	
+    1 * 4 = 4	2 * 4 = 8	3 * 4 = 12	4 * 4 = 16	
+    1 * 5 = 5	2 * 5 = 10	3 * 5 = 15	4 * 5 = 20	5 * 5 = 25	
+    1 * 6 = 6	2 * 6 = 12	3 * 6 = 18	4 * 6 = 24	5 * 6 = 30	6 * 6 = 36	
+    1 * 7 = 7	2 * 7 = 14	3 * 7 = 21	4 * 7 = 28	5 * 7 = 35	6 * 7 = 42	7 * 7 = 49	
+    1 * 8 = 8	2 * 8 = 16	3 * 8 = 24	4 * 8 = 32	5 * 8 = 40	6 * 8 = 48	7 * 8 = 56	8 * 8 = 64	
+    1 * 9 = 9	2 * 9 = 18	3 * 9 = 27	4 * 9 = 36	5 * 9 = 45	6 * 9 = 54	7 * 9 = 63	8 * 9 = 72	9 * 9 = 81	
+
 
 - 我们可以对这个代码进行一个小升级：
 
@@ -178,6 +180,7 @@ for row in range(1, 10):
     - 这样就不需要 `if` 条件判断了
     - 改进后的代码如下：
 
+
 ```python
 for row in range(1, 10):
     for col in range(1,row+1):
@@ -185,17 +188,16 @@ for row in range(1, 10):
     print()
 ```
 
-```text
-1 * 1 = 1
-1 * 2 = 2       2 * 2 = 4
-1 * 3 = 3       2 * 3 = 6       3 * 3 = 9
-1 * 4 = 4       2 * 4 = 8       3 * 4 = 12      4 * 4 = 16
-1 * 5 = 5       2 * 5 = 10      3 * 5 = 15      4 * 5 = 20      5 * 5 = 25
-1 * 6 = 6       2 * 6 = 12      3 * 6 = 18      4 * 6 = 24      5 * 6 = 30      6 * 6 = 36
-1 * 7 = 7       2 * 7 = 14      3 * 7 = 21      4 * 7 = 28      5 * 7 = 35      6 * 7 = 42      7 * 7 = 49
-1 * 8 = 8       2 * 8 = 16      3 * 8 = 24      4 * 8 = 32      5 * 8 = 40      6 * 8 = 48      7 * 8 = 56      8 * 8 = 64
-1 * 9 = 9       2 * 9 = 18      3 * 9 = 27      4 * 9 = 36      5 * 9 = 45      6 * 9 = 54      7 * 9 = 63      8 * 9 = 72      9 * 9 = 81
-```
+    1 * 1 = 1	
+    1 * 2 = 2	2 * 2 = 4	
+    1 * 3 = 3	2 * 3 = 6	3 * 3 = 9	
+    1 * 4 = 4	2 * 4 = 8	3 * 4 = 12	4 * 4 = 16	
+    1 * 5 = 5	2 * 5 = 10	3 * 5 = 15	4 * 5 = 20	5 * 5 = 25	
+    1 * 6 = 6	2 * 6 = 12	3 * 6 = 18	4 * 6 = 24	5 * 6 = 30	6 * 6 = 36	
+    1 * 7 = 7	2 * 7 = 14	3 * 7 = 21	4 * 7 = 28	5 * 7 = 35	6 * 7 = 42	7 * 7 = 49	
+    1 * 8 = 8	2 * 8 = 16	3 * 8 = 24	4 * 8 = 32	5 * 8 = 40	6 * 8 = 48	7 * 8 = 56	8 * 8 = 64	
+    1 * 9 = 9	2 * 9 = 18	3 * 9 = 27	4 * 9 = 36	5 * 9 = 45	6 * 9 = 54	7 * 9 = 63	8 * 9 = 72	9 * 9 = 81	
+
 
 ### (2) 学生信息管理 (计算机学院 Python 课真题类型)
 
@@ -203,22 +205,22 @@ for row in range(1, 10):
 
     - 以下是几个学生信息的列表：
 
-```python
-names = ["Alice Smith", "Bob Johnson", "Charlie Lee"]
-ages = [20, 20, 21]
-genders = ["Female", "Male", "Male"]
-citys = ["New York", "Los Angeles", "Chicago"]
-```
+    ```python
+    names = ["Alice Smith", "Bob Johnson", "Charlie Lee"]
+    ages = [20, 20, 21]
+    genders = ["Female", "Male", "Male"]
+    citys = ["New York", "Los Angeles", "Chicago"]
+    ```
 
     - 将所有学生信息整理到一个列表套字典的数据格式当中，形式如下：
 
-```python
-[
-    {"First Name": "Alice", "Last Name": "Smith", "age": 20, "gender": "Female", "city": "New York"},
-    {"First Name": "Bob", "Last Name": "Johnson", "age": 20, "gender": "Male", "city": "Los Angeles"},
-    {"First Name": "Charlie", "Last Name": "Lee", "age": 21, "gender": "Male", "city": "Chicago"}
-]
-```
+    ```python
+    [
+        {"First Name": "Alice", "Last Name": "Smith", "age": 20, "gender": "Female", "city": "New York"},
+        {"First Name": "Bob", "Last Name": "Johnson", "age": 20, "gender": "Male", "city": "Los Angeles"},
+        {"First Name": "Charlie", "Last Name": "Lee", "age": 21, "gender": "Male", "city": "Chicago"}
+    ]
+    ```
 
 - 需求分析：
 
@@ -233,6 +235,7 @@ citys = ["New York", "Los Angeles", "Chicago"]
     - 这样我们就可以通过一个 `for` 循环来同时遍历四个列表了
 
 - 代码实现：
+
 
 ```python
 names = ["Alice Smith", "Bob Johnson", "Charlie Lee"]
@@ -268,13 +271,8 @@ for i in range(3):
 print(students)
 ```
 
-```text
-[
-    {'First Name': 'Alice', 'Last Name': 'Smith', 'age': 20, 'gender': 'Female', 'city': 'New York'},
-    {'First Name': 'Bob', 'Last Name': 'Johnson', 'age': 20, 'gender': 'Male', 'city': 'Los Angeles'},
-    {'First Name': 'Charlie', 'Last Name': 'Lee', 'age': 21, 'gender': 'Male', 'city': 'Chicago'}
-]
-```
+    [{'First Name': 'Alice', 'Last Name': 'Smith', 'age': 20, 'gender': 'Female', 'city': 'New York'}, {'First Name': 'Bob', 'Last Name': 'Johnson', 'age': 20, 'gender': 'Male', 'city': 'Los Angeles'}, {'First Name': 'Charlie', 'Last Name': 'Lee', 'age': 21, 'gender': 'Male', 'city': 'Chicago'}]
+
 
 ### (3) 现金流折现
 
@@ -283,12 +281,12 @@ print(students)
     - 我们设计一个现金流折现的程序，计算未来现金流的现值（NPV，Net Present Value）
     - 公式如下：
 
-    \[NPV = \sum_{t=0}^{n} \frac{CF_t}{(1 + r)^t}\]
+    $NPV = \sum_{t=0}^{n} \frac{CF_t}{(1 + r)^t}$
     
     - 其中：
-        - \(CF_t\) 是第 \(t\) 年的现金流
-        - \(r\) 是折现率（年利率）
-        - \(n\) 是现金流的总年数
+        - $CF_t$ 是第 $t$ 年的现金流
+        - $r$ 是折现率（年利率）
+        - $n$ 是现金流的总年数
     - 我们假设有以下现金流数据，注意这里的现金流是从第0年开始的：
 
 ```python
@@ -307,6 +305,7 @@ r = 0.05
 
 - 代码实现：
 
+
 ```python
 cash_flows = [-2000, 1000, 1500, 2000, 2500, 3000]
 r = 0.05
@@ -322,6 +321,5 @@ npv = sum(npv_list)
 print(f"现金流的现值（NPV）为：{npv}")
 ```
 
-```text
-现金流的现值（NPV）为：6447.93505351606
-```
+    现金流的现值（NPV）为：6447.93505351606
+

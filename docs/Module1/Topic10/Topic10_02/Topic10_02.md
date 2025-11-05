@@ -39,12 +39,20 @@ if not isinstance(x, int):
 
 ```text
 123.456
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[1], line 5
+      3 print(x)
+      4 if not isinstance(x, int):
+----> 5     raise ValueError("您的输入的赋值的不是整数！")
+
 ValueError: 您的输入的赋值的不是整数！
 ```
 
 ### (2) 捕获自定义的异常
 
 通常我们会在 `try` 块中，判断如果某个条件满足，就使用 `raise` 抛出异常，并且我们还可以在 `except` 块中捕获这个异常：
+
 
 ```python
 try:
@@ -57,10 +65,9 @@ except ValueError as e:
     print(f"捕获到异常：{e}")
 ```
 
-```text
-123.456
-捕获到异常：您的赋值的不是整数！
-```
+    123.456
+    捕获到异常：您的赋值的不是整数！
+
 
 ## 2. 自定义异常类型
 
@@ -68,6 +75,7 @@ except ValueError as e:
 
 - 在上面两个例子中，我们让我们自定义的异常属于 `ValueError` 类型，是因为我们认为，想要整数但是得到了其他类型，听上去像是一个“值错误”
 - 那么我们能不能让它属于其他类型呢？答案是可以的，比方说，我们让它属于 `TypeError` 类型：
+
 
 ```python
 try:
@@ -80,10 +88,9 @@ except TypeError as e:
     print(f"捕获到异常：{e}")
 ```
 
-```
-123.456
-捕获到异常：您的赋值的不是整数！
-```
+    123.456
+    捕获到异常：您的赋值的不是整数！
+
 
 那么，有时候我们觉得，我自定义的这个错误类型，用 Python 哪种内置的异常类型都不合适
 
@@ -107,6 +114,7 @@ class 自定义异常类型名(Exception):
 
 我们来看一个例子：
 
+
 ```python
 class NotIntegerError(Exception):
     pass
@@ -121,9 +129,8 @@ except NotIntegerError as e:
     print(f"捕获到异常：{e}")
 ```
 
-```
-123.456
-捕获到异常：您的赋值的不是整数！
-```
+    123.456
+    捕获到异常：您的赋值的不是整数！
 
-在这段代码中，我们就把错误类型，自定义成了 `NotIntegerError`，这个名字更符合我们想表达的意思
+
+在这段代码中，我们就把错误类型，自定义成了 `NotIntegerError`，这个名字更符合我们想表达的意思。

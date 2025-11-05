@@ -3,6 +3,8 @@ site_description: 领航国际教育 - BA专业自学系列课程
 site_url: https://navigationba.github.io/NavigationBA_Basics/
 site_dir: site
 edit_uri: edit/main/docs/
+repo_url: https://github.com/NavigationBA/NavigationBA_Basics_Code 
+repo_name: GitHub
 
 theme:
   name: material
@@ -38,7 +40,11 @@ markdown_extensions:
 
 plugins:
   - search
-  - mkdocs-jupyter
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+      include_requirejs: false
+      kernel_name: python311
 
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
@@ -104,10 +110,10 @@ nav:
       - ☑️ Topic 9.3 - 函数的高级用法（补充）:        Module1/Topic09/Topic09_03/Topic09_03.md
       - ☑️ Topic 9.4 - 函数拓展（补充）:             Module1/Topic09/Topic09_04/Topic09_04.md
     - Topic 10 - 异常处理:
-      - ✅ Topic 10.0 - 章节概览:                    Module1/Topic10/Topic10_00/Topic10_00.md
+      - ✅ Topic 10.0 - 章节概览:                   Module1/Topic10/Topic10_00/Topic10_00.md
       - ✅ Topic 10.1 - 异常处理的基本用法:          Module1/Topic10/Topic10_01/Topic10_01.md
       - ✅ Topic 10.2 - 异常处理的高级用法:          Module1/Topic10/Topic10_02/Topic10_02.md
-      - ☑️ Topic 10.3 - 异常处理拓展（补充）:          Module1/Topic10/Topic10_03/Topic10_03.md
+      - ☑️ Topic 10.3 - 异常处理拓展（补充）:         Module1/Topic10/Topic10_03/Topic10_03.md
     - Topic 11 - 文件操作:
       - ✅ Topic 11.0 - 章节概览:                  Module1/Topic11/Topic11_00/Topic11_00.md
       - ✅ Topic 11.1 - 文件操作的基本用法:          Module1/Topic11/Topic11_01/Topic11_01.md
@@ -119,11 +125,11 @@ nav:
       - ✅ Topic 12.2 - 自定义模块与包:             Module1/Topic12/Topic12_02/Topic12_02.md
       - ☑️ Topic 12.3 - 常用的内置模块与包（补充）:   Module1/Topic12/Topic12_03/Topic12_03.md
       - ☑️ Topic 12.4 - 常用的第三方模块与包（补充）:  Module1/Topic12/Topic12_04/Topic12_04.md
-    - Topic 13 - Python 程序开发:
-      - ✅ Topic 13.0 - 章节概览:                  Module1/Topic13/Topic13_00/Topic13_00.md
-      - ✅ Topic 13.1 - Python 程序开发概览:        Module1/Topic13/Topic13_01/Topic13_01.md
-      - ✅ Topic 13.2 - Python 程序开发演示 - 动物园程序开发:         Module1/Topic13/Topic13_02/Topic13_02.md
-      - ✅ Topic 13.3 - Python 程序开发演示 - 动物园程序改进:         Module1/Topic13/Topic13_03/Topic13_03.md
+    # - Topic 13 - Python 程序开发:
+    #   - ✅ Topic 13.0 - 章节概览:                  Module1/Topic13/Topic13_00/Topic13_00.md
+    #   - ✅ Topic 13.1 - Python 程序开发概览:        Module1/Topic13/Topic13_01/Topic13_01.md
+    #   - ✅ Topic 13.2 - Python 程序开发演示 - 动物园程序开发:         Module1/Topic13/Topic13_02/Topic13_02.md
+    #   - ✅ Topic 13.3 - Python 程序开发演示 - 动物园程序改进:         Module1/Topic13/Topic13_03/Topic13_03.md
 
   # - Module 2 - Python面向对象:
   #   - Topic 1: Module1/Topic01/Topic01.md
