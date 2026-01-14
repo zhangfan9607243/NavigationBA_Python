@@ -269,9 +269,11 @@ print(sqrt(16))     # 直接使用 sqrt 函数
 
 ## 2. 自定义包
 
+### (1) 创建自定义包
+
 在上一章我们讲到过，包其实就是将多个模块放到一个文件夹里，我们自己也可以通过这个方式来创建包。
 
-例如，我们创建一个名为 `mypackage` 的文件夹，并在其中创建两个模块文件 `tool1.py` 和 `tool2.py`
+例如，我们创建一个名为 `mypackage1` 的文件夹，并在其中创建两个模块文件 `tool1.py` 和 `tool2.py`
 
 - 其中 `tool1.py` 的代码如下：
 
@@ -287,14 +289,14 @@ print(sqrt(16))     # 直接使用 sqrt 函数
         return f"Goodbye, {name}!"
     ```
 
-- 接着，最重要的一步，我们需要在 `mypackage` 文件夹中创建一个名为 `__init__.py` 的空文件，这个文件告诉 Python 这个文件夹是一个包
+- 接着，最重要的一步，我们需要在 `mypackage1` 文件夹中创建一个名为 `__init__.py` 的空文件，这个文件告诉 Python 这个文件夹是一个包
 
 - 这些操作下来，我们的文件目录结构如下：
 
     ```text
     codes/Module1/Topic12/Topic12_02/ # 这是当前目录
     │
-    │── mypackage/
+    │── mypackage1/
     │   │── __init__.py
     │   │── tool1.py
     │   │── tool2.py
@@ -306,7 +308,7 @@ print(sqrt(16))     # 直接使用 sqrt 函数
 
 
 ```python
-from mypackage import tool1, tool2
+from mypackage1 import tool1, tool2
 
 print(tool1.greet("Alice"))
 print(tool2.farewell("Bob"))
@@ -325,3 +327,57 @@ print(tool2.farewell("Bob"))
 - 包名要符合 Python 命名规范
 - 包被引用时，当中的所有模块会先执行一遍，因此要加上 `if __name__ == "__main__":` 语句来保护不必要的代码
 - 包引用会将包中所有模块的命名空间导入到当前命名空间
+
+### (2) 创建带有子包的自定义包
+
+当然，我们还可以创建带有子包的自定义包：
+
+- 例如，我们创建一个名为 `mypackage2` 的文件夹：
+
+    - 在其中创建一个子包文件夹 `subpackage1`，以及两个模块文件 `tool1.py` （Hello） 和 `tool2.py` （Goodbye） 
+    - 在其中创建一个子包文件夹 `subpackage2`，以及两个模块文件 `tool3.py` （Sorry） 和 `tool4.py` (Thanks)
+
+- 最重要的是在每个包和子包文件夹中都要创建一个名为 `__init__.py` 的空文件，这个文件告诉 Python 这个文件夹是一个包或子包
+- 这样操作下来，我们的文件目录结构如下：
+
+```text
+codes/Module1/Topic12/Topic12_02/ # 这是当前目录
+│
+│── mypackage2/
+│   │── __init__.py
+│   │
+│   │── subpackage1/
+│   │   │── __init__.py
+│   │   │── tool1.py
+│   │   │── tool2.py
+│   │
+│   │── subpackage2/
+│       │── __init__.py
+│       │── tool3.py
+│       │── tool4.py
+│
+└── 当前文件.ipynb  # 这是我们运行代码的 Jupyter Notebook 文件
+```
+
+之后，我们就可以在当前文件中引用这个包中的子包和模块了：
+
+
+```python
+from mypackage2.subpackage1 import tool1, tool2
+from mypackage2.subpackage2 import tool3, tool4
+
+print(tool1.greet("Alice"))
+print(tool2.farewell("Bob"))
+print(tool3.apologize("Charlie"))
+print(tool4.thank("Diana"))
+```
+
+    Hello, Alice!
+    Goodbye, Bob!
+    Sorry, Charlie.
+    Thank you, Diana!
+
+
+
+
+

@@ -126,8 +126,9 @@ nav:
       - ✴️ Topic 12 章节概览:                                  Module1/Topic12/Topic12_00/Topic12_00.md
       - ✅ Topic 12.1 - 模块与包的引用:                         Module1/Topic12/Topic12_01/Topic12_01.md
       - ✅ Topic 12.2 - 自定义模块与包:                         Module1/Topic12/Topic12_02/Topic12_02.md
-      - ☑️ Topic 12.3 - 常用的内置模块与包（补充）:               Module1/Topic12/Topic12_03/Topic12_03.md
-      - ☑️ Topic 12.4 - 常用的第三方模块与包（补充）:             Module1/Topic12/Topic12_04/Topic12_04.md
+      - ☑️ Topic 12.3 - 自定义模块与包的高级技巧（补充）:          Module1/Topic12/Topic12_03/Topic12_03.md
+      - ☑️ Topic 12.4 - 常用的内置模块与包（补充）:               Module1/Topic12/Topic12_04/Topic12_04.md
+      - ☑️ Topic 12.5 - 常用的第三方模块与包（补充）:             Module1/Topic12/Topic12_05/Topic12_05.md
     - Topic 13 - Python 程序开发（补充）:
       - ✴️ Topic 13 章节概览:                                  Module1/Topic13/Topic13_00/Topic13_00.md
       - ☑️ Topic 13.1 - Python 程序开发概览:                    Module1/Topic13/Topic13_01/Topic13_01.md

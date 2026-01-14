@@ -22,19 +22,19 @@ PATH_PREFIX = "codes/Module1/Topic13/Topic13_03/zoo_program_v2/"
 我们在 `test` 目录下，创建一个新的模块 `config_test.py`，内容如下：
 
 ```python
-PATH_BASE = "codes/Module1/Topic13/Topic13_03/zoo_program_v2"
-PATH_SRC = PATH_BASE + "/src/"
+# test/config_test.py
+PATH_SRC = "codes/Module1/Topic13/Topic13_03/zoo_program_v2/src"
 ```
 
 - 然后我们修改 `test_main.py` 模块中的代码：
 
 ```python
+# test/test_main.py
 import sys
-from config_test import PATH_BASE, PATH_SRC
-sys.path.append(PATH_BASE)
+from config_test import PATH_SRC
 sys.path.append(PATH_SRC)
 
-from src.main import main
+from main import main
 
 if __name__ == "__main__":
     main()
@@ -43,12 +43,49 @@ if __name__ == "__main__":
 - 同样地，我们修改 `test_animal_viewer.py` 模块中的代码：
 
 ```python
+# test/test_animal_viewer.py
 import sys
-from config_test import PATH_BASE, PATH_SRC
-sys.path.append(PATH_BASE)
+from config_test import PATH_SRC
 sys.path.append(PATH_SRC)
 
-from src.animal_viewer import display_animal
+from animal_viewer import display_animal
+
+if __name__ == "__main__":
+    display_animal("1")
+    display_animal("2")
+    display_animal("3")
+```
+
+写到这里，我们发现一个问题，那就是 `sys.path.append(PATH_SRC)` 这行代码，在每个测试模块中都要写一次，显得有些重复冗余：
+
+- 于是，我们可以把这行代码，也放到 `config_test.py` 模块中，然后测试模块只需要导入 `config_test` 模块
+- 之前我们提到过，Python 模块在被导入时，模块中的代码会被执行一次，所以 `sys.path.append(PATH_SRC)` 这行代码会被执行，从而把路径添加到 `sys.path` 中
+- 于是，我们的 `config_test.py` 模块变成了这样：
+
+```python
+# test/config_test.py
+import sys
+PATH_SRC = "codes/Module1/Topic13/Topic13_03/zoo_program_v2/src"
+sys.path.append(PATH_SRC)
+```
+
+- 然后，我们的主程序测试模块就可以简化为：
+
+```python
+# test/test_main.py
+from config_test import *
+from main import main
+
+if __name__ == "__main__":
+    main()
+```
+
+- 同样地，`test_animal_viewer.py` 模块也可以简化为：
+
+```python
+# test/test_animal_viewer.py
+from config_test import *
+from animal_viewer import display_animal
 
 if __name__ == "__main__":
     display_animal("1")
@@ -75,6 +112,7 @@ if __name__ == "__main__":
 - 然后我们在 `src/animal_viewer.py` 模块中，增加对猫的支持，只需增加一个新的元素到 `animal_info` 字典中：
 
 ```python
+# src/animal_viewer.py
 animal_info ={
     "1": {
         "name": "骆驼", 
@@ -99,6 +137,7 @@ animal_info ={
 - 之后，我们可以直接在 `animal_viewer.py` 模块中，或者者在 `test_animal_viewer.py` 模块中，调用 `display_animal("4")` 来查看猫的图案：
 
 ```python
+# test/test_animal_viewer.py
 display_animal("4")
 ```
 
@@ -124,6 +163,7 @@ display_animal("4")
 首先，我们需要在 `animal_info` 字典中，增加一个 `measure` 字段，用来存放该动物对应的量词：
 
 ```python
+# src/animal_viewer.py
 animal_info ={
     "1": {
         "name": "骆驼", 
@@ -151,6 +191,7 @@ animal_info ={
 之后，我们需要修改 `display_animal` 函数中的输出语句，来使用这个量词字段：
 
 ```python
+# src/animal_viewer.py
 def display_animal(animal_id):    
     # 获取对应的文件路径
     file_path = PATH_PREFIX + animal_info[animal_id]["file"]
@@ -168,6 +209,7 @@ def display_animal(animal_id):
 我们再次分别查看不同动物的展示效果，确保量词使用正确：
 
 ```python
+# test/test_animal_viewer.py
 display_animal("1")  # 骆驼
 display_animal("2")  # 牛
 display_animal("3")  # 马

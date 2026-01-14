@@ -43,6 +43,7 @@ $$NPV = 0 = PV \times (1 + R)^N + PMT \times \frac{(1 + R)^N - 1}{R} + FV$$
 - 占位之后，这个代码块是可以直接运行的
 
 ```python
+# src/function_time_value.py
 from ui import show_instructions
 from logger import log_write
 
@@ -190,6 +191,7 @@ q. 返回主菜单
 - 将这个需求梳理清楚之后，我们就可以编写代码了，代码如下所示：
 
 ```python
+# src/function_time_value.py
 def get_time_value_inputs():
     # 外层循环，确保用户输入正确
     while True:
@@ -399,6 +401,7 @@ N输入完成： 10
 根据这个函数的需求分析，我们可以写出这部分代码：
 
 ```python
+# src/function_time_value.py
 import math
 import numpy_financial as npf
 
@@ -440,12 +443,9 @@ def calculate_time_value(tv_inputs):
 我们在 `test/test_time_value.py` 文件中编写测试代码，代码如下所示：
 
 ```python
-import sys
-from config_test import PATH_BASE, PATH_SRC
-sys.path.append(PATH_BASE)
-sys.path.append(PATH_SRC)
-
-from src.function_time_value import calculate_time_value
+# tests/test_function_time_value.py
+from config_test import *
+from function_time_value import calculate_time_value
 
 # 测试净现值计算功能的正确性
 def test_calculate_time_value():
@@ -577,6 +577,7 @@ if __name__ == "__main__":
 最后，我们将输入函数与时间价值计算函数集成到主函数 `function_time_value_main` 中：
 
 ```python
+# src/function_time_value.py
 from ui import show_instructions
 from logger import log_write
 import math

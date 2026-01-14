@@ -136,7 +136,7 @@ while True:
 
     - 首先 `config.py` 模块通常不需要单独测试，我们可以不为它创建测试文件
     - 其次，我们这个程序中大部分模块比较简单，测试代码就会比较少，我们就可以**直接在原模块的 `if __name__ == "__main__":` 中编写测试代码，而不必单独创建测试文件**
-    - 因此，我们就只给 `main.py` 和 `animal_viewer.py` 创建测试文件，大家来体会以下测试代码怎么用就行了
+    - 因此，我们就只给 `main.py` 和 `animal_viewer.py` 创建测试文件，其实这两个模块也很简单，大家来体会以下测试代码怎么用就行了
 
 - `logs/` 文件夹用于存放程序运行的日志文件
 
@@ -154,19 +154,18 @@ zoo_program_v1/
 │   ├── animal2_cow.txt
 │   ├── animal3_horse.txt
 │   └── title.txt
-|
+│
 ├── logs/
 │   └── zoo.log
-|
+│
 ├── src/
-│   ├── __init__.py
 │   ├── main.py
 │   ├── ui.py
 │   ├── animal_viewer.py
 │   ├── input_handler.py
 │   ├── logger.py
 │   └── config.py
-|
+│
 ├── tests/
 │   ├── test_main.py
 │   └── test_animal_viewer.py
@@ -174,8 +173,6 @@ zoo_program_v1/
 ├── README.md
 └── requirements.txt
 ```
-
-
 
 ## 3. 主程序设计
 
@@ -203,7 +200,7 @@ zoo_program_v1/
 根据新的设计思路，我们将主程序代码修改如下：
 
 ```python
-
+# src/main.py
 def main():
     
     # TODO: 日志记录
@@ -259,6 +256,7 @@ if __name__ == "__main__":
 - 改进后的主程序代码如下：
 
 ```python
+# src/main.py
 def main():
     
     # TODO: 日志记录
@@ -305,6 +303,7 @@ if __name__ == "__main__":
 - 所以我们可以先实现一个临时的 `get_user_input()` 函数，我们只需要它能帮助程序运行起来就行了
 
 ```python
+# src/main.py
 def get_user_input():
     # 临时实现，直接复制之前的输入处理代码
     while True:
@@ -348,9 +347,9 @@ if __name__ == "__main__":
 接着，我们在 `tests/test_main.py` 中编写测试代码，对主程序进行测试：
 
 ```python
+# tests/test_main.py
 # 需要先添加项目路径到 sys.path 中
 import sys
-sys.path.append("codes/Module1/Topic13/Topic13_02/zoo_program_v1")
 sys.path.append("codes/Module1/Topic13/Topic13_02/zoo_program_v1/src")
 
 from src.main import main
@@ -434,6 +433,7 @@ if __name__ == "__main__":
 - 我们之前提到过，像如下这种使用 `if-elif-else` 语句通常不是一个好的实践，因为它会导致代码冗长且难以维护：
 
 ```python
+# src/animal_viewer.py
 def display_animal(animal_id):
     if animal_id == '1':
         file_path = "data/animal1_camel.txt"
@@ -452,6 +452,7 @@ def display_animal(animal_id):
 - 我们想做到的效果是其实就是动物id与文件名来一一对应，那么有什么更好的方法吗？我们可以使用**字典**来映射动物编号和文件路径：
 
 ```python
+# src/animal_viewer.py
 animal_info ={
     "1": {
         "name": "骆驼", 
@@ -499,12 +500,14 @@ FileNotFoundError: No such file or directory: 'data/animal1_camel.txt'
 我们在 `config.py` 模块中加入如下设置：
 
 ```python
+# src/config.py
 PATH_PREFIX = "codes/Module1/Topic13/zoo_program_v1/"
 ```
 
 我们修改 `animal_viewer.py` 模块中的文件路径代码：
 
 ```python
+# src/animal_viewer.py
 from config import PATH_PREFIX
 
 animal_info ={
@@ -562,12 +565,12 @@ if __name__ == "__main__":
 此外，我们还可以在 `animal_viewer.py` 对应的测试文件 `tests/test_animal_viewer.py` 中编写测试代码：
 
 ```python
+# tests/test_animal_viewer.py
 # 需要先添加项目路径到 sys.path 中
 import sys
-sys.path.append("codes/Module1/Topic13/Topic13_02/zoo_program_v1")
 sys.path.append("codes/Module1/Topic13/Topic13_02/zoo_program_v1/src")
 
-from src.animal_viewer import display_animal
+from animal_viewer import display_animal
 
 if __name__ == "__main__":
     display_animal("1")
@@ -643,6 +646,7 @@ if __name__ == "__main__":
 接着，我们来看一下 `display_title_menu()` 函数的代码实现，这部分很简单：
 
 ```python
+# src/ui.py
 def display_title_menu():
     # 读取标题文件
     with open("data/title.txt", "r", encoding="utf-8") as f:
@@ -669,6 +673,7 @@ if __name__ == "__main__":
 改进后的代码如下：
 
 ```python
+# src/ui.py
 from animal_viewer import animal_info
 
 def display_title_menu():
@@ -710,6 +715,7 @@ q. 退出
 - 这一部分也比较简单，我们把之前实现过的嵌套 `while` 循环代码放在这个函数中，并将用户输入作为返回值返回：
 
 ```python
+# src/main.py
 def get_user_input():
     while True:
         user_input = input("请输入你的选择: ")
@@ -728,6 +734,7 @@ def get_user_input():
 改进后的代码如下：
 
 ```python
+# src/input_handler.py
 from animal_viewer import animal_info
 
 def get_user_input():
@@ -751,6 +758,7 @@ def get_user_input():
 - 注意，我们这里应该使用追加模式打开日志文件，这样每次写入日志时不会覆盖之前的日志内容
 
 ```python
+# src/logger.py
 from datetime import datetime
 
 def logger(message):
@@ -798,6 +806,7 @@ if __name__ == "__main__":
 改进后的代码如下：
 
 ```python
+# src/logger.py
 from datetime import datetime
 
 def logger(message):
@@ -837,6 +846,7 @@ if __name__ == "__main__":
 到这里，我们已经实现了所有预留的功能，接下来我们把各个模块整合到 `main.py` 主程序中：
 
 ```python
+# src/main.py
 from ui import display_title_menu
 from input_handler import get_user_input
 from animal_viewer import display_animal
@@ -874,6 +884,7 @@ if __name__ == "__main__":
 - 改进后的代码如下：
 
 ```python
+# src/main.py
 from ui import display_title_menu
 from input_handler import get_user_input
 from animal_viewer import display_animal, animal_info

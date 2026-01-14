@@ -79,6 +79,7 @@ print(eval(expr3))
 根据这个逻辑，我们可以把它的代码实现如下：
 
 ```python
+# src/function_expression.py
 from ui import show_instructions
 from logger import log_write
 
@@ -257,6 +258,7 @@ q. 返回主菜单
 我们可以在 `calculate_expression()` 函数中，先导入 `math` 模块，然后定义我们需要的数学常数和函数，最后再调用 `eval()` 来计算表达式。
 
 ```python
+# src/function_expression.py
 # 计算表达式的函数
 def calculate_expression(expression):
 
@@ -330,13 +332,9 @@ def calculate_expression(expression):
 这里，我们的测试代码就要比之前动物园程序的测试代码复杂一些，正式一些了，我们需要搭一个测试框架，来系统地测试各种表达式的计算结果是否正确：
 
 ```python
-import sys
-from config_test import PATH_BASE, PATH_SRC
-sys.path.append(PATH_BASE)
-sys.path.append(PATH_SRC)
-
-from src.function_expression import calculate_expression
-
+# tests/test_function_expression.py
+from config_test import *
+from function_expression import calculate_expression
 
 # 测试表达式计算功能的正确性
 def test_calculate_expression():
@@ -437,6 +435,7 @@ if __name__ == "__main__":
 我们可以在 `expression_check()` 函数中，添加对表达式合法性的检查代码：
 
 ```python
+# src/function_expression.py
 # 定义表达式非法类
 class InvalidExpressionError(Exception):
     pass
@@ -481,6 +480,10 @@ def expression_check(expression):
 之后，我们在测试模块中，编写一下这个函数的测试框架，注意这里需要把 `InvalidExpressionError` 也导入进来：
 
 ```python
+# tests/test_function_expression.py
+from config_test import *
+from function_expression import calculate_expression, expression_check, InvalidExpressionError
+
 def test_expression_check():
 
     # 检查表达式是否合法的辅助函数
@@ -527,6 +530,7 @@ if __name__ == "__main__":
 - 同时，我们再加上一些错误处理的机制，再加一些打印横线让输出美观一些
 
 ```python
+# src/function_expression.py
 # 表达式计算功能主函数
 def function_expression_main():
 

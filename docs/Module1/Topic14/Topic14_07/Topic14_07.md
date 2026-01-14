@@ -26,7 +26,7 @@
 
 大家平时用的金融计算器还可以设置现金流的时间点是起初还是期末
 
-- 这个功能要实现起来，我们的现金流和金钱时间价值模块都要大换血
+- 这个功能要实现起来，我们的现金流和金钱时间价值模块都要大改
 - 所以我们就暂时不做这个功能，同学们如果有兴趣，课后可以自己尝试实现一下
 
 ## 1. 设计用户设置的交互界面
@@ -41,6 +41,7 @@
 根据以上思路，我们可以编写如下代码：
 
 ```python
+# src/user_settings.py
 decimal_places = 4
 money_symbol = "¥"
 
@@ -148,49 +149,46 @@ q. 返回主菜单
 
 ### (2) 将用户设置模块集成到主程序
 
-接下来，我们将用户设置模块集成到主程序 `main.py` 里，先在 `function.py` 里添加相应的功能选项：
+接下来，我们将用户设置模块集成到主程序 `main.py` 里（但是大家先记得在 `input_handler.py` 和 `ui.py` 里，做相应的修改，这里我们就先不展示了）：
 
 ```python
-from logger import log_read
-from ui import show_instructions
-from function_expression import function_expression_main
+# src/main.py
+from input_handler import get_user_input
+from ui import display_menu, show_instructions
+from logger import log_write, log_read
 from function_cash_flow import function_cash_flow_main
+from function_expression import function_expression_main
 from function_time_value import function_time_value_main
 from user_settings import get_user_settings
 
-def show_temp():
-    print("这是一个占位函数，后续会实现具体功能")
+def main():
+    while True:
+        
+        # 显示标题与菜单
+        display_menu()
+        print("-" * 40)
+        # 获取用户输入
+        user_input = get_user_input()
+        print("-" * 40)
 
-function_info = {
-    "0": {
-        "description": "使用说明",
-        "function": show_instructions,
-        "instruction_file": "data/instructions/instructions_overall.txt"
-    },
-    "1": {
-        "description": "算式计算",
-        "function": function_expression_main,
-        "instruction_file": "data/instructions/instructions_expression.txt"
-    },
-    "2": {
-        "description": "现金流量计算",
-        "function": function_cash_flow_main,
-        "instruction_file": "data/instructions/instructions_cash_flow.txt"
-    },
-    "3": {
-        "description": "时间价值计算",
-        "function": function_time_value_main,
-        "instruction_file": "data/instructions/instructions_time_value.txt"
-    },
-    "l": {
-        "description": "查看计算历史",
-        "function": log_read
-    },
-    "s": {
-        "description": "用户设置",
-        "function": get_user_settings
-    }
-}
+        # 处理用户输入
+        if user_input == 'q':
+            break
+        elif user_input == '0':
+            show_instructions("0")
+        elif user_input == '1':
+            function_expression_main()
+        elif user_input == '2':
+            function_cash_flow_main()
+        elif user_input == '3':
+            function_time_value_main()
+        elif user_input == 'l':
+            log_read()
+        elif user_input == 's':
+            get_user_settings()
+
+if __name__ == "__main__":
+    main()
 ```
 
 之后，我们直接运行主程序 `main.py`，看看用户设置功能是否成功集成：
@@ -266,13 +264,13 @@ q. 退出
 表达式计算模块比较简单，我们只需要在输出结果时，使用用户设置的小数点位数，所以改这一行代码即可：
 
 ```python
+# src/function_expression.py
 from user_settings import get_decimal_places
 
 def function_expression_main():
     ...
     result = round(calculate_expression(expression_checked), get_decimal_places())
     ...
-
 ```
 
 这里我们要注意一个关键的问题：
@@ -289,6 +287,7 @@ def function_expression_main():
 - 金额符号稍微复杂一点，因为如果是正数，我们需要在前面加上符号，比方说 `¥200`，如果是负数，我们需要在负号后面加上符号，比方说 `-¥200`，所以我们需要写一个格式化函数：
 
 ```python
+# src/utils.py
 def format_money(money_symbol, decimal_places, amount):
     if amount >= 0:
         return f"{money_symbol}{amount:.{decimal_places}f}"
@@ -307,6 +306,7 @@ def format_money(money_symbol, decimal_places, amount):
 修改后的代码如下所示：
 
 ```python
+# src/function_cash_flow.py
 from ui import show_instructions
 from logger import log_write
 import numpy_financial as npf
@@ -351,7 +351,7 @@ def calculate_irr(cashflows):
     else:
         irr_list = sorted(irr_values)
     # 格式化输出小数点位数
-    irr_formatted = [round(r, get_decimal_places()) if r is not None else None for r in irr_list]
+    irr_formatted = [round(float(r), get_decimal_places()) if r is not None else None for r in irr_list]
     # 返回原值和格式化后的值
     return irr_list, irr_formatted
 
@@ -488,13 +488,13 @@ q. 返回主菜单
 我们主要修改参数获取函数与计算函数，也是让它们返回两个值，一个是原始数值，一个是格式化后的字符串：
 
 ```python
+# src/function_time_value.py
 from ui import show_instructions
 from logger import log_write
 import math
 import numpy_financial as npf
 from user_settings import get_decimal_places, get_money_symbol
 from utils import format_money
-
 
 def get_time_value_inputs():
     while True:

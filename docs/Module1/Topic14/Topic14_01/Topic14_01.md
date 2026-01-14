@@ -46,7 +46,6 @@ financial_calculator_v1/
 │   └── fc.log
 |
 ├── src/
-│   ├── __init__.py
 │   ├── main.py
 │   ├── ui.py
 │   ├── function_expression.py
@@ -57,7 +56,6 @@ financial_calculator_v1/
 │   └── config.py
 |
 ├── tests/
-│   ├── __init__.py
 │   ├── config_test.py
 │   ├── test_function_expression.py
 │   ├── test_function_cash_flow.py
@@ -118,12 +116,10 @@ financial_calculator_v1/
     - 用户选"l"则显示历史计算记录
     - 用户选"q"则退出程序
 
-按照这个逻辑，我们可以先把主程序框架的代码写出来，如下所示：
-
-- 这里我们使用和动物园程序类似的思路：`get_user_input` 先写个假的函数占位，保证代码能跑通，后续再来实现这个函数
-- 这里虽然有硬编码的问题，但是我们现在还没想好怎么解决，这里不像动物园程序那么直观，后续我们会再来改进
+按照这个逻辑，我们可以先把主程序框架的代码写出来，顺便实现 `get_user_input` 函数，如下所示：
 
 ```python
+# src/main.py
 def get_user_input():
     while True:
         user_input = input("请输入你的选择: ")
@@ -207,6 +203,9 @@ PATH_PREFIX = "codes/Module1/Topic14/Topic14_01/financial_calculator_v1/"
 - 接着我们就可以实现 `display_menu` 函数了：
 
 ```python
+# src/ui.py
+from config import PATH_PREFIX
+
 def display_menu():
     with open(f"{PATH_PREFIX}data/title.txt", "r", encoding="utf-8") as f:
         title = f.read()
@@ -217,99 +216,6 @@ def display_menu():
     print("3. 时间价值计算")
     print("l. 查看计算历史")
     print("q. 退出")
-```
-
-这里的硬编码问题该怎么解决呢？
-
-- 在动物园程序中，我们的解决方式是把动物信息放在一个字典中，然后通过遍历字典来动态生成菜单
-- 其实这里，我们也可以把菜单选项放在一个字典中，字典就完成了选项到描述和功能的映射：
-
-    - "0"这个键对应的值是个字典，里面有两个键值对 "description"是菜单描述，"function"是对应的函数名
-    - "1"这个键对应的值是个字典，里面有两个键值对 "description"是菜单描述，"function"是对应的函数名
-    - 以此类推
-
-```python
-function_info = {
-    "0": {
-        "description": "使用说明",
-        "function": show_instructions
-    },
-    "1": {
-        "description": "算式计算",
-        "function": function_expression_calculation
-    },
-    "2": {
-        "description": "现金流量计算",
-        "function": function_cash_flow_calculation
-    },
-    "3": {
-        "description": "时间价值计算",
-        "function": function_time_value_calculation
-    },
-    "l": {
-        "description": "查看计算历史",
-        "function": show_calculation_history
-    }
-}
-```
-
-这里我们用到的一个技巧是函数的 Python 对象本质：
-
-- 函数名实际上是指向函数对象的引用，因此我们可以直接将函数对象赋值给字典中的键
-- 只不过，函数这里还没有实现呢，所以我们先用一个简单函数来占位
-
-```python
-def show_temp():
-    print("这是一个占位函数，后续会实现具体功能")
-
-function_info = {
-    "0": {
-        "description": "使用说明",
-        "function": show_temp
-    },
-    "1": {
-        "description": "算式计算",
-        "function": show_temp
-    },
-    "2": {
-        "description": "现金流量计算",
-        "function": show_temp
-    },
-    "3": {
-        "description": "时间价值计算",
-        "function": show_temp
-    },
-    "l": {
-        "description": "查看计算历史",
-        "function": show_temp
-    }
-}
-```
-
-那么，这个字典要存储在哪里呢？我们可以将其放在 `src/functions.py` 中，方便管理和维护
-
-- 一开始设计目录结构时没有这个文件，但是这里发现新的需求，我们就需要新增这个文件来存放函数相关的信息
-- 这也是项目目录结构会随着项目进展而不断演变的一个例子
-
-解决了硬编码问题后，我们就可以修改 `display_menu` 函数来动态生成菜单了：
-
-```python
-from config import PATH_PREFIX
-from functions import function_info
-
-def display_menu():
-    # 1. 读取与显示标题
-    with open(f"{PATH_PREFIX}data/title.txt", "r", encoding="utf-8") as f:
-        title = f.read()
-    print(title)
-    # 2. 动态生成功能菜单
-    for key, value in function_info.items():
-        print(f"{key}. {value['description']}")
-    # 3. 显示退出选项
-    print("q. 退出")
-
-if __name__ == "__main__":
-    display_menu()
 ```
 
 我们运行 `display_menu` 函数，发现可以正常显示标题和菜单了：
@@ -327,20 +233,25 @@ l. 查看计算历史
 q. 退出
 ```
 
+在动物园程序中，我们使用字典解决菜单中的硬编码问题，但是这里我们先不这么做：
+
+- 因为在动物园程序中，每个菜单选项对应的函数都是展示动物，只不过参数不同而已，而这里每个菜单选项对应的功能模块与函数完全不同
+- 如果我们使用字典来映射菜单选项与函数，那么就会产生一个问题：这个字典要引用展示说明函数，而展示说明函数又要引用这个字典，形成循环引用
+- 因此，这里我们就不使用字典来解决硬编码问题了
+
 ### (2) 获取用户输入
 
-我们在 `src/input_handler.py` 中实现 `get_user_input` 函数，用于获取用户的选择输入
+我们在 `src/main.py` 中已经了实现 `get_user_input` 函数，当时是为了保证主程序能跑通，所以放在主程序文件中，这里我们把它挪到 `src/input_handler.py` 中：
 
 - 这部分就比较简单了，首先我们可以参照动物园程序中的无限循环结构，不断提示用户输入，直到输入合法为止
 - 这里的合法输入就是 `functions.py` 文件中 `function_info` 字典的键，再加上 "q" 这个退出选项
 
 ```python
-from functions import function_info
-
+# src/input_handler.py
 def get_user_input():
     while True:
         user_input = input("请输入你的选择: ")
-        if user_input in function_info.keys() or user_input == 'q':
+        if user_input in ['0', '1', '2', '3', 'l', 'q']:
             break
         else:
             print("输入有误，请重新输入")
@@ -359,6 +270,8 @@ if __name__ == "__main__":
 输入有误，请重新输入
 请输入你的选择: 1
 ```
+
+同样，这里我们没有解决硬编码的问题，所以这个合法输入列表我们就直接放在这里。
 
 ### (3) 展示使用说明
 
@@ -398,86 +311,49 @@ if __name__ == "__main__":
 请按照提示输入现值（PV）、终值（FV）、利率（R）、每期支付金额（PMT）与期数（n）中的几个值，程序将计算出您想要的目标值。
 ```
 
-这里，我们有4个使用说明文本文件，分别对应整体使用说明和各个功能的使用说明
-
-- 如果每个都分别实现一个函数，那代码量就会比较大，我们想要一个 `show_instructions` 函数就可以展示所有的使用说明内容
-- 那么，每个功能与其使用说明如何对应呢？我们可以利用前面提到的 `function_info` 字典：
+展示说明的函数也可以算是交互界面的一部分，因此我们把它放在 `src/ui.py` 文件中实现：
 
 ```python
-function_info = {
-    "0": {
-        "description": "使用说明",
-        "function": show_temp,
-        "instruction_file": "data/instructions/instructions_overall.txt"
-    },
-    "1": {
-        "description": "算式计算",
-        "function": show_temp,
-        "instruction_file": "data/instructions/instructions_expression.txt"
-    },
-    "2": {
-        "description": "现金流量计算",
-        "function": show_temp,
-        "instruction_file": "data/instructions/instructions_cash_flow.txt"
-    },
-    "3": {
-        "description": "时间价值计算",
-        "function": show_temp,
-        "instruction_file": "data/instructions/instructions_time_value.txt"
-    },
-    "l": {
-        "description": "查看计算历史",
-        "function": show_temp
-    }
-}
-```
-
-接下来，我们有一个关键问题要解决，那就是，`show_instructions` 函数要放在哪个模块中？
-
-- 有同学觉得，展示使用说明，也算是用户界面的一部分，应该放在 `ui.py` 中
-- 但是，放在 `ui.py` 中有个大问题： 
-
-    - 那就是 `ui.py` 需要引用 `functions.py` 中的 `function_info` 字典，而 `functions.py` 又需要引用 `ui.py` 中的 `show_instructions` 函数
-    - 这样就形成了循环引用，导致 Python 解释器会直接报循环引用的错误
-    - 那么，一个避免循环引用的方法就是，在 `ui.py` 模块中，把引用 `functions.py` 的代码放在函数内部，而不是模块顶部，这样就可以避免循环引用的问题了
-
-
-这个问题解决后，我们的 `ui.py` 文件可以实现如下：
-
-```python 
+# src/ui.py
 from config import PATH_PREFIX
 
 def display_menu():
-
-    # 延迟导入以避免循环引用
-    from functions import function_info
-
-    # 1. 读取与显示标题
     with open(f"{PATH_PREFIX}data/title.txt", "r", encoding="utf-8") as f:
         title = f.read()
     print(title)
-
-    # 2. 动态生成功能菜单
-    for key, value in function_info.items():
-        print(f"{key}. {value['description']}")
-    
-    # 3. 显示退出选项
+    print("0. 使用说明")
+    print("1. 算式计算")
+    print("2. 现金流量计算")
+    print("3. 时间价值计算")
+    print("l. 查看计算历史")
     print("q. 退出")
 
 def show_instructions(function_key="0"):
-    
-    # 延迟导入以避免循环引用
-    from functions import function_info
-    
+    # 建立功能与说明文件的映射关系
+    function_info = {
+        "0": {
+            "description": "使用说明",
+            "instruction_file": "data/instructions/instructions_overall.txt"
+        },
+        "1": {
+            "description": "算式计算",
+            "instruction_file": "data/instructions/instructions_expression.txt"
+        },
+        "2": {
+            "description": "现金流量计算",
+            "instruction_file": "data/instructions/instructions_cash_flow.txt"
+        },
+        "3": {
+            "description": "时间价值计算",
+            "instruction_file": "data/instructions/instructions_time_value.txt"
+        }
+    }
     # 读取对应功能的说明文件
     instruction_file = function_info[function_key]["instruction_file"]
-
     with open(f"{PATH_PREFIX}{instruction_file}", "r", encoding="utf-8") as f:
         instructions = f.read()
-    
     # 显示说明内容    
     print(instructions)
-    
     # 提示按任意键继续
     input("输入任意内容返回上级菜单：")
 
@@ -640,6 +516,7 @@ if __name__ == "__main__":
 根据我们设计的日志格式，我们可以将 `src/logger.py` 模块实现如下：
 
 ```python
+# src/logger.py
 import json
 from datetime import datetime
 from config import PATH_PREFIX
@@ -722,6 +599,7 @@ if __name__ == "__main__":
 这样，我们的 `log_read` 函数可以实现如下：
 
 ```python
+# src/logger.py
 def log_read(log_type="计算历史", page_size=5):
 
     # 读取日志文件内容
@@ -767,14 +645,14 @@ def log_read(log_type="计算历史", page_size=5):
         print("=" * 40)      
 ```
 
-我们把测试log多写几条，然后运行 `log_read` 函数，得到以下结果，表示日志可以成功读取：
+我们把测试 log 多写几条，然后运行 `log_read` 函数，得到以下结果，表示日志可以成功读取：
 
 ```text
 ========================================
 第 1 页，共 3 页
 ----------------------------------------
 {
-    "时间": "2025-11-07 21:33:16",
+    "时间": "2026-01-14 15:39:05",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "算式计算",
@@ -784,7 +662,51 @@ def log_read(log_type="计算历史", page_size=5):
 }
 ----------------------------------------
 {
-    "时间": "2025-11-07 21:33:16",
+    "时间": "2026-01-14 15:39:05",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "现金流计算",
+        "现金流列表": [
+            -1000,
+            300,
+            400,
+            500,
+            600
+        ],
+        "计算对象": "NPV",
+        "折现率": 0.1,
+        "结果": 388.77
+    }
+}
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:05",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "时间价值计算",
+        "输入参数": {
+            "PV": 1000,
+            "FV": null,
+            "R": 0.05,
+            "PMT": 100,
+            "n": 10
+        },
+        "结果": 2886.68
+    }
+}
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:08",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "算式计算",
+        "输入": "2 + 3 * 4",
+        "结果": 14
+    }
+}
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:08",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "现金流计算",
@@ -806,7 +728,7 @@ def log_read(log_type="计算历史", page_size=5):
 第 2 页，共 3 页
 ----------------------------------------
 {
-    "时间": "2025-11-07 21:33:16",
+    "时间": "2026-01-14 15:39:08",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "时间价值计算",
@@ -822,7 +744,7 @@ def log_read(log_type="计算历史", page_size=5):
 }
 ----------------------------------------
 {
-    "时间": "2025-11-07 21:33:41",
+    "时间": "2026-01-14 15:39:09",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "算式计算",
@@ -831,12 +753,8 @@ def log_read(log_type="计算历史", page_size=5):
     }
 }
 ----------------------------------------
-是否继续查看下一页？(y/n): y
-========================================
-第 3 页，共 3 页
-----------------------------------------
 {
-    "时间": "2025-11-07 21:33:41",
+    "时间": "2026-01-14 15:39:09",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "现金流计算",
@@ -854,7 +772,99 @@ def log_read(log_type="计算历史", page_size=5):
 }
 ----------------------------------------
 {
-    "时间": "2025-11-07 21:33:41",
+    "时间": "2026-01-14 15:39:09",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "时间价值计算",
+        "输入参数": {
+            "PV": 1000,
+            "FV": null,
+            "R": 0.05,
+            "PMT": 100,
+            "n": 10
+        },
+        "结果": 2886.68
+    }
+}
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:12",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "算式计算",
+        "输入": "2 + 3 * 4",
+        "结果": 14
+    }
+}
+----------------------------------------
+是否继续查看下一页？(y/n): y
+========================================
+第 3 页，共 3 页
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:12",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "现金流计算",
+        "现金流列表": [
+            -1000,
+            300,
+            400,
+            500,
+            600
+        ],
+        "计算对象": "NPV",
+        "折现率": 0.1,
+        "结果": 388.77
+    }
+}
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:12",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "时间价值计算",
+        "输入参数": {
+            "PV": 1000,
+            "FV": null,
+            "R": 0.05,
+            "PMT": 100,
+            "n": 10
+        },
+        "结果": 2886.68
+    }
+}
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:13",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "算式计算",
+        "输入": "2 + 3 * 4",
+        "结果": 14
+    }
+}
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:13",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "现金流计算",
+        "现金流列表": [
+            -1000,
+            300,
+            400,
+            500,
+            600
+        ],
+        "计算对象": "NPV",
+        "折现率": 0.1,
+        "结果": 388.77
+    }
+}
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:13",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "时间价值计算",
@@ -880,7 +890,7 @@ def log_read(log_type="计算历史", page_size=5):
 第 1 页，共 3 页
 ----------------------------------------
 {
-    "时间": "2025-11-07 21:33:16",
+    "时间": "2026-01-14 15:39:05",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "算式计算",
@@ -890,7 +900,7 @@ def log_read(log_type="计算历史", page_size=5):
 }
 ----------------------------------------
 {
-    "时间": "2025-11-07 21:33:16",
+    "时间": "2026-01-14 15:39:05",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "现金流计算",
@@ -907,12 +917,8 @@ def log_read(log_type="计算历史", page_size=5):
     }
 }
 ----------------------------------------
-是否继续查看下一页？(y/n): y
-========================================
-第 2 页，共 3 页
-----------------------------------------
 {
-    "时间": "2025-11-07 21:33:16",
+    "时间": "2026-01-14 15:39:05",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "时间价值计算",
@@ -928,12 +934,30 @@ def log_read(log_type="计算历史", page_size=5):
 }
 ----------------------------------------
 {
-    "时间": "2025-11-07 21:33:41",
+    "时间": "2026-01-14 15:39:08",
     "类型": "开发者测试-计算历史",
     "内容": {
         "功能": "算式计算",
         "输入": "2 + 3 * 4",
         "结果": 14
+    }
+}
+----------------------------------------
+{
+    "时间": "2026-01-14 15:39:08",
+    "类型": "开发者测试-计算历史",
+    "内容": {
+        "功能": "现金流计算",
+        "现金流列表": [
+            -1000,
+            300,
+            400,
+            500,
+            600
+        ],
+        "计算对象": "NPV",
+        "折现率": 0.1,
+        "结果": 388.77
     }
 }
 ----------------------------------------
@@ -944,74 +968,46 @@ def log_read(log_type="计算历史", page_size=5):
 
 ## 5. 将辅助功能集成到主程序中
 
-在将这些功能集成到主程序之前，我们要先把 `functions.py` 文件补充完整：
+最后，我们就将这些辅助功能集成到主程序 `src/main.py` 中：
 
 ```python
-from logger import log_read
-from ui import show_instructions
-
-def show_temp():
-    print("这是一个占位函数，后续会实现具体功能")
-
-function_info = {
-    "0": {
-        "description": "使用说明",
-        "function": show_instructions,
-        "instruction_file": "data/instructions/instructions_overall.txt"
-    },
-    "1": {
-        "description": "算式计算",
-        "function": show_temp,
-        "instruction_file": "data/instructions/instructions_expression.txt"
-    },
-    "2": {
-        "description": "现金流量计算",
-        "function": show_temp,
-        "instruction_file": "data/instructions/instructions_cash_flow.txt"
-    },
-    "3": {
-        "description": "时间价值计算",
-        "function": show_temp,
-        "instruction_file": "data/instructions/instructions_time_value.txt"
-    },
-    "l": {
-        "description": "查看计算历史",
-        "function": log_read
-    }
-}
-```
-
-
-最后，我们就将这些辅助功能集成到主程序 `src/main.py` 中
-
-- 由于我们在 `functions.py` 中定义了 `function_info` 字典，用于创建菜单和函数的映射关系
-- 我们这里可以直接利用这个字典来调用对应的函数，而不需要再写一大堆的 `if-elif` 语句，来解决硬编码问题
-- 同时，我们加上一些打印横线的代码，让界面看起来更美观一些
-
-```python
+# src/main.py
 from input_handler import get_user_input
-from ui import display_menu
-from functions import function_info
+from ui import display_menu, show_instructions
+from logger import log_write, log_read
 
 def main():
-
     while True:
         
-        # 显示菜单
+        # 显示标题与菜单
         display_menu()
         print("-" * 40)
         # 获取用户输入
         user_input = get_user_input()
+        print("-" * 40)
 
         # 处理用户输入
         if user_input == 'q':
-            print("-" * 40)
-            print("感谢使用，程序已退出！")
             break
-        else:
-            print("-" * 40)
-            function = function_info[user_input]["function"]
-            function()
+        elif user_input == '0':
+            show_instructions("0")
+        elif user_input == '1':
+            # TODO: 需要实现算式计算函数
+            # function_expression_calculation()
+            print("进入表达式计算功能")
+            pass
+        elif user_input == '2':
+            # TODO: 需要实现现金流量计算函数
+            # function_cash_flow_calculation()
+            print("进入现金流量计算功能")
+            pass
+        elif user_input == '3':
+            # TODO: 需要实现时间价值计算函数
+            # function_time_value_calculation()
+            print("进入时间价值计算功能")
+            pass
+        elif user_input == 'l':
+            log_read()
 
 if __name__ == "__main__":
     main()
@@ -1052,7 +1048,7 @@ q. 退出
 ----------------------------------------
 请输入你的选择: 1
 ----------------------------------------
-这是一个占位函数，后续会实现具体功能
+进入算式计算功能
 ========================================
                 金融计算器
 ========================================
@@ -1066,7 +1062,7 @@ q. 退出
 ----------------------------------------
 请输入你的选择: 2
 ----------------------------------------
-这是一个占位函数，后续会实现具体功能
+进入现金流量计算功能
 ========================================
                 金融计算器
 ========================================
@@ -1080,7 +1076,7 @@ q. 退出
 ----------------------------------------
 请输入你的选择: 3
 ----------------------------------------
-这是一个占位函数，后续会实现具体功能
+进入时间价值计算功能
 ========================================
                 金融计算器
 ========================================
@@ -1116,6 +1112,6 @@ q. 退出
 看到这个结果，我们就已经完成了主程序框架，以及各个辅助功能的实现和集成工作。
 
 - 可以看到，虽然各个计算功能还没有实现，但是主程序已经可以正常运行，并且各个辅助功能也都可以正常使用了
-- 后续，我们完成每一个功能模块后，只需将其对应的函数替换掉 `functions.py` 文件中 `function_info` 字典中的占位函数即可，非常方便
+- 后续，我们完成每一个功能模块后，只需将其整合到主程序中即可
 
 从下一节开始，我们就可以开始逐步实现各个计算功能模块了。

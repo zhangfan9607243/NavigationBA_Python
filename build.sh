@@ -143,6 +143,8 @@
 # jupyter nbconvert --to markdown codes/Module1/Topic12/Topic12_03/Topic12_03.ipynb --output-dir docs/Module1/Topic12/Topic12_03 --output Topic12_03
 #### Topic 12.04
 # jupyter nbconvert --to markdown codes/Module1/Topic12/Topic12_04/Topic12_04.ipynb --output-dir docs/Module1/Topic12/Topic12_04 --output Topic12_04
+#### Topic 12.05
+# jupyter nbconvert --to markdown codes/Module1/Topic12/Topic12_05/Topic12_05.ipynb --output-dir docs/Module1/Topic12/Topic12_05 --output Topic12_05
 
 ### Topic 13
 #### Topic 13.00

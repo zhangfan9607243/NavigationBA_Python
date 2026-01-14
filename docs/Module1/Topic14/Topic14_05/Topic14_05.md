@@ -8,76 +8,40 @@
 - 现金流计算模块
 - 金钱时间价值计算模块
 
-我们需要现在 `src/functions.py` 文件中，先强调导入这三个模块的主函数：
+之后，我们将这些模块整合到主程序中：
 
 ```python
-from logger import log_read
-from ui import show_instructions
-from function_expression import function_expression_main
+# src/main.py
+from input_handler import get_user_input
+from ui import display_menu, show_instructions
+from logger import log_write, log_read
 from function_cash_flow import function_cash_flow_main
+from function_expression import function_expression_main
 from function_time_value import function_time_value_main
 
-def show_temp():
-    print("这是一个占位函数，后续会实现具体功能")
-
-function_info = {
-    "0": {
-        "description": "使用说明",
-        "function": show_instructions,
-        "instruction_file": "data/instructions/instructions_overall.txt"
-    },
-    "1": {
-        "description": "算式计算",
-        "function": function_expression_main,
-        "instruction_file": "data/instructions/instructions_expression.txt"
-    },
-    "2": {
-        "description": "现金流量计算",
-        "function": function_cash_flow_main,
-        "instruction_file": "data/instructions/instructions_cash_flow.txt"
-    },
-    "3": {
-        "description": "时间价值计算",
-        "function": function_time_value_main,
-        "instruction_file": "data/instructions/instructions_time_value.txt"
-    },
-    "l": {
-        "description": "查看计算历史",
-        "function": log_read
-    }
-}
-```
-
-之后，我们直接在主模块 `src/main.py` 中运行 `main` 函数：
-
-- 因为我们之前已经写好了 `main` 函数，当中调用了 `functions.py` 中的各个功能模块的运行函数
-- 相当于我们已经设置好了接口，只要修改 `functions.py` 中的功能函数指向，就可以实现不同的功能模块调用
-- 所以，我们在主函数中并不需要做任何修改，直接运行即可：
-
-```python
-from input_handler import get_user_input
-from ui import display_menu
-from functions import function_info
-
 def main():
-
     while True:
         
-        # 显示菜单
+        # 显示标题与菜单
         display_menu()
         print("-" * 40)
         # 获取用户输入
         user_input = get_user_input()
+        print("-" * 40)
 
         # 处理用户输入
         if user_input == 'q':
-            print("-" * 40)
-            print("感谢使用，程序已退出！")
             break
-        else:
-            print("-" * 40)
-            function = function_info[user_input]["function"]
-            function()
+        elif user_input == '0':
+            show_instructions("0")
+        elif user_input == '1':
+            function_expression_main()
+        elif user_input == '2':
+            function_cash_flow_main()
+        elif user_input == '3':
+            function_time_value_main()
+        elif user_input == 'l':
+            log_read()
 
 if __name__ == "__main__":
     main()
@@ -268,7 +232,7 @@ q. 退出
 第 1 页，共 1 页
 ----------------------------------------
 {
-    "时间": "2025-11-11 15:33:57",
+    "时间": "2026-01-14 21:13:38",
     "类型": "计算历史",
     "内容": {
         "功能": "算式计算",
@@ -278,7 +242,7 @@ q. 退出
 }
 ----------------------------------------
 {
-    "时间": "2025-11-11 15:34:50",
+    "时间": "2026-01-14 21:14:31",
     "类型": "计算历史",
     "内容": {
         "功能": "现金流计算",
@@ -295,7 +259,7 @@ q. 退出
 }
 ----------------------------------------
 {
-    "时间": "2025-11-11 15:35:35",
+    "时间": "2026-01-14 21:15:18",
     "类型": "计算历史",
     "内容": {
         "功能": "时间价值计算",
@@ -331,7 +295,6 @@ q. 退出
 ----------------------------------------
 请输入你的选择: q
 ----------------------------------------
-感谢使用，程序已退出！
 ```
 
 ## 2. 编写README文件

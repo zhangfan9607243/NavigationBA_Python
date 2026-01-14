@@ -43,6 +43,7 @@
 下面是实现这个功能的代码示例：
 
 ```python
+# src/function_cash_flow.py
 def get_cash_flow_list():
     while True:
         print("-" * 40)
@@ -62,6 +63,7 @@ def get_cash_flow_list():
 如果使用列表推导式，会更简洁一些，代码如下：
 
 ```python
+# src/function_cash_flow.py
 def get_cash_flow_list():
     while True:
         print("-" * 40)
@@ -134,6 +136,7 @@ q. 返回主菜单
 根据这个思路，下面是实现这个功能的代码示例： 
 
 ```python
+# src/function_time_value.py
 def get_time_value_inputs():
     while True:
         print("-" * 40)
@@ -214,6 +217,11 @@ q. 返回主菜单
 
 同样，我们可以看到，缩减了用户输入金钱时间价值参数的步骤之后，用户只需要输入一次字符串就可以了，大大简化了交互过程。
 
+通过对现金流和金钱时间价值的用户输入进行改进，我们事实上体会了另一种项目提升的形式 - 将复杂的功能简化
+
+- 并不是所有的项目提升都需要增加新的功能，有时候简化现有功能的使用流程也是一种很好的提升方式
+- 我们最终都是以用户体验和需求为中心的
+
 ## 2. 强化 IRR 计算功能
 
 ### (1) 实现求多个解的 IRR 函数
@@ -249,10 +257,10 @@ $$-100x^4 + 80x^3 - 30x^2 + 90x - 20 = 0$$
 根据这个思路，我们的 `calculate_irr` 函数可以改写成下面这样：
 
 ```python
+# src/function_cash_flow.py
 import numpy as np
 
 def calculate_irr(cashflows):
-
     # 求所有根（x=1+r）
     roots = np.roots(cashflows)
 
@@ -275,6 +283,7 @@ def calculate_irr(cashflows):
 我们将这个函数替换原来的计算 IRR 的函数，然后重新跑一下 IRR 的测试函数，全部通过则说明函数正确：
 
 ```python
+# tests/test_function_cash_flow.py
 def test_calculate_irr_npv():
 
     def test_irr(cash_flows):
