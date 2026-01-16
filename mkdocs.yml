@@ -54,7 +54,7 @@ extra_javascript:
 nav:
 
   - 首页:
-    - ✴️ 欢迎页面: index/index.md
+    - ✴️ 欢迎页面: index.md
     - ✴️ 课程介绍: index/index1.md
     - ✴️ 课程大纲: index/index2.md
 

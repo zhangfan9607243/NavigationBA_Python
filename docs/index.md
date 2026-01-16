@@ -7,5 +7,5 @@
 
 
 <div align="center">
-  <img src="./logo.png" alt="LOGO" width="400">
+  <img src="./index/logo.png" alt="LOGO" width="400">
 </div>
