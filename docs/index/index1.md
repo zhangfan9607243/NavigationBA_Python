@@ -1,8 +1,6 @@
-# 领航国际教育 - BA专业自学系列课程
+# 课程介绍
 
-## 课程介绍
-
-欢迎同学们来到领航国际教育Business Analytics专业自学系列课程。
+欢迎同学们来到领航国际教育 Business Analytics 专业自学系列课程。
 
 本系列课程旨在：
 
@@ -16,17 +14,3 @@
 - 讲义：[本网站](https://navigationba.github.io/NavigationBA_Basics/)
 - 代码：[GitHub](https://github.com/NavigationBA/NavigationBA_Basics_Code)
 - 视频讲解：请联系领航客服获得：
-
-## 课程大纲
-
-### Module 1 - Python 基础
-
-### Module 2 - Python 面相对象
-
-### Module 3 - Python 数据分析
-
-### Module 4 - SQL 基础
-
-### Module 5 - R 基础
-
-### Module 6 - Tableau 基础

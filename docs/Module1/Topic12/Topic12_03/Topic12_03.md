@@ -14,6 +14,7 @@
 - 在 `mynewmodule_a.py` 中，我们引用了 `mynewmodule_b.py` 模块：
 
 ```python
+# mynewmodule_a.py
 from mynewmodule_b import func_b
 
 def func_a():
@@ -23,6 +24,7 @@ def func_a():
 - 在 `mynewmodule_b.py` 中，我们引用了 `mynewmodule_a.py` 模块：
 
 ```python
+# mynewmodule_b.py
 from mynewmodule_a import func_a
 
 def func_b():
@@ -52,6 +54,7 @@ def func_b():
 - 在 `mynewmodule_c.py` 中：
 
 ```python
+# mynewmodule_c.py
 def func_c():
     print("func_c start")
     from mynewmodule_d import func_d
@@ -61,6 +64,7 @@ def func_c():
 - 在 `mynewmodule_d.py` 中：
 
 ```python
+# mynewmodule_d.py
 def func_d():
     print("func_d start")
     from mynewmodule_c import func_c
@@ -91,6 +95,7 @@ func_d()
 - 在 `mynewmodule_e.py` 中：
 
 ```python
+# mynewmodule_e.py
 from mynewmodule_f import func_f
 
 def func_e():
@@ -100,6 +105,7 @@ def func_e():
 - 在 `mynewmodule_f.py` 中：
 
 ```python
+# mynewmodule_f.py
 def func_f():
     print("func_f start")
     from mynewmodule_e import func_e
@@ -160,6 +166,7 @@ codes/Module1/Topic12/Topic12_03/ # 这是当前目录
 - 例如在 `mynewpackage1/subpackage1/util1.py` 中引用 `tool1.py` 和 `tool2.py`：
 
 ```python
+# mynewpackage1/subpackage1/util1.py
 from tool1 import greet
 from tool2 import farewell
 
@@ -193,6 +200,7 @@ if __name__ == "__main__":
 - 我们把 `util1.py` 中的引用先复制到 `util2.py` 中，然后修改为以下内容：
 
 ```python
+# mynewpackage1/subpackage1/util2.py
 from .tool1 import greet
 from .tool2 import farewell
 
@@ -237,6 +245,7 @@ print(util2.welcome_and_farewell("Eve"))
 - 这里我们把 `util1.py` 中的引用再复制到 `util3.py` 中，然后修改为以下内容：
 
 ```python
+# mynewpackage1/subpackage1/util3.py
 from mynewpackage1.subpackage1.tool1 import greet
 from mynewpackage1.subpackage1.tool2 import farewell
 
@@ -275,7 +284,9 @@ print(util3.welcome_and_farewell("Frank"))
 如果是引用其他包中的模块，也需要注意使用相对引用的方式，否则也会报错：
 
 - 例如，我们在 `mynewpackage1/subpackage2/util4.py` 中引用 `mynewpackage1/subpackage1/tool1.py` 和 `mynewpackage1/subpackage1/tool2.py`：
+
 ```python
+# mynewpackage1/subpackage2/util4.py
 from ..subpackage1.tool1 import greet
 from ..subpackage1.tool2 import farewell
 
@@ -315,6 +326,7 @@ print(util4.welcome_and_farewell("Grace"))
 - 例如，我们在 `mynewpackage1/subpackage2/util5.py` 中引用 `mynewpackage1/subpackage1/tool1.py` 和 `mynewpackage1/subpackage1/tool2.py`：
 
 ```python
+# mynewpackage1/subpackage2/util5.py
 from mynewpackage1.subpackage1.tool1 import greet
 from mynewpackage1.subpackage1.tool2 import farewell
 
@@ -419,6 +431,7 @@ codes/Module1/Topic12/Topic12_03/ # 这是当前目录
 - 如果我们觉得这样的引用方式太麻烦了，可以通过修改 `mynewpackage2/subpackage1/__init__.py` 文件来简化引用方式：
 
 ```python
+# mynewpackage2/subpackage1/__init__.py
 from .util1 import welcome_and_farewell
 ```
 
@@ -453,6 +466,7 @@ print(greet("Jack"))
 - 例如，我们接下来把 `mynewpackage2/subpackage2/tool3.py` 中的 `apologize` 函数导入到 `mynewpackage2/__init__.py` 文件中：
 
 ```python
+# mynewpackage2/__init__.py
 from .subpackage2.tool3 import apologize
 ```
 
@@ -501,6 +515,7 @@ codes/Module1/Topic12/Topic12_03/ # 这是当前目录
 - 再在 `mynewpackage3/subpackage1/__init__.py` 文件中定义 `__all__` 列表，注意所有的功能写成字符串类型：
 
 ```python
+# mynewpackage3/subpackage1/__init__.py
 from .tool1 import greet
 from .tool2 import farewell
 

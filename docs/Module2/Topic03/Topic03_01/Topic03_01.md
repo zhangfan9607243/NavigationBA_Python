@@ -24,7 +24,7 @@ project_name/
 │   └── data3.json
 │
 ├── src/                  ← 源代码（Source Code）核心程序逻辑
-│   ├── __init__.py       ← 标识这是一个包   
+│   ├── __init__.py       ← 标识这是一个包（可根据需要添加）   
 │   ├── main.py           ← 主程序入口
 │   ├── config.py         ← 配置参数与路径
 │   ├── data_loader.py    ← 数据读取与保存
@@ -33,7 +33,7 @@ project_name/
 │   └── utils.py          ← 工具函数、日志、文件操作
 │
 ├── tests/                ← 测试代码（确保程序正确性）
-│   ├── __init__.py       ← 标识这是一个包   
+│   ├── __init__.py       ← 标识这是一个包（可根据需要添加）   
 │   ├── test_main.py
 │   ├── test_data_loader.py
 │   ├── test_analysis.py

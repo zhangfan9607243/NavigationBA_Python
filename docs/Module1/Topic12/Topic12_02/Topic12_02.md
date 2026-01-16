@@ -10,15 +10,16 @@
 
 - 我们创建一个名为 `mymodule1.py` 的文件，在其中定义一些函数和变量：
 
-    ```python
-    def add(x, y):
-        return x + y
+```python
+# mymodule1.py
+def add(x, y):
+    return x + y
 
-    def subtract(x, y):
-        return x - y
+def subtract(x, y):
+    return x - y
 
-    PI = 3.14
-    ```
+PI = 3.14
+```
 
 - 然后我们就可以在其他 `.py` 或 `.ipynb` 文件中引用这个模块，注意，新文件必须和自定义模块在同一目录下：
 
@@ -60,15 +61,16 @@ print(mymodule1.PI)
 
 - 我们把相同的代码复制到一个新的文件 `mymodule2.py` 中
 
-    ```python
-    def add(x, y):
-        return x + y
+```python
+# other_path/mymodule2.py
+def add(x, y):
+    return x + y
 
-    def subtract(x, y):
-        return x - y
+def subtract(x, y):
+    return x - y
 
-    PI = 3.14
-    ```
+PI = 3.14
+```
 
 - 我们把 `mymodule2.py` 放在一个名为 `other_path` 的子目录下，然后我们在当前目录下引用它
 
@@ -134,16 +136,17 @@ print(mymodule2.PI)
 - 这意味着如果模块文件中有一些不必要的代码（例如打印语句或测试代码），这些代码在引用模块时也会被执行：
 - 我们把之前相同的代码复制到 `mymodule3.py` 中，就放在当前目录即可，并且尝试在 `mymodule3.py` 中添加一些打印语句：
 
-    ```python
-    def add(x, y):
-        return x + y
+```python
+# mymodule3.py
+def add(x, y):
+    return x + y
 
-    def subtract(x, y):
-        return x - y
+def subtract(x, y):
+    return x - y
 
-    PI = 3.14
-    print(f"PI 的值是 {PI}")
-    ```
+PI = 3.14
+print(f"PI 的值是 {PI}")
+```
 
 - 当我们引用这个模块时，会发现其中的打印语句也被执行了：
 
@@ -171,6 +174,7 @@ print(mymodule3.add(5, 3))
 我们来尝试把以下代码复制到 `mymodule4.py` 中，就放在当前目录，并且添加 `if __name__ == "__main__":` 语句：
 
 ```python
+# mymodule4.py
 def add(x, y):
     return x + y
 
@@ -204,20 +208,21 @@ print(mymodule4.add(5, 3))
 
 - 我们来看以下例子，我们把同样的代码复制到 `mymodule5.py` 中，并且在其中导入了 `math` 模块：
 
-    ```python
-    import math
+```python
+# mymodule5.py
+import math
 
-    def add(x, y):
-        return x + y
+def add(x, y):
+    return x + y
 
-    def subtract(x, y):
-        return x - y
+def subtract(x, y):
+    return x - y
 
-    PI = 3.14
+PI = 3.14
 
-    if __name__ == "__main__":
-        print(f"PI 的值是 {PI}")
-    ```
+if __name__ == "__main__":
+    print(f"PI 的值是 {PI}")
+```
 
 - 这时，`math` 和 `sqrt` 就都是 `mymodule5` 模块中的内容了
 
@@ -277,32 +282,34 @@ print(sqrt(16))     # 直接使用 sqrt 函数
 
 - 其中 `tool1.py` 的代码如下：
 
-    ```python
-    def greet(name):
-        return f"Hello, {name}!"
-    ```
+```python
+# mypackage1/tool1.py
+def greet(name):
+    return f"Hello, {name}!"
+```
 
 - 其中 `tool2.py` 的代码如下：
 
-    ```python
-    def farewell(name):
-        return f"Goodbye, {name}!"
-    ```
+```python
+# mypackage1/tool2.py
+def farewell(name):
+    return f"Goodbye, {name}!"
+```
 
 - 接着，最重要的一步，我们需要在 `mypackage1` 文件夹中创建一个名为 `__init__.py` 的空文件，这个文件告诉 Python 这个文件夹是一个包
 
 - 这些操作下来，我们的文件目录结构如下：
 
-    ```text
-    codes/Module1/Topic12/Topic12_02/ # 这是当前目录
-    │
-    │── mypackage1/
-    │   │── __init__.py
-    │   │── tool1.py
-    │   │── tool2.py
-    │
-    └── 当前文件.ipynb  # 这是我们运行代码的 Jupyter Notebook 文件
-    ``` 
+```text
+codes/Module1/Topic12/Topic12_02/ # 这是当前目录
+│
+│── mypackage1/
+│   │── __init__.py
+│   │── tool1.py
+│   │── tool2.py
+│
+└── 当前文件.ipynb  # 这是我们运行代码的 Jupyter Notebook 文件
+``` 
 
 之后，我们就可以在当前文件中引用这个包中的模块了：
 
@@ -334,8 +341,8 @@ print(tool2.farewell("Bob"))
 
 - 例如，我们创建一个名为 `mypackage2` 的文件夹：
 
-    - 在其中创建一个子包文件夹 `subpackage1`，以及两个模块文件 `tool1.py` （Hello） 和 `tool2.py` （Goodbye） 
-    - 在其中创建一个子包文件夹 `subpackage2`，以及两个模块文件 `tool3.py` （Sorry） 和 `tool4.py` (Thanks)
+    - 在其中创建一个子包文件夹 `subpackage1`，以及两个模块文件 `tool1.py` （`greet` 函数） 和 `tool2.py` （`farewell` 函数） 
+    - 在其中创建一个子包文件夹 `subpackage2`，以及两个模块文件 `tool3.py` （`apologize` 函数） 和 `tool4.py` (`thanks` 函数)
 
 - 最重要的是在每个包和子包文件夹中都要创建一个名为 `__init__.py` 的空文件，这个文件告诉 Python 这个文件夹是一个包或子包
 - 这样操作下来，我们的文件目录结构如下：
@@ -376,8 +383,4 @@ print(tool4.thank("Diana"))
     Goodbye, Bob!
     Sorry, Charlie.
     Thank you, Diana!
-
-
-
-
 

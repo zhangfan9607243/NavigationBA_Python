@@ -191,24 +191,36 @@
 #### Topic 01.03
 # jupyter nbconvert --to markdown codes/Module2/Topic01/Topic01_03/Topic01_03.ipynb --output-dir docs/Module2/Topic01/Topic01_03 --output Topic01_03
 
-### Topic 02
-#### Topic 02.00
-# jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_00/Topic02_00.ipynb --output-dir docs/Module2/Topic02/Topic02_00 --output Topic02_00
-#### Topic 02.01
-# jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_01/Topic02_01.ipynb --output-dir docs/Module2/Topic02/Topic02_01 --output Topic02_01
-#### Topic 02.02
-# jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_02/Topic02_02.ipynb --output-dir docs/Module2/Topic02/Topic02_02 --output Topic02_02
-#### Topic 02.03
-# jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_03/Topic02_03.ipynb --output-dir docs/Module2/Topic02/Topic02_03 --output Topic02_03
-#### Topic 02.04
-# jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_04/Topic02_04.ipynb --output-dir docs/Module2/Topic02/Topic02_04 --output Topic02_04
+## Topic 02
+### Topic 02.00
+jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_00/Topic02_00.ipynb --output-dir docs/Module2/Topic02/Topic02_00 --output Topic02_00
+### Topic 02.01
+jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_01/Topic02_01.ipynb --output-dir docs/Module2/Topic02/Topic02_01 --output Topic02_01
+### Topic 02.02
+jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_02/Topic02_02.ipynb --output-dir docs/Module2/Topic02/Topic02_02 --output Topic02_02
+### Topic 02.03
+jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_03/Topic02_03.ipynb --output-dir docs/Module2/Topic02/Topic02_03 --output Topic02_03
+### Topic 02.04
+jupyter nbconvert --to markdown codes/Module2/Topic02/Topic02_04/Topic02_04.ipynb --output-dir docs/Module2/Topic02/Topic02_04 --output Topic02_04
 
-### Topic 03
-#### Topic 03.00
-# jupyter nbconvert --to markdown codes/Module2/Topic03/Topic03_00/Topic03_00.ipynb --output-dir docs/Module2/Topic03/Topic03_00 --output Topic03_00
-#### Topic 03.01
-# jupyter nbconvert --to markdown codes/Module2/Topic03/Topic03_01/Topic03_01.ipynb --output-dir docs/Module2/Topic03/Topic03_01 --output Topic03_01
-#### Topic 03.02
-# jupyter nbconvert --to markdown codes/Module2/Topic03/Topic03_02/Topic03_02.ipynb --output-dir docs/Module2/Topic03/Topic03_02 --output Topic03_02
-#### Topic 03.03
-# jupyter nbconvert --to markdown codes/Module2/Topic03/Topic03_03/Topic03_03.ipynb --output-dir docs/Module2/Topic03/Topic03_03 --output Topic03_03
+## Topic 03
+### Topic 03.00
+jupyter nbconvert --to markdown codes/Module2/Topic03/Topic03_00/Topic03_00.ipynb --output-dir docs/Module2/Topic03/Topic03_00 --output Topic03_00
+### Topic 03.01
+jupyter nbconvert --to markdown codes/Module2/Topic03/Topic03_01/Topic03_01.ipynb --output-dir docs/Module2/Topic03/Topic03_01 --output Topic03_01
+### Topic 03.02
+jupyter nbconvert --to markdown codes/Module2/Topic03/Topic03_02/Topic03_02.ipynb --output-dir docs/Module2/Topic03/Topic03_02 --output Topic03_02
+### Topic 03.03
+jupyter nbconvert --to markdown codes/Module2/Topic03/Topic03_03/Topic03_03.ipynb --output-dir docs/Module2/Topic03/Topic03_03 --output Topic03_03
+
+## Topic 04
+### Topic 04.00
+jupyter nbconvert --to markdown codes/Module2/Topic04/Topic04_00/Topic04_00.ipynb --output-dir docs/Module2/Topic04/Topic04_00 --output Topic04_00
+### Topic 04.01
+jupyter nbconvert --to markdown codes/Module2/Topic04/Topic04_01/Topic04_01.ipynb --output-dir docs/Module2/Topic04/Topic04_01 --output Topic04_01
+### Topic 04.02
+jupyter nbconvert --to markdown codes/Module2/Topic04/Topic04_02/Topic04_02.ipynb --output-dir docs/Module2/Topic04/Topic04_02 --output Topic04_02
+### Topic 04.03
+jupyter nbconvert --to markdown codes/Module2/Topic04/Topic04_03/Topic04_03.ipynb --output-dir docs/Module2/Topic04/Topic04_03 --output Topic04_03
+### Topic 04.04
+jupyter nbconvert --to markdown codes/Module2/Topic04/Topic04_04/Topic04_04.ipynb --output-dir docs/Module2/Topic04/Topic04_04 --output Topic04_04

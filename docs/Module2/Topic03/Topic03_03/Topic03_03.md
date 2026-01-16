@@ -28,6 +28,7 @@
 修改后的代码如下：
 
 ```python
+# src/game.py
 from human_player import HumanPlayer
 from computer_player import ComputerPlayer
 
@@ -196,6 +197,7 @@ class Game:
 - 之后，我们需要加一个属性 `stats`，用来保存统计到的玩家分数，就是我们上面提到的分数字典
 
 ```python
+# src/human_player.py
 import json
 from config import Config
 from player import Player
@@ -238,10 +240,8 @@ class HumanPlayer(Player):
 之后，我们修改相应的测试代码 `test/test_human_player.py`，来测试能否正确显示玩家分数字典：
 
 ```python
-from config_test import ConfigTest
-import sys
-sys.path.append(ConfigTest.PATH_SRC)
-
+# test/test_human_player.py
+from config_test import *
 from human_player import HumanPlayer
 
 def test_human_player_make_choice():
@@ -294,6 +294,7 @@ if __name__ == "__main__":
 
 
 ```python
+# src/game.py
 from human_player import HumanPlayer
 from computer_player import ComputerPlayer
 from config import Config
@@ -427,10 +428,8 @@ class Game:
 之后，我们修改相应的测试代码 `test/test_game.py`，来测试我们新增的功能是否正确：
 
 ```python
-from config_test import ConfigTest
-import sys
-sys.path.append(ConfigTest.PATH_SRC)
-
+# test/test_game.py
+from config_test import *
 from game import Game
 
 def test_game_single_mode():
@@ -560,6 +559,7 @@ if __name__ == "__main__":
 根据上述需求分析，排行榜类的实现如下：
 
 ```python
+# src/leaderboard.py
 import json
 from config import Config
 
@@ -673,6 +673,7 @@ David                    2               11              1
 - 其次，由于每局游戏的输出我们已经放在了 `Game` 类的 `play` 方法中，因此我们不再打印 `play` 方法的返回结果，而是直接调用即可
 
 ```python
+# src/main.py
 from config import Config
 from logger import Logger
 from ui import UI

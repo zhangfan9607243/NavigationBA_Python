@@ -125,7 +125,6 @@ rps_game_v1/
 │   └── rules.txt               # 存放游戏规则的文本文件
 │
 ├── src/                   # 存放源代码的目录
-│   ├── __init__.py            # 标识 src 目录为一个包               
 │   ├── main.py                # 程序入口文件
 │   ├── program.py             # Program 类的实现
 │   ├── player.py              # Player 类的实现
@@ -137,7 +136,6 @@ rps_game_v1/
 │   └── logger.py              # Logger 类的实现
 │
 ├── tests/                 # 存放测试代码的目录
-│   ├── __init__.py             # 标识 tests 目录为一个包
 │   ├── config_test.py          # 测试文件所使用的配置文件
 │   ├── test_human_player.py    # 测试 HumanPlayer 类的
 │   ├── test_computer_player.py # 测试 ComputerPlayer 类的测试文件
@@ -163,6 +161,7 @@ rps_game_v1/
 - 其中没有实现的功能我们先用占位符表示，后续会在相应的类中进行实现
 
 ```python
+# src/main.py
 from config import Config
 
 class Program:
@@ -207,6 +206,7 @@ if __name__ == "__main__":
 在实现其他类的代码之前，我们先把 `config.py` 文件实现好，这里我们只有两个常量，分别是日志文件路径和界面资源路径：
 
 ```python
+# src/config.py
 class Config:
     PATH_LOG = "codes/Module2/Topic03/Topic03_02/rps_game_v1/log"
     PATH_UI = "codes/Module2/Topic03/Topic03_02/rps_game_v1/data"
@@ -219,6 +219,7 @@ class Config:
 首先，在 `player.py` 文件中，我们实现 `Player` 抽象类
 
 ```python
+# src/player.py
 from abc import ABC, abstractmethod
 
 class Player(ABC):
@@ -233,6 +234,7 @@ class Player(ABC):
 接下来，在 `human_player.py` 文件中，我们实现 `HumanPlayer` 类
 
 ```python
+# src/human_player.py
 from player import Player
 
 class HumanPlayer(Player):
@@ -250,6 +252,7 @@ class HumanPlayer(Player):
 最后，在 `computer_player.py` 文件中，我们实现 `ComputerPlayer` 类
 
 ```python
+# src/computer_player.py
 import random
 from player import Player
 
@@ -267,8 +270,13 @@ class ComputerPlayer(Player):
 首先，在 `test/` 目录一下，我们创建一个 `config_test.py` 文件，用于测试时的配置，其实目前就只有一个源代码路径：
 
 ```python
+# tests/config_test.py
+import sys
+
 class ConfigTest:
     PATH_SRC = "codes/Module2/Topic03/Topic03_02/rps_game_v1/src"
+
+sys.path.append(ConfigTest.PATH_SRC)
 ```
 
 在配置好测试的配置文件后，我们就可以进行测试代码的编写了：
@@ -276,10 +284,8 @@ class ConfigTest:
 - 我们可以编写 `test_human_player.py` 文件来测试 `HumanPlayer` 类：
 
 ```python
-from config_test import ConfigTest
-import sys
-sys.path.append(ConfigTest.PATH_SRC)
-
+# tests/test_human_player.py
+from config_test import *
 from human_player import HumanPlayer
 
 def test_human_player_make_choice():
@@ -304,10 +310,8 @@ if __name__ == "__main__":
 - 我们可以编写 `test_computer_player.py` 文件来测试 `ComputerPlayer` 类：
 
 ```python
-from config_test import ConfigTest
-import sys
-sys.path.append(ConfigTest.PATH_SRC)
-
+# tests/test_computer_player.py
+from config_test import *
 from computer_player import ComputerPlayer
 
 def test_computer_player_make_choice():
@@ -333,6 +337,7 @@ if __name__ == "__main__":
 在 `game.py` 文件中，我们实现 `Game` 类：
 
 ```python
+# src/game.py
 from human_player import HumanPlayer
 from computer_player import ComputerPlayer
 
@@ -366,10 +371,8 @@ class Game:
 在 `test/` 目录下，我们创建一个 `test_game.py` 文件来测试 `Game` 类：
 
 ```python
-from config_test import ConfigTest
-import sys
-sys.path.append(ConfigTest.PATH_SRC)
-
+# tests/test_game.py
+from config_test import *
 from game import Game
 
 def test_game_single_mode():
@@ -441,6 +444,7 @@ q. 退出游戏
 接着，我们在 `src/ui.py` 文件中实现 `UI` 类，这一类比较简单，我们主要是读取数据文件并展示内容：
 
 ```python
+# src/ui.py
 from config import Config
 
 class UI:
@@ -495,6 +499,7 @@ q. 退出游戏
 首先，我们在 `src/logger.py` 文件中，我们实现 `Logger` 类：
 
 ```python
+# src/logger.py
 from config import Config
 import datetime
 
@@ -540,6 +545,7 @@ if __name__ == "__main__":
 在实现完所有类之后，我们需要将它们整合到 `main.py` 文件中的 `Program` 类中：
 
 ```python
+# src/main.py
 from config import Config
 from logger import Logger
 from ui import UI
