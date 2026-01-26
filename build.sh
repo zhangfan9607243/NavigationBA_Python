@@ -228,3 +228,20 @@
 # jupyter nbconvert --to markdown codes/Module2/Topic04/Topic04_05/Topic04_05.ipynb --output-dir docs/Module2/Topic04/Topic04_05 --output Topic04_05
 #### Topic 04.06
 # jupyter nbconvert --to markdown codes/Module2/Topic04/Topic04_06/Topic04_06.ipynb --output-dir docs/Module2/Topic04/Topic04_06 --output Topic04_06
+
+## Module 3
+### Topic 00
+#### Topic 00.01
+# jupyter nbconvert --to markdown codes/Module3/Topic00/Topic00_01/Topic00_01.ipynb --output-dir docs/Module3/Topic00/Topic00_01 --output Topic00_01
+#### Topic 00.02
+# jupyter nbconvert --to markdown codes/Module3/Topic00/Topic00_02/Topic00_02.ipynb --output-dir docs/Module3/Topic00/Topic00_02 --output Topic00_02
+
+### Topic 01
+#### Topic 01.00
+jupyter nbconvert --to markdown codes/Module3/Topic01/Topic01_00/Topic01_00.ipynb --output-dir docs/Module3/Topic01/Topic01_00 --output Topic01_00
+#### Topic 01.01 有图片
+# jupyter nbconvert --to markdown codes/Module3/Topic01/Topic01_01/Topic01_01.ipynb --output-dir docs/Module3/Topic01/Topic01_01 --output Topic01_01
+#### Topic 01.02 有图片
+# jupyter nbconvert --to markdown codes/Module3/Topic01/Topic01_02/Topic01_02.ipynb --output-dir docs/Module3/Topic01/Topic01_02 --output Topic01_02
+#### Topic 01.03
+# jupyter nbconvert --to markdown codes/Module3/Topic01/Topic01_03/Topic01_03.ipynb --output-dir docs/Module3/Topic01/Topic01_03 --output Topic01_03

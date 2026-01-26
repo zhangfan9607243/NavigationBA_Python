@@ -227,7 +227,7 @@ print(util2.welcome_and_farewell("Eve"))
 
 - 然而，这个时候，当我们直接运行 `util2.py` 时，却会报错，提示 `ImportError: attempted relative import with no known parent package`：
 
-    - 这是因为我们在 VSCode 中直接运行 `util2.py` 时，Python 使用的默认命令是 `python3 ".../codes/Module1/Topic12/Topic12_03/mynewpackage1/subpackage1/util2.py"`
+    - 这是因为我们在 VS Code 中直接运行 `util2.py` 时，Python 使用的默认命令是 `python3 ".../codes/Module1/Topic12/Topic12_03/mynewpackage1/subpackage1/util2.py"`
     - 当具体到某个模块文件时，Python 并不知道它属于哪个包，因此无法解析相对引用
     - 因此，如果我们想要测试 `util2.py`，只能在外部文件中引用它（比方说当前 Jupyter Notebook 就在根目录 `Topic12_03/` 中），或者以下命令
 
@@ -269,7 +269,7 @@ print(util3.welcome_and_farewell("Frank"))
     Hello, Frank! ... Goodbye, Frank!
 
 
-- 同样，如果我们在 VSCode 中直接运行 `util3.py`，也会报错，提示 `ModuleNotFoundError: No module named 'mynewpackage1'`：
+- 同样，如果我们在 VS Code 中直接运行 `util3.py`，也会报错，提示 `ModuleNotFoundError: No module named 'mynewpackage1'`：
 
     - 这是因为绝对引用需要从包的根目录开始，而直接运行模块文件时，Python 并不知道包的根目录在哪里
     - 因此，同样的道理，如果我们想要测试 `util3.py`，只能在外部文件中引用它（比方说当前 Jupyter Notebook 就在根目录 `Topic12_03/` 中），或者使用以下命令
@@ -313,7 +313,7 @@ print(util4.welcome_and_farewell("Grace"))
 
 - 和上面提到的问题一样，如果我们直接运行 `util4.py`，也会报错，提示 `ImportError: attempted relative import beyond top-level package`：
 
-    - 这是因为相对引用只能在包中使用，而不能直接在 VSCode 中运行模块文件
+    - 这是因为相对引用只能在包中使用，而不能直接在 VS Code 中运行模块文件
     - 因此，如果我们想要测试 `util4.py`，只能在外部文件中引用它（比方说当前 Jupyter Notebook 就在根目录 `Topic12_03/` 中），或者使用以下命令
 
     ```bash
