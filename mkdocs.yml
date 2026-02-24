@@ -1,9 +1,9 @@
 site_name: 领航国际教育 - BA专业自学系列课程
 site_description: 领航国际教育 - BA专业自学系列课程
-site_url: https://navigationba.github.io/NavigationBA_Basics/
+site_url: https://zhangfan9607243.github.io/Navigation_BA_Code_Basics/
 site_dir: site
 edit_uri: edit/main/docs/
-repo_url: https://github.com/NavigationBA/NavigationBA_Basics_Code 
+repo_url: https://zhangfan9607243.github.io/Navigation_BA_Code_Basics/
 repo_name: GitHub
 
 theme:
