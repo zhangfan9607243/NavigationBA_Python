@@ -1,0 +1,8637 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="领航国际教育 - BA专业自学系列课程">
+      
+      
+      
+        <link rel="canonical" href="https://navigationba.github.io/NavigationBA_Basics/Module3/Topic02/Topic02_03/Topic02_03/">
+      
+      
+        <link rel="prev" href="../../Topic02_02/Topic02_02/">
+      
+      
+        <link rel="next" href="../../Topic02_04/Topic02_04/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>✅ Topic 2.3 - Pandas 中的数据索引 - 领航国际教育 - BA专业自学系列课程</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#topic-23-pandas" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="领航国际教育 - BA专业自学系列课程" class="md-header__button md-logo" aria-label="领航国际教育 - BA专业自学系列课程" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            领航国际教育 - BA专业自学系列课程
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ✅ Topic 2.3 - Pandas 中的数据索引
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/NavigationBA/NavigationBA_Basics_Code" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+  首页
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Module1/Topic00/Topic00_01/Topic00_01/" class="md-tabs__link">
+          
+  
+  
+  Module 1 - Python 基础
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Module2/Topic00/Topic00_01/Topic00_01/" class="md-tabs__link">
+          
+  
+  
+  Module 2 - Python 面向对象
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../Topic00/Topic00_01/Topic00_01/" class="md-tabs__link">
+          
+  
+  
+  Module 3 - Python 数据分析
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="领航国际教育 - BA专业自学系列课程" class="md-nav__button md-logo" aria-label="领航国际教育 - BA专业自学系列课程" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    领航国际教育 - BA专业自学系列课程
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/NavigationBA/NavigationBA_Basics_Code" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    首页
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 欢迎页面
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index/index1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index/index2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程大纲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1 - Python 基础
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Module 1 - Python 基础
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    课程介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic00/Topic00_01/Topic00_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic00/Topic00_02/Topic00_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程大纲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 1 - Python 基本介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 1 - Python 基本介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic01/Topic01_00/Topic01_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 1 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic01/Topic01_01/Topic01_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.1 - Python 语言简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic01/Topic01_02/Topic01_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.2 - Python 与 PyCharm 安装
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic01/Topic01_03/Topic01_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.3 - Python 学习技巧
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic01/Topic01_04/Topic01_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 1.4 - 其他运行 Python 的方式（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 2 - Python 编程核心
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 2 - Python 编程核心
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic02/Topic02_00/Topic02_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 2 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic02/Topic02_01/Topic02_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.1 - 一些简单的 Python 程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic02/Topic02_02/Topic02_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.2 - 变量与赋值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic02/Topic02_03/Topic02_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.3 - 注释
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic02/Topic02_04/Topic02_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.4 - 用户输入 - input() 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic02/Topic02_05/Topic02_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.5 - print() 函数拓展功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic02/Topic02_06/Topic02_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.6 - Python 代码规范（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 3 - Python 基础数据类型之数字
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 3 - Python 基础数据类型之数字
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic03/Topic03_00/Topic03_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 3 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic03/Topic03_01/Topic03_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 3.1 - 数字类型之整数与浮点数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic03/Topic03_02/Topic03_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 3.2 - 数字类型之布尔型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic03/Topic03_03/Topic03_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 3.3 - 数字类型之空值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic03/Topic03_04/Topic03_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 3.4 - 数字类型之复数（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 4 - Python 基础数据类型之字符串
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 4 - Python 基础数据类型之字符串
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic04/Topic04_00/Topic04_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 4 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic04/Topic04_01/Topic04_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 4.1 - 字符串的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic04/Topic04_02/Topic04_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 4.2 - 字符串的索引与切片
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic04/Topic04_03/Topic04_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 4.3 - 字符串的常见操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic04/Topic04_04/Topic04_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 4.4 - 格式化字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 5 - Python 组合数据类型
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 5 - Python 组合数据类型
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic05/Topic05_00/Topic05_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 5 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic05/Topic05_01/Topic05_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.1 - Python 组合数据类型之列表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic05/Topic05_02/Topic05_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.2 - Python 组合数据类型之元组
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic05/Topic05_03/Topic05_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.3 - Python 组合数据类型之集合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic05/Topic05_04/Topic05_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.4 - Python 组合数据类型之字典
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic05/Topic05_05/Topic05_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.5 - Python 组合数据类型之间的转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 6 - 条件语句 - if 语句
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 6 - 条件语句 - if 语句
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic06/Topic06_00/Topic06_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 6 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic06/Topic06_01/Topic06_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 6.1 - 条件语句的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic06/Topic06_02/Topic06_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 6.2 - 条件语句的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 7 - 循环语句 - while 循环
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 7 - 循环语句 - while 循环
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic07/Topic07_00/Topic07_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 7 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic07/Topic07_01/Topic07_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 7.1 - while 循环的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic07/Topic07_02/Topic07_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 7.2 - while 循环的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic07/Topic07_03/Topic07_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 7.3 - while 无限循环的程序设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 8 - 循环语句 - for 循环
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 8 - 循环语句 - for 循环
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic08/Topic08_00/Topic08_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 8 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic08/Topic08_01/Topic08_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 8.1 - for 循环的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic08/Topic08_02/Topic08_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 8.2 - for 循环的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic08/Topic08_03/Topic08_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 8.3 - for 循环的高级用法（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 9 - 自定义函数
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 9 - 自定义函数
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic09/Topic09_00/Topic09_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 9 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic09/Topic09_01/Topic09_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 9.1 - 函数的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic09/Topic09_02/Topic09_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 9.2 - 函数的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic09/Topic09_03/Topic09_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 9.3 - 函数的高级用法（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic09/Topic09_04/Topic09_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 9.4 - 函数拓展（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 10 - 异常处理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 10 - 异常处理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic10/Topic10_00/Topic10_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 10 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic10/Topic10_01/Topic10_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 10.1 - 异常处理的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic10/Topic10_02/Topic10_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 10.2 - 异常处理的高级用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic10/Topic10_03/Topic10_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 10.3 - 异常处理拓展（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 11 - 文件操作
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 11 - 文件操作
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic11/Topic11_00/Topic11_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 11 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic11/Topic11_01/Topic11_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 11.1 - 文件操作的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic11/Topic11_02/Topic11_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 11.2 - 使用 with 语句进行文件读写
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic11/Topic11_03/Topic11_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 11.3 - 认识其他的文件类型（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_13" id="__nav_2_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 12 - 模块与包
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 12 - 模块与包
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic12/Topic12_00/Topic12_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 12 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic12/Topic12_01/Topic12_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 12.1 - 模块与包的引用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic12/Topic12_02/Topic12_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 12.2 - 自定义模块与包
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic12/Topic12_03/Topic12_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 12.3 - 自定义模块与包的高级技巧（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic12/Topic12_04/Topic12_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 12.4 - 常用的内置模块与包（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic12/Topic12_05/Topic12_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 12.5 - 常用的第三方模块与包（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_14" id="__nav_2_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 13 - Python 程序开发（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 13 - Python 程序开发（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic13/Topic13_00/Topic13_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 13 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic13/Topic13_01/Topic13_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 13.1 - Python 程序开发概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic13/Topic13_02/Topic13_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 13.2 - Python 程序开发演示 - 动物园程序开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic13/Topic13_03/Topic13_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 13.3 - Python 程序开发演示 - 动物园程序改进
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_15" id="__nav_2_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 14 - 金融计算器项目 - Python 基础结课项目（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 14 - 金融计算器项目 - Python 基础结课项目（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic14/Topic14_00/Topic14_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 14 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic14/Topic14_01/Topic14_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.1 - 项目背景介绍与主程序框架搭建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic14/Topic14_02/Topic14_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.2 - 表达式计算功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic14/Topic14_03/Topic14_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.3 - 现金流计算功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic14/Topic14_04/Topic14_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.4 - 金钱时间价值功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic14/Topic14_05/Topic14_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.5 - 完善主程序与后续工作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic14/Topic14_06/Topic14_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.6 - 金融计算器程序升级 - 版本 v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module1/Topic14/Topic14_07/Topic14_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.7 - 金融计算器程序升级 - 版本 v3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2 - Python 面向对象
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Module 2 - Python 面向对象
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    课程介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic00/Topic00_01/Topic00_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic00/Topic00_02/Topic00_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程大纲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 1 - Python 面向对象基础
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 1 - Python 面向对象基础
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic01/Topic01_00/Topic01_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 1 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic01/Topic01_01/Topic01_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.1 - 面向对象编程简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic01/Topic01_02/Topic01_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.2 - 类和对象的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic01/Topic01_03/Topic01_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.3 - 类的继承与多态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 2 - Python 面向对象进阶（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 2 - Python 面向对象进阶（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_00/Topic02_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 2 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_01/Topic02_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.1 - 类与类之间的关联与组合关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_02/Topic02_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.2 - 类继承的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_03/Topic02_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.3 - 类对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_04/Topic02_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.4 - 单例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 3 - Python 面向对象的程序开发方式（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 3 - Python 面向对象的程序开发方式（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic03/Topic03_00/Topic03_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 3 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic03/Topic03_01/Topic03_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 3.1 - Python 面向对象的程序开发概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic03/Topic03_02/Topic03_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 3.2 - Python 面向对象程序 - 石头剪刀布程序开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic03/Topic03_03/Topic03_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 3.3 - Python 面向对象程序 - 石头剪刀布程序改进
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 4 - 勇士与地下城项目 - Python 面向对象结课项目（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 4 - 勇士与地下城项目 - Python 面向对象结课项目（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_00/Topic04_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 4 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_01/Topic04_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.1 - 游戏项目介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_02/Topic04_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.2 - 角色类与道具类的设计与实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_03/Topic04_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.3 - 地图类的设计与实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_04/Topic04_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.4 - 整合各个游戏功能到主程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_05/Topic04_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.5 - 游戏改进与扩展 - 升级 v2 版本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_06/Topic04_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.6 - 游戏改进与扩展 - 升级 v3 版本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3 - Python 数据分析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Module 3 - Python 数据分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    课程介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic00/Topic00_01/Topic00_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic00/Topic00_02/Topic00_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程大纲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 1 - Python 数据分析环境搭建
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 1 - Python 数据分析环境搭建
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_00/Topic01_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 1 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_01/Topic01_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.1 - 下载 Anaconda 并创建 Conda 环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_02/Topic01_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 1.2 - Anaconda 中的其他功能（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_03/Topic01_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 1.3 - 使用命令行管理 Conda 环境（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 2 - Pandas 数据分析基础
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 2 - Pandas 数据分析基础
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_00/Topic02_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 2 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_01/Topic02_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.1 - Pandas 中的数据结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_02/Topic02_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.2 - Pandas 中的数据创建与存储
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.3 - Pandas 中的数据索引
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.3 - Pandas 中的数据索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本章目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本章目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 按列索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 按列索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 提取单列数据为 Series
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 提取多列数据为 DataFrame
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 按行索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 按行索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-iloc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 使用 iloc 提取行数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-loc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 使用 loc 提取行数据
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(2) 使用 loc 提取行数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-loc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (a) 使用 loc 提取单行或多行数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-pandas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (b) Pandas 中常见的行名类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 按行与列同时索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 按行与列同时索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-iloc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 使用 iloc 同时提取行和列数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-loc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 使用 loc 同时提取行和列数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pandas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pandas 数据索引的注意事项
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pandas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Pandas 中的多级索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Pandas 中的多级索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 多级索引简介
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 多级索引转换为单级索引
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) 单级索引转换为多级索引
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_04/Topic02_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.4 - Pandas 中的数据基本运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_05/Topic02_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.5 - Pandas 中的排序与聚合运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_06/Topic02_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.6 - Pandas 中的数据筛选
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_07/Topic02_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.7 - Pandas 中的数据清洗
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_08/Topic02_08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.8 - Pandas 中的数据连接与拼接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_09/Topic02_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.9 - Pandas 中自带的画图功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本章目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本章目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 按列索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 按列索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 提取单列数据为 Series
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 提取多列数据为 DataFrame
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 按行索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 按行索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-iloc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 使用 iloc 提取行数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-loc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 使用 loc 提取行数据
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(2) 使用 loc 提取行数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-loc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (a) 使用 loc 提取单行或多行数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-pandas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (b) Pandas 中常见的行名类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 按行与列同时索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 按行与列同时索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-iloc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 使用 iloc 同时提取行和列数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-loc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 使用 loc 同时提取行和列数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pandas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pandas 数据索引的注意事项
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pandas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Pandas 中的多级索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Pandas 中的多级索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 多级索引简介
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 多级索引转换为单级索引
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) 单级索引转换为多级索引
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="topic-23-pandas">Topic 2.3 - Pandas 中的数据索引<a class="headerlink" href="#topic-23-pandas" title="Permanent link">&para;</a></h1>
+<p>Pandas 中的索引，是指将 DataFrame 中的数据进行标识和定位的方式，说白了就是将一部分数据提取出来，这种提取可以是：</p>
+<ul>
+<li>提取出某列或某些列的数据</li>
+<li>提取出某行或某些行的数据</li>
+<li>既提取出某行又提取出某列的数据</li>
+</ul>
+<p>我们就分别来讲解这几种提取数据的方式，我们先导入 pandas 库：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</code></pre></div>
+<h2 id="1">1. 按列索引<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>在 Pandas 中，按列索引是指通过列名来提取 DataFrame 中的一列或多列数据。常用的方法有以下几种：</p>
+<h3 id="1-series">(1) 提取单列数据为 Series<a class="headerlink" href="#1-series" title="Permanent link">&para;</a></h3>
+<p>我们之前提到过，如果想要提取 DataFrame 中的一列数据，提取出来以后其实是 Series，可以使用以下两种方式：</p>
+<ul>
+<li>一种是使用方括号 <code>df['列名']</code>，这里必须使用引号将列名括起来：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Charlie&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span>
+    <span class="s1">&#39;City&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Melbourne&#39;</span><span class="p">,</span> <span class="s1">&#39;Sydney&#39;</span><span class="p">,</span> <span class="s1">&#39;Brisbane&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df1</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>25</td>
+      <td>Melbourne</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>30</td>
+      <td>Sydney</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>35</td>
+      <td>Brisbane</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>0      Alice
+1        Bob
+2    Charlie
+Name: Name, dtype: object
+</code></pre></div>
+<ul>
+<li>
+<p>还有一种是使用点号 <code>df.列名</code>：</p>
+<ul>
+<li>这种方式只能用于列名符合 Python 变量命名规则的情况，比如不能包含空格、不能以数字开头等</li>
+<li>例如 如果列名是 <code>First Name</code>，<code>Middle-Name</code> 或 <code>1stName</code>，就不能使用这种方式提取数据</li>
+<li>这就是为什么我们常说，在编程时，不论是给什么东西命名，最好都遵循变量命名规则，这样可以避免很多麻烦</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="o">.</span><span class="n">Name</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>0      Alice
+1        Bob
+2    Charlie
+Name: Name, dtype: object
+</code></pre></div>
+<h3 id="2-dataframe">(2) 提取多列数据为 DataFrame<a class="headerlink" href="#2-dataframe" title="Permanent link">&para;</a></h3>
+<p>如果想要提取多列数据，提取出来以后还是 DataFrame，可以使用以下方式：</p>
+<ul>
+<li>使用方括号 <code>df[['列名1', '列名2', ...]]</code>，这里需要使用双重方括号，外层方括号表示提取列，内层方括号表示列名的列表：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="p">[[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">]]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>35</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<ul>
+<li>这种方式提取一列数据时：<code>df[['列名']]</code>，提取出来的结果也是 DataFrame，而不是 Series，我们在前面的章节讨论过它们的区别</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="p">[[</span><span class="s2">&quot;Name&quot;</span><span class="p">]]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="2">2. 按行索引<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>如果想将行提取出来，主要有以下两种方式，我们之前其实介绍过：</p>
+<ul>
+<li>使用 <code>iloc[行号]</code> 方法按顺序位置提取行数据，这种方式是不论行名是什么，谁在第几行就提取第几行</li>
+<li>使用 <code>loc[行名]</code> 方法按行标签提取行数据</li>
+</ul>
+<h3 id="1-iloc">(1) 使用 <code>iloc</code> 提取行数据<a class="headerlink" href="#1-iloc" title="Permanent link">&para;</a></h3>
+<p>之前我们介绍过使用 <code>iloc</code> 方法提取一行数据，提取出来的一行其实是一个 Series：</p>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Name        Alice
+Age            25
+City    Melbourne
+Name: 0, dtype: object
+</code></pre></div>
+<p>事实上，<code>iloc</code> 方法还可以提取多行数据，提取出来的结果是一个 DataFrame：</p>
+<ul>
+<li>一种语法结构是和 Python 中的列表切片类似的：<code>.iloc[起始行号:结束行号:步长]</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>25</td>
+      <td>Melbourne</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>30</td>
+      <td>Sydney</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<ul>
+<li>另一种语法结构是传入一个行号列表：<code>.iloc[[行号1, 行号2, ...]]</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>25</td>
+      <td>Melbourne</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>35</td>
+      <td>Brisbane</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="2-loc">(2) 使用 <code>loc</code> 提取行数据<a class="headerlink" href="#2-loc" title="Permanent link">&para;</a></h3>
+<h4 id="a-loc">(a) 使用 <code>loc</code> 提取单行或多行数据<a class="headerlink" href="#a-loc" title="Permanent link">&para;</a></h4>
+<p>使用 <code>loc</code> 方法可以根据行标签（索引标签）提取行数据，提取出来的结果可以是 Series 或 DataFrame，具体取决于提取的是单行还是多行：</p>
+<ul>
+<li>使用 <code>df.loc[行名]</code> 提取单行数据（这里传进去的是一个行标签），结果是一个 Series</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Name        Alice
+Age            25
+City    Melbourne
+Name: 0, dtype: object
+</code></pre></div>
+<ul>
+<li>使用 <code>df.loc[[行名1, 行名2, ...]]</code> 提取多行数据（这里传进去的是一个列表），结果是一个 DataFrame</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>25</td>
+      <td>Melbourne</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>30</td>
+      <td>Sydney</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<ul>
+<li>
+<p>使用 <code>df.loc[起始行名:结束行名]</code> 提取多行数据也是可以的，但是这种方法并不推荐：</p>
+<ul>
+<li>第一个原因是它<strong>仅适用于行名是连续整数的情况</strong></li>
+<li>第二个原因是，这种方式和大家理解的切片有些出入，最终的结果是<strong>包含结束行名对应的那一行数据的</strong></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df1</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> 
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>25</td>
+      <td>Melbourne</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>30</td>
+      <td>Sydney</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>由于我们使用的示例数据集的行名是默认的整数索引（0, 1, 2, ...），所以在这个例子中，<code>loc</code> 和 <code>iloc</code> 的效果类似，这里我们来看一个行名和顺序位置不一样的例子：</p>
+<div class="highlight"><pre><span></span><code><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Charlie&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span>
+    <span class="s1">&#39;City&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Melbourne&#39;</span><span class="p">,</span> <span class="s1">&#39;Sydney&#39;</span><span class="p">,</span> <span class="s1">&#39;Brisbane&#39;</span><span class="p">]</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">df2</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>Alice</td>
+      <td>25</td>
+      <td>Melbourne</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>30</td>
+      <td>Sydney</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Charlie</td>
+      <td>35</td>
+      <td>Brisbane</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Name     Charlie
+Age           35
+City    Brisbane
+Name: 0, dtype: object
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Name        Alice
+Age            25
+City    Melbourne
+Name: 2, dtype: object
+</code></pre></div>
+<p>在上面这个例子中：</p>
+<ul>
+<li><code>df2.loc[0]</code> 提取的是行名为 0 的那一行数据，也就是 Charlie 的数据</li>
+<li><code>df2.iloc[0]</code> 提取的是第 0 行数据，也就是 Alice 的数据</li>
+<li>由于行名和行的顺序位置不一样，所以 <code>loc</code> 和 <code>iloc</code> 提取出来的数据也不一样</li>
+</ul>
+<h4 id="b-pandas">(b) Pandas 中常见的行名类型<a class="headerlink" href="#b-pandas" title="Permanent link">&para;</a></h4>
+<p>在 Pandas 中，行名可以是多种类型，常见的有以下几种：</p>
+<ul>
+<li>整数索引：这是最常见的行名类型，默认情况下，Pandas 会为 DataFrame 分配从 0 开始的整数索引，但是也有可能是混乱的整数顺序</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_rowname_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;David&#39;</span><span class="p">,</span> <span class="s1">&#39;Eva&#39;</span><span class="p">,</span> <span class="s1">&#39;Frank&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">29</span><span class="p">],</span>
+    <span class="s1">&#39;City&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Adelaide&#39;</span><span class="p">,</span> <span class="s1">&#39;Perth&#39;</span><span class="p">,</span> <span class="s1">&#39;Hobart&#39;</span><span class="p">]</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_1</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>David</td>
+      <td>28</td>
+      <td>Adelaide</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Eva</td>
+      <td>32</td>
+      <td>Perth</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Frank</td>
+      <td>29</td>
+      <td>Hobart</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code>Name      Eva
+Age        32
+City    Perth
+Name: 1, dtype: object
+</code></pre></div>
+<ul>
+<li>字符串索引：行名可以是字符串类型，这种情况下，行名通常是有意义的标签，例如人名、城市名等</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_rowname_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;George&#39;</span><span class="p">,</span> <span class="s1">&#39;Hannah&#39;</span><span class="p">,</span> <span class="s1">&#39;Ian&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+    <span class="s1">&#39;City&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Canberra&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">,</span> <span class="s1">&#39;Cairns&#39;</span><span class="p">]</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;person001&#39;</span><span class="p">,</span> <span class="s1">&#39;person002&#39;</span><span class="p">,</span> <span class="s1">&#39;person003&#39;</span><span class="p">])</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_2</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;person002&#39;</span><span class="p">])</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>person001</th>
+      <td>George</td>
+      <td>40</td>
+      <td>Canberra</td>
+    </tr>
+    <tr>
+      <th>person002</th>
+      <td>Hannah</td>
+      <td>38</td>
+      <td>Darwin</td>
+    </tr>
+    <tr>
+      <th>person003</th>
+      <td>Ian</td>
+      <td>45</td>
+      <td>Cairns</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code>Name    Hannah
+Age         38
+City    Darwin
+Name: person002, dtype: object
+</code></pre></div>
+<ul>
+<li>日期时间索引：行名可以是日期时间类型，这在时间序列数据中非常常见</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_rowname_3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Product&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_3</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_3</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_3</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2023-01-02&#39;</span><span class="p">])</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Product</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-01</th>
+      <td>A</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>2023-01-02</th>
+      <td>B</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>2023-01-03</th>
+      <td>C</td>
+      <td>300</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code>DatetimeIndex([&#39;2023-01-01&#39;, &#39;2023-01-02&#39;, &#39;2023-01-03&#39;], dtype=&#39;datetime64[ns]&#39;, freq=&#39;D&#39;)
+
+
+
+Product      B
+Value      200
+Name: 2023-01-02 00:00:00, dtype: object
+</code></pre></div>
+<ul>
+<li>区间索引：行名可以是区间类型，这在某些特定应用中可能会用到，例如表示年龄段、收入区间等，在取行名的时候，只要是在这个区间内的值，都可以取到对应的行数据</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_rowname_4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;tax_rate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>
+    <span class="s2">&quot;bracket_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span> <span class="s2">&quot;very_high&quot;</span><span class="p">]</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">IntervalIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">),</span> <span class="p">(</span><span class="mi">20000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">),</span> <span class="p">(</span><span class="mi">50000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">),</span> <span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">))]))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_4</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_4</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_4</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">25000</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_4</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">35000</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_rowname_4</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">75000</span><span class="p">])</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tax_rate</th>
+      <th>bracket_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>(0.0, 20000.0]</th>
+      <td>0.10</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>(20000.0, 50000.0]</th>
+      <td>0.15</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <th>(50000.0, 100000.0]</th>
+      <td>0.20</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>(100000.0, inf]</th>
+      <td>0.25</td>
+      <td>very_high</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code>IntervalIndex([(0.0, 20000.0], (20000.0, 50000.0], (50000.0, 100000.0],
+               (100000.0, inf]],
+              dtype=&#39;interval[float64, right]&#39;)
+
+
+
+tax_rate          0.15
+bracket_name    medium
+Name: (20000.0, 50000.0], dtype: object
+
+
+
+tax_rate          0.15
+bracket_name    medium
+Name: (20000.0, 50000.0], dtype: object
+
+
+
+tax_rate         0.2
+bracket_name    high
+Name: (50000.0, 100000.0], dtype: object
+</code></pre></div>
+<h2 id="3">3. 按行与列同时索引<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>如果想同时提取某行和某列的数据：</p>
+<ul>
+<li>一个比较直接的方法就是先提取列数据为一个新的 DataFrame，然后再从中提取行数据，或者反过来先行后列也行</li>
+<li>这个大家组合我们上面介绍的内容就行，<code>loc</code> 与 <code>iloc</code> 混用也是可以的，这里我们就不赘述了</li>
+</ul>
+<p>但是，其实 <code>loc</code> 和 <code>iloc</code> 方法都支持同时传入行和列的参数，可以一步到位地提取出某行某列的数据。</p>
+<h3 id="1-iloc_1">(1) 使用 <code>iloc</code> 同时提取行和列数据<a class="headerlink" href="#1-iloc_1" title="Permanent link">&para;</a></h3>
+<p>使用 <code>iloc</code> 方法时，可以同时传入行号和列号，语法结构如下：</p>
+<ul>
+<li>第一个参数是行号，第二个参数是列号，都是基于位置的索引 <code>df.iloc[行号, 列号]</code></li>
+<li>例如，<code>df.iloc[1, 2]</code> 提取第 1 行第 2 列的数据</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Charlie&#39;</span><span class="p">,</span> <span class="s1">&#39;David&#39;</span><span class="p">,</span> <span class="s1">&#39;Eva&#39;</span><span class="p">,</span> <span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span> <span class="s1">&#39;Hannah&#39;</span><span class="p">,</span> <span class="s1">&#39;Ian&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Gender&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+    <span class="s1">&#39;City&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Melbourne&#39;</span><span class="p">,</span> <span class="s1">&#39;Sydney&#39;</span><span class="p">,</span> <span class="s1">&#39;Brisbane&#39;</span><span class="p">,</span> <span class="s1">&#39;Adelaide&#39;</span><span class="p">,</span> <span class="s1">&#39;Perth&#39;</span><span class="p">,</span> <span class="s1">&#39;Hobart&#39;</span><span class="p">,</span> <span class="s1">&#39;Canberra&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">,</span> <span class="s1">&#39;Cairns&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Height_cm&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">165</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">178</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="mi">168</span><span class="p">,</span> <span class="mi">185</span><span class="p">],</span>
+    <span class="s1">&#39;Weight_kg&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df3</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>Height_cm</th>
+      <th>Weight_kg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>F</td>
+      <td>25</td>
+      <td>Melbourne</td>
+      <td>165</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>M</td>
+      <td>30</td>
+      <td>Sydney</td>
+      <td>175</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>M</td>
+      <td>35</td>
+      <td>Brisbane</td>
+      <td>180</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>M</td>
+      <td>28</td>
+      <td>Adelaide</td>
+      <td>170</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Eva</td>
+      <td>F</td>
+      <td>32</td>
+      <td>Perth</td>
+      <td>160</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Frank</td>
+      <td>M</td>
+      <td>29</td>
+      <td>Hobart</td>
+      <td>178</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>George</td>
+      <td>M</td>
+      <td>40</td>
+      <td>Canberra</td>
+      <td>182</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hannah</td>
+      <td>F</td>
+      <td>38</td>
+      <td>Darwin</td>
+      <td>168</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Ian</td>
+      <td>M</td>
+      <td>45</td>
+      <td>Cairns</td>
+      <td>185</td>
+      <td>90</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="n">df3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>np.int64(30)
+</code></pre></div>
+<p>并且，<code>iloc</code> 也支持传入行号和列号的列表，以提取多行多列的数据：</p>
+<ul>
+<li>一种是使用切片语法：<code>df.iloc[起始行号:结束行号:行号步长, 起始列号:结束列号:列号步长]</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>F</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>M</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<ul>
+<li>另一种是传入行号和列号的列表：<code>df.iloc[[行号1, 行号2, ...], [列号1, 列号2, ...]]</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>F</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>M</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>M</td>
+      <td>28</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<ul>
+<li>当然，这两种结合使用也是可以的</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>F</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>M</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>除此之外，额外要说明的是：</p>
+<ul>
+<li>如果想按列提取所有行的数据，可以在行号位置使用冒号 <code>:</code>，表示提取所有行</li>
+<li>例如：<code>df.iloc[:, 列号]</code> 提取所有行的某些列数据</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Eva</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Frank</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>George</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hannah</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Ian</td>
+      <td>45</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="2-loc_1">(2) 使用 <code>loc</code> 同时提取行和列数据<a class="headerlink" href="#2-loc_1" title="Permanent link">&para;</a></h3>
+<p>使用 <code>loc</code> 方法时，可以同时传入行名和列名，语法结构就是 <code>df.loc[行名, 列名]</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;Alice&#39;
+</code></pre></div>
+<p>如果想提取多行多列的数据，也可以传入行名和列名的列表：<code>df.loc[[行名1, 行名2, ...], [列名1, 列名2, ...]]</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;City&#39;</span><span class="p">]]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>25</td>
+      <td>Melbourne</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>30</td>
+      <td>Sydney</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>和 <code>iloc</code> 方法类似，<code>loc</code> 方法如果想提取某些列的所有行数据，也可以在行名位置使用冒号 <code>:</code>，表示提取所有行：</p>
+<div class="highlight"><pre><span></span><code><span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;City&#39;</span><span class="p">]]</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>25</td>
+      <td>Melbourne</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>30</td>
+      <td>Sydney</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>35</td>
+      <td>Brisbane</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>28</td>
+      <td>Adelaide</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Eva</td>
+      <td>32</td>
+      <td>Perth</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Frank</td>
+      <td>29</td>
+      <td>Hobart</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>George</td>
+      <td>40</td>
+      <td>Canberra</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hannah</td>
+      <td>38</td>
+      <td>Darwin</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Ian</td>
+      <td>45</td>
+      <td>Cairns</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="4-pandas">4. Pandas 数据索引的注意事项<a class="headerlink" href="#4-pandas" title="Permanent link">&para;</a></h2>
+<p>大家在看别人代码时，可能会发现一种写法，就是直接 <code>df[数字或切片]</code> 的形式来提取数据，不用 <code>.loc</code> 或 <code>.iloc</code></p>
+<p>这种写法我们其实是不推荐的，因为它的使用有些复杂和抽象，容易引起误解：</p>
+<ul>
+<li>
+<p>首先，如果直接传入一个数字，例如 <code>df[3]</code>，Pandas 会尝试将其解释为<strong>列名</strong>，而不是行号：</p>
+<ul>
+<li>如果 DataFrame 中存在名为 3 的列，那么就会提取该列的数据</li>
+<li>如果不存在名为 3 的列，那么就会报错，提示找不到该列</li>
+</ul>
+</li>
+<li>
+<p>其次，如果传入一个切片对象，例如 <code>df[1:4]</code>，Pandas 会将其解释为<strong>行切片</strong>：</p>
+<ul>
+<li>这时的效果是等同于 <code>df.iloc[1:4]</code>，也就是提取第 1 行到第 3 行的数据（不包含第 4 行）</li>
+<li>其他注意事项也和 <code>iloc</code> 方法类似</li>
+</ul>
+</li>
+</ul>
+<p>因此，大家会发现：</p>
+<ul>
+<li>这种写法在提取数据时，行为和我们预期的不一样，传入数字提取列，传入切片提取行，很容易引起混淆</li>
+<li>为了代码的可读性和一致性，建议大家始终使用 <code>loc</code> 或 <code>iloc</code> 方法来进行数据索引操作</li>
+</ul>
+<h2 id="5-pandas">5. Pandas 中的多级索引<a class="headerlink" href="#5-pandas" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">(1) 多级索引简介<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<p>在 Pandas 的表格中，有时候会遇到需要用多个层级来标识行或列的情况，这时就需要使用多级索引（MultiIndex）。</p>
+<p>我们先来看下面这个表格：</p>
+<div align="center">
+    <img src="../截屏2026-01-30 14.34.44.png" width="400"/>
+</div>
+
+<ul>
+<li>这种表格在我们生活中十分常见，行名和列名都有多级结构，比如行名是年份和季度的组合，列名是品类和口味的组合</li>
+<li>如果想定位到某个数值，就必须使用多级索引来指定行和列</li>
+<li>比方说我们想要定位到2025年第二季度，薯片的烧烤味销量 61，这时就需要同时指定两个行级别和两个列级别的信息</li>
+</ul>
+<p>在 Pandas 中定义这样一个多级索引的 DataFrame，可以使用 <code>pd.MultiIndex</code> 来创建行和列的多级索引：</p>
+<ul>
+<li>
+<p>具体来说，多级索引又分为常见的两种情况：</p>
+<ul>
+<li><code>pd.MultiIndex.from_product</code> 表示的是各级别之间是全组合关系，比如年份和季度的组合，2024年有四个季度，2025年也有四个季度，所以总共有 2 x 4 = 8 个行索引</li>
+<li><code>pd.MultiIndex.from_tuples</code> 则表示的是各级别之间是非全组合关系，比如品类和口味的组合，薯片有两种口味，饮料有两种口味，但是并不是每种品类都有所有的口味组合，这就需要我们手动指定每个组合的元组列表</li>
+</ul>
+</li>
+<li>
+<p>这两种情况中，都还要指定每个级别的名称，方便后续定位数据时使用</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_multi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">53</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">63</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">73</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">83</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="c1"># 年和季度：全组合关系，使用 pd.MultiIndex.from_product</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
+        <span class="p">[[</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span> <span class="s2">&quot;2025年&quot;</span><span class="p">],</span>
+         <span class="p">[</span><span class="s2">&quot;第一季度&quot;</span><span class="p">,</span> <span class="s2">&quot;第二季度&quot;</span><span class="p">,</span> <span class="s2">&quot;第三季度&quot;</span><span class="p">,</span> <span class="s2">&quot;第四季度&quot;</span><span class="p">]],</span>
+        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;年份&quot;</span><span class="p">,</span> <span class="s2">&quot;季度&quot;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="c1"># 品类和口味：非全组合关系，使用 pd.MultiIndex.from_tuples</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span> <span class="s2">&quot;番茄味&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span> <span class="s2">&quot;烧烤味&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span> <span class="s2">&quot;香草味&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span> <span class="s2">&quot;巧克力味&quot;</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;品类&quot;</span><span class="p">,</span> <span class="s2">&quot;口味&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">df_multi</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>品类</th>
+      <th colspan="2" halign="left">薯片</th>
+      <th colspan="2" halign="left">冰淇淋</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>口味</th>
+      <th>番茄味</th>
+      <th>烧烤味</th>
+      <th>香草味</th>
+      <th>巧克力味</th>
+    </tr>
+    <tr>
+      <th>年份</th>
+      <th>季度</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">2024年</th>
+      <th>第一季度</th>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>第二季度</th>
+      <td>20</td>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>第三季度</th>
+      <td>30</td>
+      <td>31</td>
+      <td>32</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>第四季度</th>
+      <td>40</td>
+      <td>41</td>
+      <td>42</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">2025年</th>
+      <th>第一季度</th>
+      <td>50</td>
+      <td>51</td>
+      <td>52</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>第二季度</th>
+      <td>60</td>
+      <td>61</td>
+      <td>62</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>第三季度</th>
+      <td>70</td>
+      <td>71</td>
+      <td>72</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th>第四季度</th>
+      <td>80</td>
+      <td>81</td>
+      <td>82</td>
+      <td>83</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>在定义好多级索引的 DataFrame 以后，我们就可以使用 <code>loc</code> 方法来定位数据了：</p>
+<ul>
+<li>这里的多级索引是通过元组来表示的，元组中的每个元素对应一个级别</li>
+<li>
+<p>例如：</p>
+<ul>
+<li><code>df_multi.loc[('2024年', '第一季度')]</code> 就表示定位到 2024 年第一季度的这一行数据</li>
+<li><code>df_multi.loc[:, ('薯片', '烧烤味')]</code> 就表示定位到薯片的烧烤味这一列数据</li>
+<li><code>df_multi.loc[('2025年', '第二季度'), ('薯片', '烧烤味')]</code> 就表示定位到 2025 年第二季度，薯片的烧烤味销量 61</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_multi</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;2024年&#39;</span><span class="p">,</span> <span class="s1">&#39;第一季度&#39;</span><span class="p">)]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>品类   口味  
+薯片   番茄味     10
+     烧烤味     11
+冰淇淋  香草味     12
+     巧克力味    13
+Name: (2024年, 第一季度), dtype: int64
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df_multi</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">(</span><span class="s1">&#39;薯片&#39;</span><span class="p">,</span> <span class="s1">&#39;烧烤味&#39;</span><span class="p">)]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>年份     季度  
+2024年  第一季度    11
+       第二季度    21
+       第三季度    31
+       第四季度    41
+2025年  第一季度    51
+       第二季度    61
+       第三季度    71
+       第四季度    81
+Name: (薯片, 烧烤味), dtype: int64
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df_multi</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;2025年&#39;</span><span class="p">,</span> <span class="s1">&#39;第二季度&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;薯片&#39;</span><span class="p">,</span> <span class="s1">&#39;烧烤味&#39;</span><span class="p">)]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>np.int64(61)
+</code></pre></div>
+<h3 id="2_1">(2) 多级索引转换为单级索引<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<p>这种多级索引的表格，其实常常被用作数据透视表（Pivot Table），它可以帮助我们更好地展示数据。</p>
+<ul>
+<li>但是，这种多级索引的数据透视表格式，在数据处理和分析时，可能会增加一些复杂度</li>
+<li>因为多级索引的 DataFrame 在进行数据操作时，需要同时考虑多个级别的索引，这可能会导致代码变得复杂且难以维护</li>
+<li>因此，在实际应用中，我们还是想用一种更简单的扁平化结构来存储和处理数据，也就是将多级索引转换为单级索引的形式</li>
+</ul>
+<p>我们来看一个多级索引和单级索引转换的例子：</p>
+<ul>
+<li>还是表达薯条和冰淇淋销量，多级索引的数据透视表是一种很直观的表示方式：</li>
+</ul>
+<div align="center">
+    <img src="../截屏2026-01-30 14.34.44.png" width="500">
+</div>
+
+<ul>
+<li>如果用单级索引，则是用一个长表格来表示相同的数据，这里其实就是讲索引全部变成新列中的值：</li>
+</ul>
+<div align="center">
+    <img src="../截屏2026-01-31 23.16.29.png" width="500">
+</div>
+
+<p>在 Pandas 中，将多级索引转换为单级索引，可以使用 <code>stack()</code> 方法：</p>
+<ul>
+<li>具体来说，<code>stack()</code> 方法可以将 DataFrame 的某个级别的索引转换为行索引，从而实现多级索引到单级索引的转换</li>
+<li>也就是说，想把列上的索引，想挪到行上，就填到 <code>stack()</code> 方法里面去</li>
+<li>在我们这个例子中，数据的定位需要四个级别的信息，分别是年份、季度、品类、口味</li>
+<li>而年份和季度本身就是行索引，所以我们只需要将品类和口味这两个列索引展开到行索引即可，也就是 <code>stack(["品类", "口味"])</code></li>
+<li>
+<p>之后还要做两件事：</p>
+<ul>
+<li>一是多级索引的数据透视表中没有销量这一列名，需要用 <code>rename("销量")</code> 来命名</li>
+<li>二是将多级索引转换为普通列，可以使用 <code>reset_index()</code> 方法</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_multi_new1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">53</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">63</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">73</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">83</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="c1"># 年和季度：全组合关系，使用 pd.MultiIndex.from_product</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
+        <span class="p">[[</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span> <span class="s2">&quot;2025年&quot;</span><span class="p">],</span>
+         <span class="p">[</span><span class="s2">&quot;第一季度&quot;</span><span class="p">,</span> <span class="s2">&quot;第二季度&quot;</span><span class="p">,</span> <span class="s2">&quot;第三季度&quot;</span><span class="p">,</span> <span class="s2">&quot;第四季度&quot;</span><span class="p">]],</span>
+        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;年份&quot;</span><span class="p">,</span> <span class="s2">&quot;季度&quot;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="c1"># 品类和口味：非全组合关系，使用 pd.MultiIndex.from_tuples</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span> <span class="s2">&quot;番茄味&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span> <span class="s2">&quot;烧烤味&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span> <span class="s2">&quot;香草味&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span> <span class="s2">&quot;巧克力味&quot;</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;品类&quot;</span><span class="p">,</span> <span class="s2">&quot;口味&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">df_multi_new1</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>品类</th>
+      <th colspan="2" halign="left">薯片</th>
+      <th colspan="2" halign="left">冰淇淋</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>口味</th>
+      <th>番茄味</th>
+      <th>烧烤味</th>
+      <th>香草味</th>
+      <th>巧克力味</th>
+    </tr>
+    <tr>
+      <th>年份</th>
+      <th>季度</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">2024年</th>
+      <th>第一季度</th>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>第二季度</th>
+      <td>20</td>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>第三季度</th>
+      <td>30</td>
+      <td>31</td>
+      <td>32</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>第四季度</th>
+      <td>40</td>
+      <td>41</td>
+      <td>42</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">2025年</th>
+      <th>第一季度</th>
+      <td>50</td>
+      <td>51</td>
+      <td>52</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>第二季度</th>
+      <td>60</td>
+      <td>61</td>
+      <td>62</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>第三季度</th>
+      <td>70</td>
+      <td>71</td>
+      <td>72</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th>第四季度</th>
+      <td>80</td>
+      <td>81</td>
+      <td>82</td>
+      <td>83</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="n">df_single_new1</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_multi_new1</span>
+    <span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="s2">&quot;品类&quot;</span><span class="p">,</span> <span class="s2">&quot;口味&quot;</span><span class="p">],</span> <span class="n">future_stack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>      <span class="c1"># 把列索引展开到行索引，并且保留未来版本兼容性，因为 stack 方法未来版本会改变默认行为</span>
+    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;销量&quot;</span><span class="p">)</span>              <span class="c1"># Series 命名</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>              <span class="c1"># 变成普通列：年份、季度、品类、口味、销量</span>
+<span class="p">)</span>
+
+<span class="n">df_single_new1</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>年份</th>
+      <th>季度</th>
+      <th>品类</th>
+      <th>口味</th>
+      <th>销量</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>83</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>这里我们来看一下，如果不加 <code>reset_index()</code> 会怎么样：</p>
+<ul>
+<li>这里我们需加上 <code>.to_frame()</code> 否则结果不是 DataFrame，只是个 Series：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_multi_new1</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="s2">&quot;品类&quot;</span><span class="p">,</span> <span class="s2">&quot;口味&quot;</span><span class="p">],</span> <span class="n">future_stack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;销量&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>销量</th>
+    </tr>
+    <tr>
+      <th>年份</th>
+      <th>季度</th>
+      <th>品类</th>
+      <th>口味</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="16" valign="top">2024年</th>
+      <th rowspan="4" valign="top">第一季度</th>
+      <th rowspan="2" valign="top">薯片</th>
+      <th>番茄味</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>烧烤味</th>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">冰淇淋</th>
+      <th>香草味</th>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>巧克力味</th>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">第二季度</th>
+      <th rowspan="2" valign="top">薯片</th>
+      <th>番茄味</th>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>烧烤味</th>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">冰淇淋</th>
+      <th>香草味</th>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>巧克力味</th>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">第三季度</th>
+      <th rowspan="2" valign="top">薯片</th>
+      <th>番茄味</th>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>烧烤味</th>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">冰淇淋</th>
+      <th>香草味</th>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>巧克力味</th>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">第四季度</th>
+      <th rowspan="2" valign="top">薯片</th>
+      <th>番茄味</th>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>烧烤味</th>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">冰淇淋</th>
+      <th>香草味</th>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>巧克力味</th>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th rowspan="16" valign="top">2025年</th>
+      <th rowspan="4" valign="top">第一季度</th>
+      <th rowspan="2" valign="top">薯片</th>
+      <th>番茄味</th>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>烧烤味</th>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">冰淇淋</th>
+      <th>香草味</th>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>巧克力味</th>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">第二季度</th>
+      <th rowspan="2" valign="top">薯片</th>
+      <th>番茄味</th>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>烧烤味</th>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">冰淇淋</th>
+      <th>香草味</th>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>巧克力味</th>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">第三季度</th>
+      <th rowspan="2" valign="top">薯片</th>
+      <th>番茄味</th>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>烧烤味</th>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">冰淇淋</th>
+      <th>香草味</th>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>巧克力味</th>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">第四季度</th>
+      <th rowspan="2" valign="top">薯片</th>
+      <th>番茄味</th>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>烧烤味</th>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">冰淇淋</th>
+      <th>香草味</th>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>巧克力味</th>
+      <td>83</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<ul>
+<li>可以看到，虽然四个级别的索引都展开到了行索引中，但是它们依然是多级索引的形式，类似于 Excel 中合并了单元格的产物，不是普通列</li>
+<li>只有加了 <code>reset_index()</code>，才能将多级索引转换为普通列，变成我们想要的单级索引格式：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_multi_new1</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="s2">&quot;品类&quot;</span><span class="p">,</span> <span class="s2">&quot;口味&quot;</span><span class="p">],</span> <span class="n">future_stack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;销量&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>年份</th>
+      <th>季度</th>
+      <th>品类</th>
+      <th>口味</th>
+      <th>销量</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>83</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="3_1">(3) 单级索引转换为多级索引<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<p>当然，单级索引转换为多级索引也是可以的，可以使用 <code>unstack()</code> 方法：</p>
+<ul>
+<li>和 <code>stack()</code> 方法相反，<code>unstack()</code> 方法是将行索引的某个级别转换为列索引，从而实现单级索引到多级索引的转换</li>
+<li>也就是说，在行上的索引，想挪到列上，就填到 <code>unstack()</code> 方法里面去</li>
+<li>在我们这个例子中，假如说我们手头有的是上面这个单级索引的 DataFrame，我们想把品类和口味挪到列上，就要用 <code>unstack(["品类", "口味"])</code></li>
+<li>
+<p>除此之外，还有两件事需要注意：</p>
+<ul>
+<li>一是在使用 <code>unstack()</code> 方法之前，要先将<strong>所有级别的索引设置为行索引</strong>，可以使用 <code>set_index()</code> 方法</li>
+<li>二是要选择数值列，也就是将哪一列进行数据透视，比如 <code>["销量"]</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_single_new2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;年份&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;季度&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;第一季度&quot;</span><span class="p">,</span><span class="s2">&quot;第一季度&quot;</span><span class="p">,</span><span class="s2">&quot;第一季度&quot;</span><span class="p">,</span><span class="s2">&quot;第一季度&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;第二季度&quot;</span><span class="p">,</span><span class="s2">&quot;第二季度&quot;</span><span class="p">,</span><span class="s2">&quot;第二季度&quot;</span><span class="p">,</span><span class="s2">&quot;第二季度&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;第三季度&quot;</span><span class="p">,</span><span class="s2">&quot;第三季度&quot;</span><span class="p">,</span><span class="s2">&quot;第三季度&quot;</span><span class="p">,</span><span class="s2">&quot;第三季度&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;第四季度&quot;</span><span class="p">,</span><span class="s2">&quot;第四季度&quot;</span><span class="p">,</span><span class="s2">&quot;第四季度&quot;</span><span class="p">,</span><span class="s2">&quot;第四季度&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;第一季度&quot;</span><span class="p">,</span><span class="s2">&quot;第一季度&quot;</span><span class="p">,</span><span class="s2">&quot;第一季度&quot;</span><span class="p">,</span><span class="s2">&quot;第一季度&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;第二季度&quot;</span><span class="p">,</span><span class="s2">&quot;第二季度&quot;</span><span class="p">,</span><span class="s2">&quot;第二季度&quot;</span><span class="p">,</span><span class="s2">&quot;第二季度&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;第三季度&quot;</span><span class="p">,</span><span class="s2">&quot;第三季度&quot;</span><span class="p">,</span><span class="s2">&quot;第三季度&quot;</span><span class="p">,</span><span class="s2">&quot;第三季度&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;第四季度&quot;</span><span class="p">,</span><span class="s2">&quot;第四季度&quot;</span><span class="p">,</span><span class="s2">&quot;第四季度&quot;</span><span class="p">,</span><span class="s2">&quot;第四季度&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;品类&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;薯片&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span><span class="s2">&quot;冰淇淋&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;口味&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;番茄味&quot;</span><span class="p">,</span><span class="s2">&quot;烧烤味&quot;</span><span class="p">,</span><span class="s2">&quot;香草味&quot;</span><span class="p">,</span><span class="s2">&quot;巧克力味&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;番茄味&quot;</span><span class="p">,</span><span class="s2">&quot;烧烤味&quot;</span><span class="p">,</span><span class="s2">&quot;香草味&quot;</span><span class="p">,</span><span class="s2">&quot;巧克力味&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;番茄味&quot;</span><span class="p">,</span><span class="s2">&quot;烧烤味&quot;</span><span class="p">,</span><span class="s2">&quot;香草味&quot;</span><span class="p">,</span><span class="s2">&quot;巧克力味&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;番茄味&quot;</span><span class="p">,</span><span class="s2">&quot;烧烤味&quot;</span><span class="p">,</span><span class="s2">&quot;香草味&quot;</span><span class="p">,</span><span class="s2">&quot;巧克力味&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;番茄味&quot;</span><span class="p">,</span><span class="s2">&quot;烧烤味&quot;</span><span class="p">,</span><span class="s2">&quot;香草味&quot;</span><span class="p">,</span><span class="s2">&quot;巧克力味&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;番茄味&quot;</span><span class="p">,</span><span class="s2">&quot;烧烤味&quot;</span><span class="p">,</span><span class="s2">&quot;香草味&quot;</span><span class="p">,</span><span class="s2">&quot;巧克力味&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;番茄味&quot;</span><span class="p">,</span><span class="s2">&quot;烧烤味&quot;</span><span class="p">,</span><span class="s2">&quot;香草味&quot;</span><span class="p">,</span><span class="s2">&quot;巧克力味&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;番茄味&quot;</span><span class="p">,</span><span class="s2">&quot;烧烤味&quot;</span><span class="p">,</span><span class="s2">&quot;香草味&quot;</span><span class="p">,</span><span class="s2">&quot;巧克力味&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;销量&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span>
+        <span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span>
+        <span class="mi">30</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span>
+        <span class="mi">40</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span>
+        <span class="mi">50</span><span class="p">,</span><span class="mi">51</span><span class="p">,</span><span class="mi">52</span><span class="p">,</span><span class="mi">53</span><span class="p">,</span>
+        <span class="mi">60</span><span class="p">,</span><span class="mi">61</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">63</span><span class="p">,</span>
+        <span class="mi">70</span><span class="p">,</span><span class="mi">71</span><span class="p">,</span><span class="mi">72</span><span class="p">,</span><span class="mi">73</span><span class="p">,</span>
+        <span class="mi">80</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">82</span><span class="p">,</span><span class="mi">83</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df_single_new2</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>年份</th>
+      <th>季度</th>
+      <th>品类</th>
+      <th>口味</th>
+      <th>销量</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2024年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2024年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2024年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2024年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2025年</td>
+      <td>第一季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2025年</td>
+      <td>第二季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2025年</td>
+      <td>第三季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>番茄味</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>薯片</td>
+      <td>烧烤味</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>香草味</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>2025年</td>
+      <td>第四季度</td>
+      <td>冰淇淋</td>
+      <td>巧克力味</td>
+      <td>83</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="n">df_multi_new2</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_single_new2</span>
+    <span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;年份&quot;</span><span class="p">,</span> <span class="s2">&quot;季度&quot;</span><span class="p">,</span> <span class="s2">&quot;品类&quot;</span><span class="p">,</span> <span class="s2">&quot;口味&quot;</span><span class="p">])[</span><span class="s2">&quot;销量&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">unstack</span><span class="p">([</span><span class="s2">&quot;品类&quot;</span><span class="p">,</span> <span class="s2">&quot;口味&quot;</span><span class="p">])</span>
+<span class="p">)</span>
+
+<span class="n">df_multi_new2</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>品类</th>
+      <th colspan="2" halign="left">薯片</th>
+      <th colspan="2" halign="left">冰淇淋</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>口味</th>
+      <th>番茄味</th>
+      <th>烧烤味</th>
+      <th>香草味</th>
+      <th>巧克力味</th>
+    </tr>
+    <tr>
+      <th>年份</th>
+      <th>季度</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">2024年</th>
+      <th>第一季度</th>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>第三季度</th>
+      <td>30</td>
+      <td>31</td>
+      <td>32</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>第二季度</th>
+      <td>20</td>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>第四季度</th>
+      <td>40</td>
+      <td>41</td>
+      <td>42</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">2025年</th>
+      <th>第一季度</th>
+      <td>50</td>
+      <td>51</td>
+      <td>52</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>第三季度</th>
+      <td>70</td>
+      <td>71</td>
+      <td>72</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th>第二季度</th>
+      <td>60</td>
+      <td>61</td>
+      <td>62</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>第四季度</th>
+      <td>80</td>
+      <td>81</td>
+      <td>82</td>
+      <td>83</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "content.code.copy", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

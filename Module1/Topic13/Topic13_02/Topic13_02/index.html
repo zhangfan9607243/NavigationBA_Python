@@ -1,0 +1,6655 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="领航国际教育 - BA专业自学系列课程">
+      
+      
+      
+        <link rel="canonical" href="https://navigationba.github.io/NavigationBA_Basics/Module1/Topic13/Topic13_02/Topic13_02/">
+      
+      
+        <link rel="prev" href="../../Topic13_01/Topic13_01/">
+      
+      
+        <link rel="next" href="../../Topic13_03/Topic13_03/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>☑️ Topic 13.2 - Python 程序开发演示 - 动物园程序开发 - 领航国际教育 - BA专业自学系列课程</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#topic-132-python-" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="领航国际教育 - BA专业自学系列课程" class="md-header__button md-logo" aria-label="领航国际教育 - BA专业自学系列课程" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            领航国际教育 - BA专业自学系列课程
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ☑️ Topic 13.2 - Python 程序开发演示 - 动物园程序开发
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/NavigationBA/NavigationBA_Basics_Code" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+  首页
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../Topic00/Topic00_01/Topic00_01/" class="md-tabs__link">
+          
+  
+  
+  Module 1 - Python 基础
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Module2/Topic00/Topic00_01/Topic00_01/" class="md-tabs__link">
+          
+  
+  
+  Module 2 - Python 面向对象
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Module3/Topic00/Topic00_01/Topic00_01/" class="md-tabs__link">
+          
+  
+  
+  Module 3 - Python 数据分析
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="领航国际教育 - BA专业自学系列课程" class="md-nav__button md-logo" aria-label="领航国际教育 - BA专业自学系列课程" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    领航国际教育 - BA专业自学系列课程
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/NavigationBA/NavigationBA_Basics_Code" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    首页
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 欢迎页面
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index/index1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index/index2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程大纲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1 - Python 基础
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Module 1 - Python 基础
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    课程介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic00/Topic00_01/Topic00_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic00/Topic00_02/Topic00_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程大纲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 1 - Python 基本介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 1 - Python 基本介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_00/Topic01_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 1 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_01/Topic01_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.1 - Python 语言简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_02/Topic01_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.2 - Python 与 PyCharm 安装
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_03/Topic01_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.3 - Python 学习技巧
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_04/Topic01_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 1.4 - 其他运行 Python 的方式（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 2 - Python 编程核心
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 2 - Python 编程核心
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic02/Topic02_00/Topic02_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 2 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic02/Topic02_01/Topic02_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.1 - 一些简单的 Python 程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic02/Topic02_02/Topic02_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.2 - 变量与赋值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic02/Topic02_03/Topic02_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.3 - 注释
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic02/Topic02_04/Topic02_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.4 - 用户输入 - input() 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic02/Topic02_05/Topic02_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.5 - print() 函数拓展功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic02/Topic02_06/Topic02_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.6 - Python 代码规范（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 3 - Python 基础数据类型之数字
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 3 - Python 基础数据类型之数字
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic03/Topic03_00/Topic03_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 3 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic03/Topic03_01/Topic03_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 3.1 - 数字类型之整数与浮点数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic03/Topic03_02/Topic03_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 3.2 - 数字类型之布尔型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic03/Topic03_03/Topic03_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 3.3 - 数字类型之空值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic03/Topic03_04/Topic03_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 3.4 - 数字类型之复数（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 4 - Python 基础数据类型之字符串
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 4 - Python 基础数据类型之字符串
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic04/Topic04_00/Topic04_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 4 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic04/Topic04_01/Topic04_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 4.1 - 字符串的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic04/Topic04_02/Topic04_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 4.2 - 字符串的索引与切片
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic04/Topic04_03/Topic04_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 4.3 - 字符串的常见操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic04/Topic04_04/Topic04_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 4.4 - 格式化字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 5 - Python 组合数据类型
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 5 - Python 组合数据类型
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic05/Topic05_00/Topic05_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 5 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic05/Topic05_01/Topic05_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.1 - Python 组合数据类型之列表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic05/Topic05_02/Topic05_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.2 - Python 组合数据类型之元组
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic05/Topic05_03/Topic05_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.3 - Python 组合数据类型之集合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic05/Topic05_04/Topic05_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.4 - Python 组合数据类型之字典
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic05/Topic05_05/Topic05_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 5.5 - Python 组合数据类型之间的转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 6 - 条件语句 - if 语句
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 6 - 条件语句 - if 语句
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic06/Topic06_00/Topic06_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 6 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic06/Topic06_01/Topic06_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 6.1 - 条件语句的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic06/Topic06_02/Topic06_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 6.2 - 条件语句的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 7 - 循环语句 - while 循环
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 7 - 循环语句 - while 循环
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic07/Topic07_00/Topic07_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 7 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic07/Topic07_01/Topic07_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 7.1 - while 循环的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic07/Topic07_02/Topic07_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 7.2 - while 循环的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic07/Topic07_03/Topic07_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 7.3 - while 无限循环的程序设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 8 - 循环语句 - for 循环
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 8 - 循环语句 - for 循环
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic08/Topic08_00/Topic08_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 8 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic08/Topic08_01/Topic08_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 8.1 - for 循环的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic08/Topic08_02/Topic08_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 8.2 - for 循环的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic08/Topic08_03/Topic08_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 8.3 - for 循环的高级用法（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 9 - 自定义函数
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 9 - 自定义函数
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic09/Topic09_00/Topic09_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 9 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic09/Topic09_01/Topic09_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 9.1 - 函数的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic09/Topic09_02/Topic09_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 9.2 - 函数的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic09/Topic09_03/Topic09_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 9.3 - 函数的高级用法（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic09/Topic09_04/Topic09_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 9.4 - 函数拓展（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 10 - 异常处理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 10 - 异常处理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic10/Topic10_00/Topic10_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 10 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic10/Topic10_01/Topic10_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 10.1 - 异常处理的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic10/Topic10_02/Topic10_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 10.2 - 异常处理的高级用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic10/Topic10_03/Topic10_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 10.3 - 异常处理拓展（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 11 - 文件操作
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 11 - 文件操作
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic11/Topic11_00/Topic11_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 11 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic11/Topic11_01/Topic11_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 11.1 - 文件操作的基本用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic11/Topic11_02/Topic11_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 11.2 - 使用 with 语句进行文件读写
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic11/Topic11_03/Topic11_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 11.3 - 认识其他的文件类型（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_13" id="__nav_2_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 12 - 模块与包
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 12 - 模块与包
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic12/Topic12_00/Topic12_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 12 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic12/Topic12_01/Topic12_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 12.1 - 模块与包的引用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic12/Topic12_02/Topic12_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 12.2 - 自定义模块与包
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic12/Topic12_03/Topic12_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 12.3 - 自定义模块与包的高级技巧（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic12/Topic12_04/Topic12_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 12.4 - 常用的内置模块与包（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic12/Topic12_05/Topic12_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 12.5 - 常用的第三方模块与包（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_14" id="__nav_2_14_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 13 - Python 程序开发（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_14_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 13 - Python 程序开发（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic13_00/Topic13_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 13 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic13_01/Topic13_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 13.1 - Python 程序开发概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 13.2 - Python 程序开发演示 - 动物园程序开发
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 13.2 - Python 程序开发演示 - 动物园程序开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本章目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本章目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 动物园程序回顾
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 动物园程序需求分析与设计思路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 主程序设计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 主程序设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 根据新需求设计主程序框架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 改进主程序代码 - 提高代码复用性和可扩展性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) 主程序测试
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 各个功能实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 各个功能实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 查看动物函数设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) 获取并处理用户输入函数设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (4) 日志记录函数设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 整合各功能到主程序
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-readme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 编写 README 文件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic13_03/Topic13_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 13.3 - Python 程序开发演示 - 动物园程序改进
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_15" id="__nav_2_15_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 14 - 金融计算器项目 - Python 基础结课项目（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 14 - 金融计算器项目 - Python 基础结课项目（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic14/Topic14_00/Topic14_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 14 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic14/Topic14_01/Topic14_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.1 - 项目背景介绍与主程序框架搭建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic14/Topic14_02/Topic14_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.2 - 表达式计算功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic14/Topic14_03/Topic14_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.3 - 现金流计算功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic14/Topic14_04/Topic14_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.4 - 金钱时间价值功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic14/Topic14_05/Topic14_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.5 - 完善主程序与后续工作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic14/Topic14_06/Topic14_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.6 - 金融计算器程序升级 - 版本 v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic14/Topic14_07/Topic14_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 14.7 - 金融计算器程序升级 - 版本 v3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2 - Python 面向对象
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Module 2 - Python 面向对象
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    课程介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic00/Topic00_01/Topic00_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic00/Topic00_02/Topic00_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程大纲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 1 - Python 面向对象基础
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 1 - Python 面向对象基础
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic01/Topic01_00/Topic01_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 1 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic01/Topic01_01/Topic01_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.1 - 面向对象编程简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic01/Topic01_02/Topic01_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.2 - 类和对象的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic01/Topic01_03/Topic01_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.3 - 类的继承与多态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 2 - Python 面向对象进阶（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 2 - Python 面向对象进阶（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_00/Topic02_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 2 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_01/Topic02_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.1 - 类与类之间的关联与组合关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_02/Topic02_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.2 - 类继承的进阶用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_03/Topic02_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.3 - 类对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic02/Topic02_04/Topic02_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 2.4 - 单例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 3 - Python 面向对象的程序开发方式（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 3 - Python 面向对象的程序开发方式（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic03/Topic03_00/Topic03_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 3 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic03/Topic03_01/Topic03_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 3.1 - Python 面向对象的程序开发概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic03/Topic03_02/Topic03_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 3.2 - Python 面向对象程序 - 石头剪刀布程序开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic03/Topic03_03/Topic03_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 3.3 - Python 面向对象程序 - 石头剪刀布程序改进
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 4 - 勇士与地下城项目 - Python 面向对象结课项目（补充）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 4 - 勇士与地下城项目 - Python 面向对象结课项目（补充）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_00/Topic04_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 4 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_01/Topic04_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.1 - 游戏项目介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_02/Topic04_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.2 - 角色类与道具类的设计与实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_03/Topic04_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.3 - 地图类的设计与实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_04/Topic04_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.4 - 整合各个游戏功能到主程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_05/Topic04_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.5 - 游戏改进与扩展 - 升级 v2 版本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module2/Topic04/Topic04_06/Topic04_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 4.6 - 游戏改进与扩展 - 升级 v3 版本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3 - Python 数据分析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Module 3 - Python 数据分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    课程介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic00/Topic00_01/Topic00_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic00/Topic00_02/Topic00_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ 课程大纲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 1 - Python 数据分析环境搭建
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 1 - Python 数据分析环境搭建
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic01/Topic01_00/Topic01_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 1 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic01/Topic01_01/Topic01_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.1 - 下载 Anaconda 并创建 Conda 环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic01/Topic01_02/Topic01_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 1.2 - Anaconda 中的其他功能（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic01/Topic01_03/Topic01_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☑️ Topic 1.3 - 使用命令行管理 Conda 环境（补充）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 2 - Pandas 数据分析基础
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 2 - Pandas 数据分析基础
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_00/Topic02_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 2 章节概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_01/Topic02_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.1 - Pandas 中的数据结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_02/Topic02_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.2 - Pandas 中的数据创建与存储
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_03/Topic02_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.3 - Pandas 中的数据索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_04/Topic02_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.4 - Pandas 中的数据基本运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_05/Topic02_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.5 - Pandas 中的排序与聚合运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_06/Topic02_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.6 - Pandas 中的数据筛选
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_07/Topic02_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.7 - Pandas 中的数据清洗
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_08/Topic02_08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.8 - Pandas 中的数据连接与拼接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Module3/Topic02/Topic02_09/Topic02_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.9 - Pandas 中自带的画图功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本章目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本章目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 动物园程序回顾
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 动物园程序需求分析与设计思路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 主程序设计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 主程序设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 根据新需求设计主程序框架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) 改进主程序代码 - 提高代码复用性和可扩展性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) 主程序测试
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 各个功能实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 各个功能实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) 查看动物函数设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) 获取并处理用户输入函数设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (4) 日志记录函数设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 整合各功能到主程序
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-readme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 编写 README 文件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="topic-132-python-">Topic 13.2 - Python 程序开发演示 - 动物园程序开发<a class="headerlink" href="#topic-132-python-" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. 动物园程序回顾<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>我们之前实现的动物园程序，功能比较简单，就是根据用户输入，来展示不同动物的ASCII艺术字，具体的需求如下：</p>
+<ul>
+<li>用户刚进入程序的时候，看到标题页面和菜单</li>
+<li>菜单提示用户可以选择查看不同的动物，也可以选择退出程序</li>
+<li>根据用户不同的输入，展示不同的动物，展示完后，提示用户退回到菜单</li>
+<li>如果用户选择退出程序，程序终止</li>
+<li>如果用户输入错误（不是看动物或退出的指令），提示用户重新输入</li>
+</ul>
+<p>我们先来看一下我们当时实现的代码：</p>
+<div class="highlight"><pre><span></span><code><span class="n">ascii_camel</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        _</span>
+<span class="s2">    .--&#39; |</span>
+<span class="s2">   /___^ |     .--.</span>
+<span class="s2">       ) |    /    \</span>
+<span class="s2">      /  |  /`      &#39;.</span>
+<span class="s2">     |   &#39;-&#39;    /     \</span>
+<span class="s2">     \         |      |\</span>
+<span class="s2">      \    /   \      /\|</span>
+<span class="s2">       \  /&#39;----`\   /</span>
+<span class="s2">       |||       \\ |</span>
+<span class="s2">       ((|        ((|</span>
+<span class="s2">       |||        |||</span>
+<span class="s2">      //_(       //_(</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">ascii_cow</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    ^__^</span>
+<span class="s2">    (oo)\_______</span>
+<span class="s2">    (__)\       )\/\</span>
+<span class="s2">        ||----w |</span>
+<span class="s2">        ||     ||</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">ascii_horse</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                                 |\    /|</span>
+<span class="s2">                              ___| \,,/_/</span>
+<span class="s2">                           ---__/ \/    \</span>
+<span class="s2">                          __--/    (D)(D)\</span>
+<span class="s2">                          _ -/    (_      \</span>
+<span class="s2">                         // /       \_ /  -\</span>
+<span class="s2">   __-------_____--___--/           / \_ O o)</span>
+<span class="s2">  /                                 /   \__/</span>
+<span class="s2"> /                                 /</span>
+<span class="s2">||          )                   \_/\</span>
+<span class="s2">||         /              _      /  |</span>
+<span class="s2">| |      /--______      ___\    /\  :</span>
+<span class="s2">| /   __-  - _/   ------    |  |   \ \</span>
+<span class="s2"> |   -  -   /                | |     \ )</span>
+<span class="s2"> |  |   -  |                 | )     | |</span>
+<span class="s2">  | |    | |                 | |    | |</span>
+<span class="s2">  | |    &lt; |                 | |   |_/</span>
+<span class="s2">  &lt; |    /__\                &lt;  \</span>
+<span class="s2">  /__\                       /___\</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">assic_title</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    *****************************</span>
+<span class="s2">    *       欢迎来到动物园       *</span>
+<span class="s2">    *****************************</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">assic_title</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;请选择你想查看的动物：&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;输入 &#39;1&#39;：看骆驼&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;输入 &#39;2&#39;：看牛&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;输入 &#39;3&#39;：看马&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;输入 &#39;q&#39;：退出程序&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入你的选择: &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_input</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">]:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;输入有误，请重新输入&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;这是一头骆驼，请看：&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">assic_camel</span><span class="p">)</span>
+        <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;输入任意内容退回到菜单&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;这是一头牛，请看：&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">ascii_cow</span><span class="p">)</span>
+        <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;输入任意内容退回到菜单&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;这是一匹马，请看：&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">ascii_horse</span><span class="p">)</span>
+        <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;输入任意内容退回到菜单&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;感谢你的访问，欢迎下次再来！&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+</code></pre></div>
+<p>在这个版本中，我们主要使用了以下技术点：</p>
+<ul>
+<li>使用 <code>while True</code> 无限循环来让程序持续运行，直到用户选择退出</li>
+<li>使用 <code>input()</code> 函数获取用户输入，并使用嵌套的 <code>while</code> 循环来检验用户输入的有效性</li>
+<li>使用 <code>if-elif-else</code> 语句来根据用户输入执行不同的操作</li>
+<li>使用 <code>print()</code> 函数将程序运行结果展示给用户</li>
+</ul>
+<p>现在我们已经了解了 Python 程序开发的基本要素和流程，接下来我们使用一些新的技术点来改进这个程序：</p>
+<ul>
+<li>使用正式的 <strong>Python 项目组织结构</strong>来管理程序代码和数据文件，使用不同的<strong>文件夹和模块</strong>来分离不同的功能</li>
+<li>使用<strong>函数</strong>来组织代码，将能封装成函数的部分都封装成函数，提高代码的可重复性和可维护性</li>
+<li>将动物的 ASCII 艺术字存放在单独的数据<strong>文件</strong>中，通过文件读取来获取数据</li>
+<li>使用<strong>异常处理</strong>来应对文件读取过程中可能出现的错误，并将用户的错误输入作为一种<strong>主动抛出的异常</strong>来处理</li>
+<li>使用<strong>日志</strong>来记录每次程序的开启和退出、用户的操作、以及报错信息</li>
+</ul>
+<p>注意，我们这个动物园程序比较简单，使用正式的项目组织结构和流程有些“大炮轰蚊子”的感觉，我们主要是通过这个例子，帮助大家更好地理解 Python 程序开发的基本流程和实践方法，为后续更复杂的程序开发打下基础。</p>
+<h2 id="2">2. 动物园程序需求分析与设计思路<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>根据上面的改进目标，我们对程序的需求进行分析，并设计程序的整体思路：</p>
+<p>首先，我们可以较为清晰地将程序分为几个主要的文件夹和模块：</p>
+<ul>
+<li><code>data/</code> 文件夹用于存放动物的 ASCII 艺术字数据文件，每个动物一个文件，标题也可以单独存放一个文件</li>
+<li>
+<p><code>src/</code> 文件夹包含程序的核心源代码，主要模块包括：</p>
+<ul>
+<li><code>main.py</code>：程序的入口文件，负责整体流程控制，就是将我们之前的主循环代码放在这里</li>
+<li><code>ui.py</code>：负责展示标题和菜单的功能</li>
+<li><code>animal_viewer.py</code>：负责读取数据文件，展示动物的功能</li>
+<li><code>input_handler.py</code>：负责处理用户输入的功能，包括输入的检验和解析</li>
+<li><code>logger.py</code>：负责日志记录的功能，将程序运行结果记录到日志文件中，方便后续查看和分析</li>
+<li><code>config.py</code>：用于存放程序的配置信息，我们在开发中遇到一些全局性的变量，都可以放在这里，如文件路径等</li>
+</ul>
+</li>
+<li>
+<p><code>tests/</code> 文件夹用于存放测试代码，与 <code>src/</code> 文件夹中的模块一一对应，负责对各个模块进行单元测试</p>
+<ul>
+<li>首先 <code>config.py</code> 模块通常不需要单独测试，我们可以不为它创建测试文件</li>
+<li>其次，我们这个程序中大部分模块比较简单，测试代码就会比较少，我们就可以<strong>直接在原模块的 <code>if __name__ == "__main__":</code> 中编写测试代码，而不必单独创建测试文件</strong></li>
+<li>因此，我们就只给 <code>main.py</code> 和 <code>animal_viewer.py</code> 创建测试文件，其实这两个模块也很简单，大家来体会以下测试代码怎么用就行了</li>
+</ul>
+</li>
+<li>
+<p><code>logs/</code> 文件夹用于存放程序运行的日志文件</p>
+</li>
+<li>
+<p><code>README.md</code> 文件用于介绍程序的功能和使用方法</p>
+</li>
+<li>
+<p><code>requirements.txt</code> 文件我们可以先创建，如果后续需要第三方库就添加到这个文件中，如果没有第三方库，这个文件可以为空</p>
+</li>
+</ul>
+<p>在正式开始代码编写之前，我们可以先将目录结构创建好：</p>
+<div class="highlight"><pre><span></span><code>zoo_program_v1/
+|
+├── data/
+│   ├── animal1_camel.txt
+│   ├── animal2_cow.txt
+│   ├── animal3_horse.txt
+│   └── title.txt
+│
+├── logs/
+│   └── zoo.log
+│
+├── src/
+│   ├── main.py
+│   ├── ui.py
+│   ├── animal_viewer.py
+│   ├── input_handler.py
+│   ├── logger.py
+│   └── config.py
+│
+├── tests/
+│   ├── test_main.py
+│   └── test_animal_viewer.py
+│
+├── README.md
+└── requirements.txt
+</code></pre></div>
+<h2 id="3">3. 主程序设计<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">(1) 根据新需求设计主程序框架<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<p>根据上面的设计思路，我们可以设计主程序的整体流程，我们先将之前实现过的代码放到 <code>src/main.py</code> 中：</p>
+<ul>
+<li>
+<p>主要逻辑不变：</p>
+<ul>
+<li>使用 <code>while True</code> 无限循环来持续运行程序</li>
+<li>根据 <code>if-elif-else</code> 语句来处理用户输入</li>
+</ul>
+</li>
+<li>
+<p>根据我们新提出的需求稍作调整：</p>
+<ul>
+<li>
+<p>将之前部分代码使用函数表示，这些函数还没有具体实现，但是没关系，我们先把函数调用注释掉，之后再来实现这些函数：</p>
+<ul>
+<li>展示标题和菜单，可以封装成 <code>display_title_menu()</code> 函数</li>
+<li>获取并处理用户输入，就是之前的那个嵌套 <code>while</code> 循环，其实就是为了获取用户输入，我们可以封装成 <code>get_user_input()</code> 函数，并返回给一个变量 <code>user_input</code></li>
+<li>展示不同的动物，可以封装成 <code>display_animal(animal_id)</code> 函数，参数 <code>animal_id</code> 用于表示用户选择的动物编号</li>
+<li>日志记录，可以封装成 <code>logger(message)</code> 函数，参数 <code>message</code> 用于表示需要记录的日志信息</li>
+</ul>
+</li>
+<li>
+<p>将主循环的每一圈都用 <code>try-except</code> 语句包裹起来，捕获用户输入错误和程序运行错误，并进行相应的处理</p>
+</li>
+<li>在程序开始和结束时、用户做出输入时、与程序报错时，调用日志记录函数 <code>logger()</code> 记录日志</li>
+</ul>
+</li>
+</ul>
+<p>根据新的设计思路，我们将主程序代码修改如下：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/main.py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+
+    <span class="c1"># TODO: 日志记录</span>
+    <span class="c1"># logger(&quot;程序启动&quot;)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># TODO: 展示标题和菜单</span>
+            <span class="c1"># display_title_menu()</span>
+
+            <span class="c1"># TODO: 获取并处理用户输入</span>
+            <span class="c1"># user_input = get_user_input()</span>
+
+            <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+                <span class="c1"># logger(&quot;程序退出&quot;)</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+                <span class="c1"># TODO: 展示骆驼</span>
+                <span class="c1"># display_animal(&quot;1&quot;)</span>
+                <span class="c1"># logger(&quot;用户查看动物1&quot;)</span>
+                <span class="k">pass</span>
+            <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span>
+                <span class="c1"># TODO: 展示牛</span>
+                <span class="c1"># display_animal(&quot;2&quot;)</span>
+                <span class="c1"># logger(&quot;用户查看动物2&quot;)</span>
+                <span class="k">pass</span>
+            <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
+                <span class="c1"># TODO: 展示马</span>
+                <span class="c1"># display_animal(&quot;3&quot;)</span>
+                <span class="c1"># logger(&quot;用户查看动物3&quot;)</span>
+                <span class="k">pass</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># TODO: 记录错误日志</span>
+            <span class="c1"># logger(时间, f&quot;程序错误: {e}&quot;)</span>
+            <span class="k">pass</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="2-">(2) 改进主程序代码 - 提高代码复用性和可扩展性<a class="headerlink" href="#2-" title="Permanent link">&para;</a></h3>
+<p>但是，上面的代码框架其实有一个问题，那就是 <code>display_animal()</code> 这个函数我们调用了3次，</p>
+<ul>
+<li>首先来说，这个函数重复调用了3次，代码有些冗余</li>
+<li>其次来说，假设我们以后想增加更多的动物，我们就不得不继续添加更多的 <code>elif</code> 分支，不仅代码会变得越来越冗长，而且维护复杂度也会越来越高</li>
+<li>
+<p>因此我们可以做以下改进：</p>
+<ul>
+<li>将用户输入的动物编号直接传递给 <code>display_animal()</code> 函数</li>
+<li>在 <code>display_animal()</code> 函数内部，直接根据传入的动物编号来决定展示哪个动物</li>
+</ul>
+</li>
+<li>
+<p>改进后的主程序代码如下：</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/main.py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+
+    <span class="c1"># TODO: 日志记录</span>
+    <span class="c1"># logger(&quot;程序启动&quot;)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># TODO: 展示标题和菜单</span>
+            <span class="c1"># display_title_menu()</span>
+
+            <span class="c1"># TODO: 获取并处理用户输入</span>
+            <span class="c1"># user_input = get_user_input()</span>
+
+            <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+                <span class="c1"># logger(&quot;程序退出&quot;)</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">user_input</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]:</span>
+                <span class="c1"># display_animal(user_input)</span>
+                <span class="c1"># logger(f&quot;用户查看动物{user_input}&quot;)</span>
+                <span class="k">pass</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># TODO: 记录错误日志</span>
+            <span class="c1"># logger(f&quot;程序错误: {e}&quot;)</span>
+            <span class="k">pass</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>这一点改进给我们以下两点启示：</p>
+<ul>
+<li>首先就是，当我们发现代码中有重复的部分时，一定要想办法<strong>提高代码的复用性</strong>，例如封装函数、命名变量、使用高级数据结构等</li>
+<li>其次就是，我们在开发时一定要考虑代码的可扩展性，尽量<strong>避免“硬编码”</strong>，让代码更容易适应未来的需求变化</li>
+</ul>
+<h3 id="3_1">(3) 主程序测试<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<p>接下来，我们准备对主程序进行测试。</p>
+<p>但是，此时，虽然我们设计完了主程序的框架，并且尽可能地用占位符来保证代码完整性，但此时程序还不能运行。</p>
+<ul>
+<li>运行到 <code>if</code> 语句时会报错，因为 <code>get_user_input()</code> 函数还没有定义，导致 <code>user_input</code> 变量未定义</li>
+<li>但是我们发现，只要实现了 <code>get_user_input()</code> 函数，程序是可以正常运行的，虽然还没能实现项目需求，但是程序已经可以正常启动和运行了</li>
+<li>所以我们可以先实现一个临时的 <code>get_user_input()</code> 函数，我们只需要它能帮助程序运行起来就行了</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/main.py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_user_input</span><span class="p">():</span>
+    <span class="c1"># 临时实现，直接复制之前的输入处理代码</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入你的选择: &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_input</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">]:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;输入有误，请重新输入&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user_input</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+
+    <span class="c1"># TODO: 日志记录</span>
+    <span class="c1"># logger(&quot;程序启动&quot;)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># TODO: 展示标题和菜单</span>
+            <span class="c1"># display_title_menu()</span>
+
+            <span class="c1"># TODO: 只是临时实现，后续要改成调用真正的函数</span>
+            <span class="n">user_input</span> <span class="o">=</span> <span class="n">get_user_input</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+                <span class="c1"># logger(&quot;程序退出&quot;)</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">user_input</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]:</span>
+                <span class="c1"># display_animal(user_input)</span>
+                <span class="c1"># logger(f&quot;用户查看动物{user_input}&quot;)</span>
+                <span class="k">pass</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># TODO: 记录错误日志</span>
+            <span class="c1"># logger(f&quot;程序错误: {e}&quot;)</span>
+            <span class="k">pass</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>接着，我们在 <code>tests/test_main.py</code> 中编写测试代码，对主程序进行测试：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/test_main.py</span>
+<span class="c1"># 需要先添加项目路径到 sys.path 中</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;codes/Module1/Topic13/Topic13_02/zoo_program_v1/src&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>请输入你的选择: 1
+请输入你的选择: 2
+请输入你的选择: 3
+请输入你的选择: 4
+输入有误，请重新输入
+请输入你的选择: q
+</code></pre></div>
+<p>看到这个运行结果，说明我们的主程序框架设计是正确的，程序可以正常启动和运行。</p>
+<h2 id="4">4. 各个功能实现<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="1_2">(1) 查看动物函数设计<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h3>
+<p>在实现 <code>display_animal(animal_id)</code> 函数之前，我们先在 <code>data/</code> 文件夹中，为每个动物创建一个单独的文本文件：</p>
+<ul>
+<li><code>animal1_camel.txt</code> 文件内容：</li>
+</ul>
+<div class="highlight"><pre><span></span><code>        _
+    .--&#39; |
+   /___^ |     .--.
+       ) |    /    \
+      /  |  /`      &#39;.
+     |   &#39;-&#39;    /     \
+     \         |      |\
+      \    /   \      /\|
+       \  /&#39;----`\   /
+       |||       \\ |
+       ((|        ((|
+       |||        |||
+      //_(       //_(
+</code></pre></div>
+<ul>
+<li><code>animal2_cow.txt</code> 文件内容：</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    ^__^
+    (oo)\_______
+    (__)\       )\/\
+        ||----w |
+        ||     ||
+</code></pre></div>
+<ul>
+<li><code>animal3_horse.txt</code> 文件内容：</li>
+</ul>
+<div class="highlight"><pre><span></span><code>                                 |\    /|
+                              ___| \,,/_/
+                           ---__/ \/    \
+                          __--/    (D)(D)\
+                          _ -/    (_      \
+                         // /       \_ /  -\
+   __-------_____--___--/           / \_ O o)
+  /                                 /   \__/
+ /                                 /
+||          )                   \_/\
+||         /              _      /  |
+| |      /--______      ___\    /\  :
+| /   __-  - _/   ------    |  |   \ \
+ |   -  -   /                | |     \ )
+ |  |   -  |                 | )     | |
+  | |    | |                 | |    | |
+  | |    &lt; |                 | |   |_/
+  &lt; |    /__\                &lt;  \
+  /__\                       /___\
+</code></pre></div>
+<p>接着我们来看一下 <code>display_animal(animal_id)</code> 函数的代码实现，这部分我们放在 <code>src/animal_viewer.py</code> 模块中：</p>
+<ul>
+<li>我们之前提到过，像如下这种使用 <code>if-elif-else</code> 语句通常不是一个好的实践，因为它会导致代码冗长且难以维护：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/animal_viewer.py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">display_animal</span><span class="p">(</span><span class="n">animal_id</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">animal_id</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;data/animal1_camel.txt&quot;</span>
+    <span class="k">elif</span> <span class="n">animal_id</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;data/animal2_cow.txt&quot;</span>
+    <span class="k">elif</span> <span class="n">animal_id</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;data/animal3_horse.txt&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidInputError</span><span class="p">(</span><span class="s2">&quot;无效的动物编号&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">animal_art</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">animal_art</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>我们想做到的效果是其实就是动物id与文件名来一一对应，那么有什么更好的方法吗？我们可以使用<strong>字典</strong>来映射动物编号和文件路径：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/animal_viewer.py</span>
+<span class="n">animal_info</span> <span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;骆驼&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;data/animal1_camel.txt&quot;</span>
+        <span class="p">},</span>
+    <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;牛&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;data/animal2_cow.txt&quot;</span>
+        <span class="p">},</span>
+    <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;马&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;data/animal3_horse.txt&quot;</span>
+    <span class="p">},</span>  <span class="c1"># 字典结尾的逗号是允许的</span>
+<span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">display_animal</span><span class="p">(</span><span class="n">animal_id</span><span class="p">):</span>    
+    <span class="c1"># 获取对应的文件路径</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">animal_info</span><span class="p">[</span><span class="n">animal_id</span><span class="p">][</span><span class="s2">&quot;file&quot;</span><span class="p">]</span>
+
+    <span class="c1"># 读取动物ASCII艺术字</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">animal_ascii</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="c1"># 展示动物</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;请看，这是一头</span><span class="si">{</span><span class="n">animal_info</span><span class="p">[</span><span class="n">animal_id</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">：&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">animal_ascii</span><span class="p">)</span>
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;输入任意内容退回到菜单&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">display_animal</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>我们直接通过运行 <code>animal_viewer.py</code> 模块来测试一下 <code>display_animal()</code> 函数：</p>
+<div class="highlight"><pre><span></span><code>FileNotFoundError: No such file or directory: &#39;data/animal1_camel.txt&#39;
+</code></pre></div>
+<p>为什么会报这个错呢？这是因为我们当前的工作目录是 <code>src/</code>，而数据文件在 <code>data/</code> 文件夹中，因此我们需要调整文件路径：</p>
+<ul>
+<li>正确的相对路径应该是 <code>codes/Module1/Topic13/zoo_program_v1/data/animal1_camel.txt</code>，这样才能从 <code>src/</code> 目录访问到 <code>data/</code> 目录中的文件</li>
+<li>但是我们如果每个文件都这样写路径，代码会变得很冗长</li>
+<li>所以我们可以直接把前缀 <code>codes/Module1/Topic13/zoo_program_v1/</code> 放在 <code>config.py</code> 模块中，作为一个全局变量 <code>PATH_PREFIX</code>，然后在其他模块中导入使用</li>
+</ul>
+<p>我们在 <code>config.py</code> 模块中加入如下设置：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/config.py</span>
+<span class="n">PATH_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;codes/Module1/Topic13/zoo_program_v1/&quot;</span>
+</code></pre></div>
+<p>我们修改 <code>animal_viewer.py</code> 模块中的文件路径代码：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/animal_viewer.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">config</span><span class="w"> </span><span class="kn">import</span> <span class="n">PATH_PREFIX</span>
+
+<span class="n">animal_info</span> <span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;骆驼&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;data/animal1_camel.txt&quot;</span>
+        <span class="p">},</span>
+    <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;牛&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;data/animal2_cow.txt&quot;</span>
+        <span class="p">},</span>
+    <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;马&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;data/animal3_horse.txt&quot;</span>
+    <span class="p">},</span>  <span class="c1"># 字典结尾的逗号是允许的</span>
+<span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">display_animal</span><span class="p">(</span><span class="n">animal_id</span><span class="p">):</span>    
+    <span class="c1"># 获取对应的文件路径</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">PATH_PREFIX</span> <span class="o">+</span> <span class="n">animal_info</span><span class="p">[</span><span class="n">animal_id</span><span class="p">][</span><span class="s2">&quot;file&quot;</span><span class="p">]</span>
+
+    <span class="c1"># 读取动物ASCII艺术字</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">animal_ascii</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="c1"># 展示动物</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;请看，这是一头</span><span class="si">{</span><span class="n">animal_info</span><span class="p">[</span><span class="n">animal_id</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">：&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">animal_ascii</span><span class="p">)</span>
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;输入任意内容退回到菜单&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">display_animal</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>现在我们再运行一下 <code>animal_viewer.py</code> 模块，看看效果如何：</p>
+<div class="highlight"><pre><span></span><code>请看，这是一头骆驼：
+        _
+    .--&#39; |
+   /___^ |     .--.
+       ) |    /    \
+      /  |  /`      &#39;.
+     |   &#39;-&#39;    /     \
+     \         |      |\
+      \    /   \      /\|
+       \  /&#39;----`\   /
+       |||       \\ |
+       ((|        ((|
+       |||        |||
+      //_(       //_(
+输入任意内容退回到菜单
+</code></pre></div>
+<p>此外，我们还可以在 <code>animal_viewer.py</code> 对应的测试文件 <code>tests/test_animal_viewer.py</code> 中编写测试代码：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/test_animal_viewer.py</span>
+<span class="c1"># 需要先添加项目路径到 sys.path 中</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;codes/Module1/Topic13/Topic13_02/zoo_program_v1/src&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">animal_viewer</span><span class="w"> </span><span class="kn">import</span> <span class="n">display_animal</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">display_animal</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+    <span class="n">display_animal</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
+    <span class="n">display_animal</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>请看，这是一头骆驼：
+        _
+    .--&#39; |
+   /___^ |     .--.
+       ) |    /    \
+      /  |  /`      &#39;.
+     |   &#39;-&#39;    /     \
+     \         |      |\
+      \    /   \      /\|
+       \  /&#39;----`\   /
+       |||       \\ |
+       ((|        ((|
+       |||        |||
+      //_(       //_(
+输入任意内容退回到菜单
+请看，这是一头牛：
+    ^__^
+    (oo)\_______
+    (__)\       )\/\
+        ||----w |
+        ||     ||
+输入任意内容退回到菜单
+请看，这是一头马：
+                                 |\    /|
+                              ___| \,,/_/
+                           ---__/ \/    \
+                          __--/    (D)(D)\
+                          _ -/    (_      \
+                         // /       \_ /  -\
+   __-------_____--___--/           / \_ O o)
+  /                                 /   \__/
+ /                                 /
+||          )                   \_/\
+||         /              _      /  |
+| |      /--______      ___\    /\  :
+| /   __-  - _/   ------    |  |   \ \
+ |   -  -   /                | |     \ )
+ |  |   -  |                 | )     | |
+  | |    | |                 | |    | |
+  | |    &lt; |                 | |   |_/
+  &lt; |    /__\                &lt;  \
+  /__\                       /___\
+输入任意内容退回到菜单
+
+通过 `test_main.py` 和 `test_animal_viewer.py` 这两个测试文件，我们体验了一下使用单独测试文件来验证程序功能的过程
+
+- 但是，由于我们这个程序比较简单，测试代码也比较少，使用单独的测试文件显得有些多余
+- 所以我们只是让大家知道有这个方法，以后接触到复杂的项目时，我们就可以使用这种方法来进行测试
+
+### (2) 展示标题和菜单函数设计
+
+接着我们来实现展示标题和菜单的 `display_title_menu()` 函数：
+
+- 函数的实现我们准备放在 `src/ui.py` 模块中
+- 由于标题比较复杂，我们就先把标题的 ASCII 艺术字直接写在函数内部，但是菜单比较简单，菜单部分我们直接使用 `print()` 函数展示即可
+
+首先，标题的艺术字我们放在 `data/title.txt` 文件中，内容如下：
+
+```text
+*****************************
+*       欢迎来到动物园        *
+*****************************
+</code></pre></div>
+<p>接着，我们来看一下 <code>display_title_menu()</code> 函数的代码实现，这部分很简单：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/ui.py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">display_title_menu</span><span class="p">():</span>
+    <span class="c1"># 读取标题文件</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/title.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c1"># 打印标题</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="c1"># 打印菜单</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;请选择你想查看的动物：&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. 查看骆驼&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. 查看牛&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. 查看马&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;q. 退出&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">display_title_menu</span><span class="p">()</span>
+</code></pre></div>
+<p>这里其实又涉及到了我们之前提到的“硬编码”的问题</p>
+<ul>
+<li>如果我们以后想增加动物，难道要挨个修改菜单代码吗？</li>
+<li>当然不用，我们之前在 <code>animal_viewer.py</code> 模块中定义了 <code>animal_info</code> 字典，里面就有所有动物的信息</li>
+<li>因此我们完全可以把这个字典导入到 <code>ui.py</code> 模块中，然后根据字典内容动态生成菜单</li>
+</ul>
+<p>改进后的代码如下：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/ui.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">animal_viewer</span><span class="w"> </span><span class="kn">import</span> <span class="n">animal_info</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">display_title_menu</span><span class="p">():</span>
+    <span class="c1"># 读取标题文件</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/title.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="c1"># 打印标题</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="c1"># 打印菜单</span>
+    <span class="c1"># 打印动物列表</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;请选择你想查看的动物：&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">animal_id</span><span class="p">,</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">animal_info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">animal_id</span><span class="si">}</span><span class="s2">. 查看</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># 打印退出选项</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;q. 退出&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>我们来运行一下 <code>ui.py</code> 模块，看看效果如何：</p>
+<div class="highlight"><pre><span></span><code>*****************************
+*       欢迎来到动物园        *
+*****************************
+请选择你想查看的动物：
+1. 查看骆驼
+2. 查看牛
+3. 查看马
+q. 退出
+</code></pre></div>
+<p>可以看到，效果不错，标题和菜单都展示出来了。</p>
+<h3 id="3_2">(3) 获取并处理用户输入函数设计<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h3>
+<p>接着我们来实现获取用户输入的 <code>get_user_input()</code> 函数，这个函数的实现我们准备放在 <code>src/input_handler.py</code> 模块中：</p>
+<ul>
+<li>这一部分也比较简单，我们把之前实现过的嵌套 <code>while</code> 循环代码放在这个函数中，并将用户输入作为返回值返回：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/main.py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_user_input</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入你的选择: &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_input</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">]:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;输入有误，请重新输入&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user_input</span>
+</code></pre></div>
+<p>写到这儿同学们应该已经看出来了，这个函数其实也有“硬编码”的问题：</p>
+<ul>
+<li>如果我们以后增加了更多的动物，我们还得修改这个函数的输入检验代码，就是那个列表 <code>['1', '2', '3', 'q']</code></li>
+<li>因此我们也可以使用 <code>animal_info</code> 字典来灵活地生成有效输入</li>
+</ul>
+<p>改进后的代码如下：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/input_handler.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">animal_viewer</span><span class="w"> </span><span class="kn">import</span> <span class="n">animal_info</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_user_input</span><span class="p">():</span>
+    <span class="c1"># 生成有效输入列表</span>
+    <span class="n">valid_inputs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">animal_info</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入您的选择: &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_input</span> <span class="ow">in</span> <span class="n">valid_inputs</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;输入有误，请重新输入&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user_input</span>
+</code></pre></div>
+<h3 id="4_1">(4) 日志记录函数设计<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h3>
+<p>最后我们来实现日志记录的 <code>logger(message)</code> 函数，这个函数的实现我们准备放在 <code>src/logger.py</code> 模块中：</p>
+<ul>
+<li>这个函数就比较简单，其实就是做了一个文件写入操作，将日志信息写入到日志文件中：</li>
+<li>并且，我们希望日志文件能够记录每条日志的时间戳，因此我们可以使用 <code>datetime</code> 模块来获取当前时间</li>
+<li>注意，我们这里应该使用追加模式打开日志文件，这样每次写入日志时不会覆盖之前的日志内容</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/logger.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">logger</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="c1"># 日志文件路径</span>
+    <span class="n">log_file_path</span> <span class="o">=</span> <span class="s2">&quot;logs/zoo.log&quot;</span>
+
+    <span class="c1"># 获取当前时间</span>
+    <span class="n">current_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 定义日志信息</span>
+    <span class="n">log_content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    时间：</span><span class="si">{</span><span class="n">current_time</span><span class="si">}</span>
+<span class="s2">    消息：</span><span class="si">{</span><span class="n">message</span><span class="si">}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 写入日志</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_file_path</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">log_content</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">logger</span><span class="p">(</span><span class="s2">&quot;开发者测试日志记录功能&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>之后，我们测试一下 <code>logger()</code> 函数，并多运行几次，打开 <code>logs/zoo.log</code> 文件，看到内容如下：</p>
+<div class="highlight"><pre><span></span><code>    时间：2025-10-23 16:22:56
+    消息：开发者测试日志记录功能
+
+    时间：2025-10-23 16:22:57
+    消息：开发者测试日志记录功能
+
+    时间：2025-10-23 16:22:58
+    消息：开发者测试日志记录功能
+</code></pre></div>
+<p>运行结束后，我们发现，日志文件里的格式好像不太对劲：</p>
+<ul>
+<li>为什么每条日志前都空了4个空格呢？这是因为我们在定义 <code>log_content</code> 字符串时，使用了多行字符串，而<strong>多行字符串会原封不动地保留代码中的缩进</strong></li>
+<li>也就是说，这个字符串是在函数内部定义的，函数的代码格式必须缩进4个空格，而多行字符串也会保留这4个空格</li>
+<li>因此我们可以把多行字符串改成单行字符串，使用 <code>\n</code> 来表示换行，这样就不会有缩进的问题了</li>
+</ul>
+<p>改进后的代码如下：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/logger.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">logger</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="c1"># 日志文件路径</span>
+    <span class="n">log_file_path</span> <span class="o">=</span> <span class="s2">&quot;Topic13/zoo_program/logs/zoo.log&quot;</span>
+
+    <span class="c1"># 获取当前时间</span>
+    <span class="n">current_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 定义日志信息</span>
+    <span class="n">log_content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;时间：</span><span class="si">{</span><span class="n">current_time</span><span class="si">}</span><span class="se">\n</span><span class="s2">消息：</span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>  <span class="c1"># 结尾两个换行，一个用于分隔日志条目，一个用于空一行</span>
+
+    <span class="c1"># 写入日志</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_file_path</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">log_content</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">logger</span><span class="p">(</span><span class="s2">&quot;开发者测试日志记录功能&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>在运行改进版代码之前，我们把前面的日志文件内容删除，然后重新运行几次测试代码，打开 <code>logs/zoo.log</code> 文件，可以看到内容如下：</p>
+<div class="highlight"><pre><span></span><code>时间：2025-10-23 16:50:20
+消息：开发者测试日志记录功能
+
+时间：2025-10-23 16:50:21
+消息：开发者测试日志记录功能
+
+时间：2025-10-23 16:50:22
+消息：开发者测试日志记录功能
+</code></pre></div>
+<h2 id="5">5. 整合各功能到主程序<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>到这里，我们已经实现了所有预留的功能，接下来我们把各个模块整合到 <code>main.py</code> 主程序中：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/main.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">display_title_menu</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">input_handler</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user_input</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">animal_viewer</span><span class="w"> </span><span class="kn">import</span> <span class="n">display_animal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+
+    <span class="n">logger</span><span class="p">(</span><span class="s2">&quot;程序启动&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">display_title_menu</span><span class="p">()</span>
+
+            <span class="n">user_input</span> <span class="o">=</span> <span class="n">get_user_input</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+                <span class="n">logger</span><span class="p">(</span><span class="s2">&quot;程序退出&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">user_input</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]:</span>
+                <span class="n">display_animal</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+                <span class="n">logger</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;用户查看动物</span><span class="si">{</span><span class="n">user_input</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;程序错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;程序出现错误，请稍后再试。&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>此时的主程序是可以完整运行的，但是其实我们又发现了一个“硬编码”的问题：</p>
+<ul>
+<li>就是判断用户输入是否在 <code>['1', '2', '3']</code> 这个列表中</li>
+<li>我们按照之前的做法，也可以使用 <code>animal_info</code> 字典来动态生成有效输入列表</li>
+<li>改进后的代码如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># src/main.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">display_title_menu</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">input_handler</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user_input</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">animal_viewer</span><span class="w"> </span><span class="kn">import</span> <span class="n">display_animal</span><span class="p">,</span> <span class="n">animal_info</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+
+    <span class="n">logger</span><span class="p">(</span><span class="s2">&quot;程序启动&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">display_title_menu</span><span class="p">()</span>
+
+            <span class="n">user_input</span> <span class="o">=</span> <span class="n">get_user_input</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+                <span class="n">logger</span><span class="p">(</span><span class="s2">&quot;程序退出&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">user_input</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">animal_info</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">display_animal</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+                <span class="n">logger</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;用户查看动物</span><span class="si">{</span><span class="n">user_input</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;程序错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;程序出现错误，请稍后再试。&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>我们再运行一下 <code>main.py</code> 主程序，或者在 <code>test/test_main.py</code>看看效果如何：</p>
+<div class="highlight"><pre><span></span><code>*****************************
+*       欢迎来到动物园      *
+*****************************
+请选择你想查看的动物：
+1. 查看骆驼
+2. 查看牛
+3. 查看马
+q. 退出
+请输入您的选择: 1
+请看，这是一头骆驼：
+        _
+    .--&#39; |
+   /___^ |     .--.
+       ) |    /    \
+      /  |  /`      &#39;.
+     |   &#39;-&#39;    /     \
+     \         |      |\
+      \    /   \      /\|
+       \  /&#39;----`\   /
+       |||       \\ |
+       ((|        ((|
+       |||        |||
+      //_(       //_(
+输入任意内容退回到菜单
+*****************************
+*       欢迎来到动物园      *
+*****************************
+请选择你想查看的动物：
+1. 查看骆驼
+2. 查看牛
+3. 查看马
+q. 退出
+请输入您的选择: 2
+请看，这是一头牛：
+    ^__^
+    (oo)\_______
+    (__)\       )\/\
+        ||----w |
+        ||     ||
+输入任意内容退回到菜单
+*****************************
+*       欢迎来到动物园      *
+*****************************
+请选择你想查看的动物：
+1. 查看骆驼
+2. 查看牛
+3. 查看马
+q. 退出
+请输入您的选择: 3
+请看，这是一头马：
+                                 |\    /|
+                              ___| \,,/_/
+                           ---__/ \/    \
+                          __--/    (D)(D)\
+                          _ -/    (_      \
+                         // /       \_ /  -\
+   __-------_____--___--/           / \_ O o)
+  /                                 /   \__/
+ /                                 /
+||          )                   \_/\
+||         /              _      /  |
+| |      /--______      ___\    /\  :
+| /   __-  - _/   ------    |  |   \ \
+ |   -  -   /                | |     \ )
+ |  |   -  |                 | )     | |
+  | |    | |                 | |    | |
+  | |    &lt; |                 | |   |_/
+  &lt; |    /__\                &lt;  \
+  /__\                       /___\
+输入任意内容退回到菜单
+*****************************
+*       欢迎来到动物园      *
+*****************************
+请选择你想查看的动物：
+1. 查看骆驼
+2. 查看牛
+3. 查看马
+q. 退出
+请输入您的选择: q
+感谢使用动物园程序，再见！
+</code></pre></div>
+<p>此时，程序已经可以完整运行，并且各个功能模块也都实现了，我们可以查看一下日志文件 <code>logs/zoo.log</code> 的内容：</p>
+<div class="highlight"><pre><span></span><code>时间：2025-11-07 00:17:49
+消息：程序启动
+
+时间：2025-11-07 00:17:52
+消息：用户查看动物1
+
+时间：2025-11-07 00:17:54
+消息：用户查看动物2
+
+时间：2025-11-07 00:17:56
+消息：用户查看动物3
+
+时间：2025-11-07 00:17:57
+消息：程序退出
+</code></pre></div>
+<h2 id="6-readme">6. 编写 README 文件<a class="headerlink" href="#6-readme" title="Permanent link">&para;</a></h2>
+<p>到此为止，我们的动物园程序已经开发完成，我们还剩下一个 <code>requirements.txt</code> 文件和一个 <code>README.md</code> 文件需要编写。</p>
+<ul>
+<li>由于我们的程序没有使用任何第三方库，因此 <code>requirements.txt</code> 文件可以为空。</li>
+<li>所以我们只需要再编写一个 <code>README.md</code> 文件，介绍程序的功能和使用方法即可</li>
+</ul>
+<p><code>README.md</code> 文件是一个 Markdown 格式的文本文件，主要用于介绍项目的基本信息、功能特点、使用方法等</p>
+<ul>
+<li>对于一个项目的 <code>README.md</code> 文件，需要包括哪些内容，要具体到什么程度，其实是没有通俗的标准的</li>
+<li>我们这里给出一个比较简单的示例，大家可以根据自己的需要进行修改和完善</li>
+</ul>
+<p>本项目的 <code>README.md</code> 文件内容如下：</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># 动物园程序</span>
+
+<span class="gu">## 项目介绍</span>
+
+该项目是一个简单的动物展示系统，主要用于展示动物和日志记录。
+
+<span class="gu">## 功能特点</span>
+
+<span class="k">-</span><span class="w"> </span>查看动物的 ASCII 艺术字，包括骆驼、牛和马
+<span class="k">-</span><span class="w"> </span>记录用户操作日志
+
+<span class="gu">## 使用方法</span>
+
+<span class="k">1.</span> 克隆项目到本地
+<span class="k">2.</span> 运行 <span class="sb">`main.py`</span> 文件，或在终端中执行 <span class="sb">`python src/main.py`</span>
+<span class="k">3.</span> 按照提示进行操作
+</code></pre></div>
+<h2 id="7">7. 小结<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<p>到此为止，我们已经完成了动物园程序的开发工作，带着大家完整地体验了一遍 Python 程序开发的基本流程和实践方法。</p>
+<p>下一节，我们讲体验一下项目开发的版本迭代，根据新的需求和出现的新的问题，对程序进行改进和优化。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "content.code.copy", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
