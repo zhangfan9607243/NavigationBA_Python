@@ -1,9 +1,9 @@
-site_name: 领航国际教育 - BA专业自学系列课程
-site_description: 领航国际教育 - BA专业自学系列课程
-site_url: https://zhangfan9607243.github.io/Navigation_BA_Code_Basics/
+site_name: 领航国际教育 - BA专业Python代码课程
+site_description: 领航国际教育 - BA专业Python代码课程
+site_url: https://zhangfan9607243.github.io/NavigationBA_Python/
 site_dir: site
 edit_uri: edit/main/docs/
-repo_url: https://zhangfan9607243.github.io/Navigation_BA_Code_Basics/
+repo_url: https://github.com/zhangfan9607243/NavigationBA_Python/
 repo_name: GitHub
 
 theme:
@@ -12,10 +12,11 @@ theme:
   features:
     - navigation.tabs        # 顶部导航标签
     - navigation.sections    # 子导航分组
-    - navigation.top
-    - navigation.tracking
-    - content.code.copy
-    - toc.follow
+    - navigation.top         # 顶部导航栏固定
+    - navigation.tracking    # 滚动时高亮当前章节
+    - content.code.copy      # 代码块复制按钮
+    - toc.follow             # 目录跟随滚动
+    - toc.sticky             # 目录固定在侧边栏
   palette:
     - scheme: default
       primary: blue   # 主色（导航栏背景）
@@ -53,10 +54,7 @@ extra_javascript:
 
 nav:
 
-  - 首页:
-    - ✴️ 欢迎页面: index.md
-    - ✴️ 课程介绍: index/index1.md
-    - ✴️ 课程大纲: index/index2.md
+  - 首页: index.md
 
   - Module 1 - Python 基础: 
     - 课程介绍:                    
