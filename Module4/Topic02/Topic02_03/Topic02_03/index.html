@@ -5670,6 +5670,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4-order-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (4) ORDER BY 语法的注意事项
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5872,6 +5883,17 @@
     <span class="md-ellipsis">
       
         (3) 多列排序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-order-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (4) ORDER BY 语法的注意事项
       
     </span>
   </a>
@@ -6144,6 +6166,36 @@
 | 344 | Monteverdi: L&#39;Orfeo                                            | 273      | 345     |
 | 345 | Mozart: Chamber Music                                          | 274      | 346     |
 | 346 | Koyaanisqatsi \(Soundtrack from the Motion Picture\)           | 275      | 347     |
+</code></pre></div>
+<h3 id="4-order-by">(4) ORDER BY 语法的注意事项<a class="headerlink" href="#4-order-by" title="Permanent link">&para;</a></h3>
+<p>这里大家注意一下 <code>ORDER BY</code> 语句的一个特殊性：</p>
+<ul>
+<li>之前我们在讲 <code>WHERE</code> 语句的时候，提到过 <code>WHERE</code> 语句中的列名必须使用原列名</li>
+<li>而在 <code>ORDER BY</code> 语句中，列名可以使用原列名，也可以使用列别名</li>
+<li>这个是 <code>ORDER BY</code> 语句的一个特殊性</li>
+<li>我们来看以下例子：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="n">Title</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">AlbumTitle</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ArtistId</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ArtistId</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Album</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AlbumTitle</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">ArtistId</span><span class="w"> </span><span class="k">ASC</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>|     | AlbumTitle                                                              | ArtistId |
+|:----|:------------------------------------------------------------------------|:---------|
+| 0   | Zooropa                                                                 | 150      |
+| 1   | Worlds                                                                  | 202      |
+| 2   | Weill: The Seven Deadly Sins                                            | 264      |
+| 3   | Warner 25 Anos                                                          | 6        |
+| 4   | War                                                                     | 150      |
+| 5   | Walking Into Clarksdale                                                 | 115      |
+| ... | ...                                                                     | ...      |
+| 342 | A Matter of Life and Death                                              | 90       |
+| 343 | A Copland Celebration, Vol. I                                           | 230      |
+| 344 | 20th Century Masters - The Millennium Collection: The Best of Scorpions | 179      |
+| 345 | \[1997\] Black Light Syndrome                                           | 136      |
+| 346 | ...And Justice For All                                                  | 50       |
 </code></pre></div>
 <h2 id="2_1">2. 头部查询<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
 <h3 id="1-n">(1) 查询前 N 行数据<a class="headerlink" href="#1-n" title="Permanent link">&para;</a></h3>
