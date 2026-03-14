@@ -5726,35 +5726,7 @@
   <span class="md-ellipsis">
     
   
-    ✅ Topic 2.4 - SELECT 语句中的进阶数据运算
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Topic02/Topic02_05/Topic02_05/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ✅ Topic 2.5 - GROUP BY 与数据集合运算
+    ✅ Topic 2.4 - GROUP BY 与数据集合运算
   
 
     
@@ -5919,117 +5891,26 @@
 <li>表格数据的一个重要特征就是<strong>规整</strong>，也就是说每行要记录的信息其实是一样的</li>
 <li>例如下面身高体重表，每行都记录了一个人的姓名、班级、身高和体重，而并没有灵活性可以记录额外的信息：</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th>班级</th>
-<th>身高</th>
-<th>体重</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>张三</td>
-<td>一班</td>
-<td>180cm</td>
-<td>75kg</td>
-</tr>
-<tr>
-<td>李四</td>
-<td>一班</td>
-<td>165cm</td>
-<td>60kg</td>
-</tr>
-<tr>
-<td>王五</td>
-<td>二班</td>
-<td>170cm</td>
-<td>68kg</td>
-</tr>
-<tr>
-<td>赵六</td>
-<td>二班</td>
-<td>175cm</td>
-<td>70kg</td>
-</tr>
-</tbody>
-</table>
+<div style="text-align: center;">
+    <img src="../图1.png" width="400"/>
+</div>
+
 <p><strong>数据库: Database</strong>，是一个<strong>有组织的</strong>数据集合，大家可以简单理解，数据库就是多个表格放在一起的组合</p>
 <ul>
 <li>我们本门课所接触的数据库，主要是关系型数据库（Relational Database），它的特点就是表格之间是有一定关系的</li>
 <li>例如，我们的数据库中有两张表，一张就是上面的身高体重表，另一张是班级信息表：</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>班级</th>
-<th>班主任</th>
-<th>教室</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>一班</td>
-<td>马老师</td>
-<td>101</td>
-</tr>
-<tr>
-<td>二班</td>
-<td>牛老师</td>
-<td>102</td>
-</tr>
-</tbody>
-</table>
+<div style="text-align: center;">
+    <img src="../图2.png" width="300"/>
+</div>
+
 <ul>
 <li>这两张表中是有共同信息的，就是班级，我们可以通过这个共同信息将两张表连接起来，查询出每个人的姓名、身高、体重以及班主任是谁：</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th>班级</th>
-<th>身高</th>
-<th>体重</th>
-<th>班主任</th>
-<th>教室</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>张三</td>
-<td>一班</td>
-<td>180cm</td>
-<td>75kg</td>
-<td>马老师</td>
-<td>101</td>
-</tr>
-<tr>
-<td>李四</td>
-<td>一班</td>
-<td>165cm</td>
-<td>60kg</td>
-<td>马老师</td>
-<td>101</td>
-</tr>
-<tr>
-<td>王五</td>
-<td>二班</td>
-<td>170cm</td>
-<td>68kg</td>
-<td>牛老师</td>
-<td>102</td>
-</tr>
-<tr>
-<td>赵六</td>
-<td>二班</td>
-<td>175cm</td>
-<td>70kg</td>
-<td>牛老师</td>
-<td>102</td>
-</tr>
-</tbody>
-</table>
+<div style="text-align: center;">
+    <img src="../图3.png" width="400"/>
+</div>
+
 <p>那么到此我们就见到了两种数据记录的形式：</p>
 <ul>
 <li>一种是像上面的身高体重表和班级信息表一样，记录和维护两个小表</li>
