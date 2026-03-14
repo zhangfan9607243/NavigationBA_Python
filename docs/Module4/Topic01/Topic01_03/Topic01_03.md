@@ -44,7 +44,7 @@
 Profile Name: Chinook (注意这个其实是你自己给这个连接起的名字，可以随意命名，我们就起和数据库同名的名字，方便查找)
 Connection Group: <Default>
 Input Type: Parameters
-Server Name: navigation-sql.database.windows.net
+Server Name: 1.13.142.106,1433
 Trust Server Certificate: Yes
 Authentication Type: SQL Login
 User Name: student
