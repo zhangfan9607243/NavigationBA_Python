@@ -1,9 +1,9 @@
 site_name: 领航国际教育 - BA专业代码课程
 site_description: 领航国际教育 - BA专业代码课程
-site_url: https://zhangfan9607243.github.io/NavigationBA_Codes/
+site_url: https://navigationba.github.io/NavigationBA_Codes/
 site_dir: site
 edit_uri: edit/main/docs/
-repo_url: https://github.com/zhangfan9607243/NavigationBA_Codes/
+repo_url: https://navigationba.github.io/NavigationBA_Codes/
 repo_name: GitHub
 
 theme:

@@ -21,8 +21,9 @@
 
 本系列课程的资料包括：
 
-- 讲义：[本网站](https://zhangfan9607243.github.io/NavigationBA_Codes)
-- 代码：[GitHub](https://github.com/zhangfan9607243/NavigationBA_Codes)
+- 讲义：[本网站](https://navigationba.github.io/NavigationBA_Codes)
+- 代码：请联系领航客服老师获得
+- 视频：请联系领航客服老师获得
 
 ## 课程大纲
 
